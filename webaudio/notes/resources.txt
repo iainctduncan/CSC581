@@ -1,0 +1,20 @@
+Various resources:
+
+- article on rinbuffer library for webaudio
+https://blog.paul.cx/post/a-wait-free-spsc-ringbuffer-for-the-web/
+
+This blog post shows using processor options to pass wasm modules:
+https://softwayre.com/blog/2021/07/06/first-post
+
+- good page on compiling and memory
+https://developer.mozilla.org/en-US/docs/WebAssembly/Using_the_JavaScript_API
+
+- TODO: read these MDN pages on WASM
+https://developer.mozilla.org/en-US/docs/WebAssembly
+
+- emcripten docs page on sharing memory from JS to C
+https://emscripten.org/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.html#access-memory-from-javascript
+
+- read these on Memory
+https://webassembly.org/getting-started/js-api/
+
