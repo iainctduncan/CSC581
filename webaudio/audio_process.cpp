@@ -14,7 +14,7 @@ const int OSC_TABLE_SIZE = 1024;
 const int NUM_VOICES = 4;
 enum shape { SINE, SAW, SQUARE, NOISE};
 
-// static buffer for handling incoming event messages
+// a global static buffer for handling incoming event messages
 float evt_buf[EVT_BUF_SIZE];
 // JS can call getEvtBuf to get at the pointer to it
 float* getEvtBuf() { return &evt_buf[0]; }
@@ -28,6 +28,7 @@ float* getOutBuf() { return &g_out_buf[0]; }
 
 // a multi table oscillator (like a modular synth)
 // shares one freq and phase, but can output three different waves
+// they just use dumb geometric tables for now (aliases badly)
 class WaveTableOsc {
   static const int waveforms = 4;
   public:
@@ -51,7 +52,7 @@ class WaveTableOsc {
 
     void reset(){ phasor = 0.0; }
 
-    // freq setter so we can do glide later
+    // freq setter, stuff to implement glide will go here later
     void setFreq(float frq){ freq = frq; }
 
     void initSine(){
@@ -84,6 +85,8 @@ class WaveTableOsc {
 // for use with score events where total time is known
 // does not handle envelope take over or allow editing env
 // values mid note
+// this is for Csound style scores - note dur known in advance
+// unlike like MIDI note on/off envelopes
 class ADEnv {
 
   private:
@@ -189,11 +192,9 @@ class Engine {
   public:
     int sampleRate;
     int blockSize;
-    int numVoices;
+    int blockNumber;
     Voice voices[NUM_VOICES];
     float perVoiceGain;
-
-    int blockNumber;
 
     int init(int sampleRate, int blockSize, int numVoices){
       for(int i=0; i < NUM_VOICES; i++){
@@ -205,6 +206,7 @@ class Engine {
     }
 
     // for now, just delegate to the first voice
+    // smart voice allocation will go here later
     void playNote(float dur, float amp, float freq){
       voices[0].playNote(dur, amp, freq);
     }
@@ -221,10 +223,9 @@ class Engine {
       blockNumber += 1;
       return 1;
     }
-
 };
 
-// generate a noise sample
+// generate a noise sample, keeping here to use later
 float genNoise(){
     float randomSample = (static_cast <float> (rand()) / static_cast <float> (RAND_MAX / 2) ) - 1.0;
     return randomSample;
@@ -234,20 +235,25 @@ float genNoise(){
 // FFI functions, exported and called from JS
 // easiest FFI is simple functions that take and receive ints or floats only
 
-// haven't figured out how to have this thing instantiate pointers with
-// new in WASM, so all references are static for now and use explicit
-// init methods for setup
+// not sure why, but doing the below with pointers does not work in WASM standalone
+// we get a browser error msg:
+//   "TypeError: import object field 'wasi_snapshot_preview1' is not an Object"
+// compiles fine, but won't run
+
+// Engine * engine = new Engine();
+
+// so instead, the engine (and its children) are just variables, and
+// we will use explicit init methods instead of constructors
 Engine engine;
 
-// setup our audio engine
+// FFI function to setup our audio engine
+// this is called from JS
 int initEngine(){
-    // create an engine as a global var for now, with 4 voices
-    //engine.init(SAMPLE_RATE, AUDIO_BLOCK_SIZE, NUM_VOICES);
     engine.init(SAMPLE_RATE, AUDIO_BLOCK_SIZE, NUM_VOICES);
     return 1;
 }
 
-// this will become the function that gets incoming events
+// FFI function called on incoming events once per block
 // JS side will fill the buffer and this will empty it
 // TODO: make this use a ring buffer and accept/send number of events
 int processEvents(){
@@ -262,21 +268,17 @@ int processEvents(){
       evt_buf[i] = 0;
       i += 5;
     }
-
     return 1;
 }
 
+// FFI function that JS calls once per block to render a block of audio
 int processAudio(){
     if( engine.blockNumber == 0){
-      // anything that should play automatically goes here
+      // anything that should play automatically on start goes here
     }
     engine.renderAudioBlock();
     return 1;
 }
-
-
-
-
 
 #ifdef __cplusplus
 }

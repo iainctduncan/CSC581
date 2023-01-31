@@ -3,9 +3,6 @@
 // it is constructed when the worklet is instantiated, and its processor method runs to
 // generate a block (128) of samples
 
-// convenience container for exported C functions compiled with WASM
-var wa = {};
-
 const EVT_BUF_SIZE = 128;
 const BLOCK_SIZE = 128;
 
@@ -67,6 +64,7 @@ class AudioProcessor extends AudioWorkletProcessor {
     ];
   }
 
+  // worklet message handler for incoming note messages
   noteMsg(noteData){
     console.log("AudioProcessor.noteMsg() data:", noteData);
     // get at the evt buf
@@ -75,11 +73,9 @@ class AudioProcessor extends AudioWorkletProcessor {
     // flag, time, dur, amp, freq
     buf.set( [1, 0.0, 2.0, 1.0, 110], 0);
     // TODO use a proper ring buffer here
-    // call C function to handle it
-    var sum = this.instance.exports.processEvents();
-    console.log(" got back: ", sum);
+    // call into C function to handle it
+    this.instance.exports.processEvents();
   }
-
 
   // log helper for in the audio loop, logs every X samples
   log(msg){
@@ -111,7 +107,6 @@ class AudioProcessor extends AudioWorkletProcessor {
         this.instance.exports.processAudio();
         for(var i=0; i < BLOCK_SIZE; i++){
           output[channel][i] = this.audioOut[i] * gain * 0.1;
-          //this.log(output[channel][i]);
         }
       }
     }
@@ -120,7 +115,6 @@ class AudioProcessor extends AudioWorkletProcessor {
     // need to return true to indicate processor is active and ready
     return true;
   }
-
 };
 
 // when AudioWorklet invokes this processor, this will register the processor
