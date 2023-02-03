@@ -1,0 +1,29 @@
+Assignment 1 Deliverables
+
+Basic
+1) play basic sine wave
+2) make it take midi note number and duration, and have it play a melody
+3) have a score language play a melody
+4) implement: 
+  saw
+  pulse
+  triangle
+  noise
+
+Expected
+5) - do 1 to 4 using buffers
+6) - do polyphony of any kind
+7) - implement some of the above in Max
+8) implement 1 to 4 in Csound
+
+Advanced (do 2)
+- use JUCE - later
+- use WASM
+
+
+TODO:
+- sine wave - later
+* - score plays melody
+- Max patch
+- Csound ensemble
+- JUCE container
