@@ -65,21 +65,13 @@ class AudioProcessor extends AudioWorkletProcessor {
   }
 
   // worklet message handler for incoming note messages
-  noteMsg(noteData){
-    console.log("AudioProcessor.noteMsg() data:", noteData);
+  noteMsg(data){
+    console.log("AudioProcessor.noteMsg() data:", data);
     // get at the evt buf
     var buf = new Float32Array(this.wa_buf, this.instance.exports.getEvtBuf(), EVT_BUF_SIZE);
     // write an event, which consists of five floats, but we will use 8 points per line
-    // voice, time, dur, amp, freq
-    buf.set( [1, 0.0, 1.0, 1.0, 60], 0);
-    buf.set( [2, 0.0, 1.0, 1.0, 64], 8);
-    buf.set( [3, 0.0, 1.0, 1.0, 67], 16);
-    // call C, tell it how many events there are
-    buf.set( [1, 2.0, 1.0, 1.0, 60], 24);
-    buf.set( [2, 2.0, 1.0, 1.0, 64], 32);
-    buf.set( [3, 2.0, 1.0, 1.0, 67], 40);
-    var res = this.instance.exports.processEvents(6);
-    console.log("got", res);
+    buf.set( [data.voice, data.time, data.dur, data.amp, data.pitch])
+    var res = this.instance.exports.processEvents(1);
   }
 
   // log helper for in the audio loop, logs every X samples

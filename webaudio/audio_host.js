@@ -55,27 +55,39 @@ async function start(){
   processorNode.port.onmessage = function(e){
     console.log("msg received in main thread:", e.data);
   }
-
+  // can we get rid of this osc node somehow?
   oscNode = new OscillatorNode(ctx, {frequency: 220, type: "sine"});
   oscNode.connect(processorNode).connect(ctx.destination);
-  // to bypass processor for testing
-  //oscNode.connect(ctx.destination);
-}
-
-function play(){
-  console.log("play");
   oscNode.start();
 }
 
 function note(){
   console.log("host.note()");
+  processorNode.port.postMessage({'msg': 'note', 'body': {voice: 1, time: 0.0, dur: 1.0, amp: 0.9, pitch: 60} })
+}
+
+function chord(){
+  console.log("host.chord()");
+  processorNode.port.postMessage({'msg': 'note', 'body': {voice: 1, time: 0.0, dur: 1.0, amp: 0.9, pitch: 60} })
+  processorNode.port.postMessage({'msg': 'note', 'body': {voice: 2, time: 0.0, dur: 1.0, amp: 0.9, pitch: 64} })
+  processorNode.port.postMessage({'msg': 'note', 'body': {voice: 3, time: 0.0, dur: 1.0, amp: 0.9, pitch: 67} })
+}
+
+function chordProg(){
+  console.log("host.chordProg()");
   // play two notes to simulate having two to handle in one blocl
-  processorNode.port.postMessage({'msg': 'note',
-    'body': {time: 0.0, dur: 1.0, amp: 0.9, pitch: 220}
-  })
-  //processorNode.port.postMessage({'msg': 'note',
-  //  'body': {time: 0.0, dur: 1.0, amp: 0.9, pitch: 440}
-  //})
+  processorNode.port.postMessage({'msg': 'note', 'body': {voice: 1, time: 0.0, dur: 1.0, amp: 0.9, pitch: 65} })
+  processorNode.port.postMessage({'msg': 'note', 'body': {voice: 2, time: 0.0, dur: 1.0, amp: 0.9, pitch: 69} })
+  processorNode.port.postMessage({'msg': 'note', 'body': {voice: 3, time: 0.0, dur: 1.0, amp: 0.9, pitch: 72} })
+
+  processorNode.port.postMessage({'msg': 'note', 'body': {voice: 1, time: 1.0, dur: 1.0, amp: 0.9, pitch: 67} })
+  processorNode.port.postMessage({'msg': 'note', 'body': {voice: 2, time: 1.0, dur: 1.0, amp: 0.9, pitch: 71} })
+  processorNode.port.postMessage({'msg': 'note', 'body': {voice: 3, time: 1.0, dur: 1.0, amp: 0.9, pitch: 74} })
+
+  processorNode.port.postMessage({'msg': 'note', 'body': {voice: 1, time: 2.0, dur: 1.0, amp: 0.9, pitch: 60} })
+  processorNode.port.postMessage({'msg': 'note', 'body': {voice: 2, time: 2.0, dur: 1.0, amp: 0.9, pitch: 64} })
+  processorNode.port.postMessage({'msg': 'note', 'body': {voice: 3, time: 2.0, dur: 1.0, amp: 0.9, pitch: 67} })
+
 }
 
 function stop(){
