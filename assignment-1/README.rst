@@ -4,8 +4,9 @@ Assignment 1 - 2023-02-06
 My assignment is implemented as a website using the WebAudio API, a WebAudio worklet, and a 
 WebAssembly synthesizer created in C++ and run in the worklet.
 
-A 7 minute video walkthrough of my submission, including code parts, is here:
+A 7 minute video walkthrough of my submission is here:
 https://youtu.be/TgRyDQjHNh8
+This includes demo of the app, playback of all the waves and the score, and code walkthrough.
 
 
 Basic 
