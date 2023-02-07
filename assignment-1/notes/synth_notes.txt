@@ -1,0 +1,18 @@
+TODO:
+- fill a sine table
+- do wave table oscillation
+- make an env
+- trigger a note
+
+Notes:
+- how to start a note
+- the synth function gets called once per block, it needs a table of input data for note ons
+  - we could have it do time, dur, freq, amp so four numbers for now
+  - so it needs to get an array of 4 arrays
+
+- so we need a way to play note from main thread, sends message to audio thread
+  - audio thread gets message, fills buffer that C code handles
+
+- so the next question is how to get the buffer from the C code.
+
+

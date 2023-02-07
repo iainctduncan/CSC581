@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="audio_host.js"></script>
+</head>
+<style>
+ button {margin: 10px;}
+ #osc-levels label {display: block; width: 100px;}
+</style>
+<body>
+<h2>WebAudio page</h2>
+<button onclick="start()">Start Audio</button>&nbsp;
+<button onclick="stop()">Stop Audio</button><br/>
+
+<button onclick="note()">C 60</button>&nbsp;&nbsp;
+<button onclick="chord()">C Maj</button>&nbsp;&nbsp;
+<button onclick="chordProg()">C: IV-V-I</button><br/>
+
+<!--
+<div id="osc-levels">
+  <h3>Levels</h3>
+  <label>sine</label>       <input type="range" min="0" max="127" value="0" class="slider"  oninput="updateSlider(0, this.value)"><br/>
+  <label>saw</label>        <input type="range" min="0" max="127" value="0" class="slider"  oninput="updateSlider(1, this.value)"><br/>
+  <label>triangle</label>   <input type="range" min="0" max="127" value="0" class="slider"  oninput="updateSlider(2, this.value)"><br/>
+  <label>square</label>     <input type="range" min="0" max="127" value="0" class="slider"  oninput="updateSlider(3, this.value)"><br/>
+  <label>pulse</label>      <input type="range" min="0" max="127" value="0" class="slider"  oninput="updateSlider(4, this.value)"><br/>
+  <label>noise</label>      <input type="range" min="0" max="127" value="0" class="slider"  oninput="updateSlider(5, this.value)"><br/>
+</div>
+-->
+
+</body>

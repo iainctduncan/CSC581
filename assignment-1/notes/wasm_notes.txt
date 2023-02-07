@@ -1,0 +1,47 @@
+emscripten instructions
+https://emscripten.org/docs/getting_started/downloads.html
+- I installed emsdk in code/emsdk
+
+- to activate it for a shell session
+  cd ~/Documents/code/emsdk
+  source "/Users/iainduncan/Documents/code/emsdk/emsdk_env.sh"
+  source ./emsdk_env.sh
+
+(using code in my documents/code/wasm/hello folder)
+
+- compile some c to a js file that can be included:
+  $ emcc hello.c -o hello.js
+
+- now the hello.js can be added in a script tag, and any printf will become console output.
+
+- we can also have the compiler only create the wasm file without making the js plumbing,
+  in which case we would make the js to download and instantiate the module
+- this is called "buidling a side module". we need to add optimization level and explict exports:
+  emcc adder.c -s SIDE_MODULE=2 -O1 -s EXPORTED_FUNCTIONS=['_add'] -o adder.wasm
+- this gives us the wasm file and we need to manually make the boilerplate to load it
+
+- we will get it and compile it using the browers webassembly API
+- we need to get the module using "fetch", which returns a promise
+- and then we compile it, using WebAssembly.instantiateStreaming
+  - this returns a Promise that, when fulfilled, holds a 'module' property and an 'instance' property
+   holding a WebAssembly.Module and WebAssembly.Instance respectively
+
+- this has examples of how we can use this in the web audio worklet:
+  https://cprimozic.net/blog/buliding-a-wavetable-synthesizer-with-rust-wasm-and-webaudio/#lazily-instantiating-the-webassembly-module
+
+- left off not sure how to share memory because in my manually instantiated code
+  I don't have a Module reference
+
+- I think the solution is in the hard part of chapter 4 in the book
+  - issue is I'm not using generated js (-o js) so I have no Module object
+
+- compiling with multiply is working, perhaps try to get at its memory?
+
+- I need to try the first approach listed in this article:
+https://developer.chrome.com/blog/audio-worklet-design-pattern/
+
+- best tutorial is here! https://marcoselvatici.github.io/WASM_tutorial/#memory
+
+Questions
+- how can I get at cwrap and ccall?
+- left off trying to figure out how the fuck to pass memory back and forth
