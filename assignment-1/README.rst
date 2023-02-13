@@ -18,7 +18,7 @@ Expected
 ---------
 Polyphony and scoring is handled using a Csound like score language and a scheduler. See video.
 
-2023-02-06 - missing is the Max and Csound implementation for questions 7 and 8, these will be added tomorrow.
+2023-02-12 - I have added questions 1-4 in Max and Csound 
 
 
 Advanced questions
@@ -48,6 +48,11 @@ processor.js
 build.sh
   the Emscripten build file
 
+a1.maxpat
+  questions 1-4 as Max patch
+
+a1.csd
+  questions 1-4 as Csound
 
 
 
