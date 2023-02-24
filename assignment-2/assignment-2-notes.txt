@@ -1,0 +1,31 @@
+Need help with the following:
+
+Complex number 
+2 (Basic) COMPLEX NUMBER MULTIPLICATION Show using a figure, programming, and math what 
+is the result multiplying the complex number (2 + j) with j. 
+For programming, represent the complex number as an array, list, or tuple and directly
+implement the complex number multiplication in terms of real and imaginary parts without 
+using any built-in libraries or types for complex numbers.
+
+5 (Expected) Amplitude and Phase Estimation in Mixture This is an extension of question 4.
+Extend your code from question 4 so that the three sinusoidal components have random phases
+in addition to random amplitudes. Listen to the generated sound and create 4 plots one for
+each individual sinusoid and one for the resulting mixed sound. Each plot should correspond
+to the time duration of one period of the lowest sinusoid (100hz)
+). Show how the amplitudes and phases can be estimated for this sound in two ways:
+a) by brute force checking even possible phase value and selecting that one that results
+in the highest dot product with a basis sinusoid of the appropriate frequency b) by
+taking the dot product of the mixture with a sine component and a cosine component.
+
+8 (Expected) COMPLEX NUMBER PLOTTING Write code that takes as input a time in minutes and
+seconds and converts that to two complex numbers corresponding to the positions of the 
+minute hand and second hand on a clock. What complex number do we need to multiply a particular
+second hand position to move by one second (clockwise)? What complex number of we need to 
+multiply to move by one second (counter-clockwise). Show your answer by creating a corresponding
+plot.
+
+- resource suggested by George - DSP Primer - Ken Steiglitz
+- go over material George has on Kadenze MIR course
+
+- Project question, what would it take for that
+
