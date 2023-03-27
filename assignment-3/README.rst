@@ -26,7 +26,11 @@ synthesis added to FM. This has me interested in exploring this with modern
 capabilities (i.e. a lot more additive oscillators). 
 It also has me wondering whether combining this with modal synthesis would be fruitful,
 in that one could run the oscillators into banks of biquad filters as well.
-
+It makes me think that there is real potential in exploring FM with the ability
+now to make far more sinusoids and do these, and the envelopes, at higher resolutions
+and with dynamic control. I suppose this says something about the instrument
+market that there is an FM renaissance happening, but what is being released is
+even less capable than the DX7 rather than more. 
 
 Question 2 Interview
 --------------------
@@ -42,8 +46,12 @@ formant size can't be changing when we do so!
 I also thought about this when they were discussing the sound that Letterman
 said sounded like the studio was going to blow up. 
 I thought it was intriguing that he choose as a metaphor *the studio*, something
-so big they are actually in it. It was really noticeable how much Letterman
+so big they are actually **in it**. It was really noticeable how much Letterman
 liked this sound, event without any kind of musical context.
+
+As someone who has performed both serious music, physical comedy, and musical comedy,
+I also was really impressed with how much funny she was, how much fun she seemed
+to be having, and how well she riffed with Letterman.
 
 Question 3 - plot spectra of two mugs
 -------------------------------------
@@ -51,7 +59,7 @@ I chose two very different mugs, one of which had a suprisingly tonal pitch
 center, and the other of which was quite dull. Presumably this had to do with
 the difference in shape of the lips and body. 
 I recorded my mugs and loaded the audio in Sonic Visualizer to 
-get spectrograms. See files **mug-spectograms.png** for the two original mugs.
+get spectrograms. See files `file<mug-spectograms.png>`_ for the two original mugs.
 
 Question 4 - additive synthesis model
 -------------------------------------
