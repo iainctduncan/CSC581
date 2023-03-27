@@ -68,11 +68,13 @@ using the curve object and function objects to give me the chance
 to tune the decay curves of the envelopes. 
 Of course with only four partials, they sound much more tuned
 than the originals, but it is very clear which is which.
+
 The patch screen shot is in **mug-additive-patch.png** and the Max
-file is in **a3q4.maxpat**. 
+file is in **mugs_additive.maxpat**. 
+
 Recordings of the synthesis are in **mug-1-add.wav** and **mug-2-add.wav**.
 
-Question 5 - additive synthesis model
+Question 5 - modal synthesis model
 -------------------------------------
 I used Max/MSP to make the modal synthesis models of each mug,
 using the filtergraph~ object to get enter my data for
@@ -87,7 +89,7 @@ The second one sounds like a percussive sound, without the noise
 being apparent, but doesn't sound particularly porcelain.
 
 The patch screen shot is in **mug-biquad-patch.png** and the Max
-file is in **a3q4.maxpat**. 
+file is in **mugs_biquad.maxpat**. 
 
 Recordings of the synthesis are in **mug-1-biquad.wav** and **mug-2-biquad.wav**.
 
@@ -106,9 +108,39 @@ more variablility in the original.
 
 The comparisons are in **mug-1-spectograms.png** and **mug-2-spectrograms.png**.
 
+Question 7 - FM percussion patch
+-------------------------------------
+I used this assignment as a chance to learn Gen, so the percussion patch
+is a mix of Max/MSP and Gen. The FM parts is in Gen, and uses phase modulation.
+The FM component uses two operators, with parameters for:
+
+* base freq in Hz
+* carrier multiple of base freq (as int)
+* modulator multple of base freq (as int)
+* offset of the modulator for creating non-integer mod ratios
+* detune of the modulator as a multiple (i.e. 1 is no change)
+* modulator depth
+
+There is also a pitch drop amount that is applied before the value
+hits the FM topology, for making percussive sounds from rapid drops
+in pitch.
+
+There additionally three envelopes: amp, mod depth, and pitch drop.
+The envelopes are implemented in Max, using the function and curve~ objects,
+allowing me to tune the curvature of the env segments.
+This allows gettin precise percussion sounds from altering the curve of
+the pitch drop as well as the volume and brightness.
+
+The file **fm_perc_patch.png** shows the Max patch and the Gen patch.
+(Output of the gen patch just goes to a reverb and then the DAC).
+
+The file **fm_perc.wav** has a recording of the sound, with real-time
+manipulation of some of parameters and envelope settings.
+
 Question 8 & 9
 ---------------
 Not yet done, though I did (attempt) to read the paper.
+I will probably come back to these if there is time. 
 
 Question 10
 -----------
