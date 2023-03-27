@@ -59,7 +59,7 @@ I chose two very different mugs, one of which had a suprisingly tonal pitch
 center, and the other of which was quite dull. Presumably this had to do with
 the difference in shape of the lips and body. 
 I recorded my mugs and loaded the audio in Sonic Visualizer to 
-get spectrograms. See files `mug-spectograms.png`_ for the two original mugs.
+get spectrograms. See files **mug-spectograms.png** for the two original mugs.
 
 Question 4 - additive synthesis model
 -------------------------------------
