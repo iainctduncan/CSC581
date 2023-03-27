@@ -1,0 +1,34 @@
+Grace Notes
+
+- by multiplying two complex numbers adds their angles
+
+- if we multiplty two complex numbers:
+  - the answer is a new complex number, new point on the plane
+  - the angle from the origin is added, and the magnitude of each is multiplied
+
+- when we plot a sine wave, we are plotting the real component of a
+  series number of complex numbers
+
+- when we multiply one complex by another, we rotate on the circle
+
+- 2Pi / w = 2Pi / freq gives us how far we rotate in 
+
+Question A2Q8
+
+- to convert from seconds to radians
+  radians -> seconds: 60 / 2pi
+  seconds -> radians: 2pi / 60
+  
+- so what complex number do we need multiple a second postion to move by second
+  - equivalent a 6 degree rotation
+  - clockwise and counter clockwise
+
+- the complex number {0 + i} rotates one quarter counterclockwise
+  - so to rotate 15 minutes, we would multiple by {0 + i} == i
+  - to rotate 30 minutes, we would multiply by {0 + i*i} == {0 + -1}
+  - to rotate 45 minues, multiple by {0 + i*i*i}
+
+- biquad filter design tool https://arachnoid.com/BiQuadDesigner/index.html
+
+- when an fft is done, each bin's coming out of fft is represented by a complex number,
+  where 

@@ -1,0 +1,15 @@
+Mug Notes
+
+From sonic visualizer
+Mug 1
+- 2775 hz, -10 db , 0.45 sec decay
+- 5240 hz, -17db, done in 0.3 sec linear
+- 7800 hz, -15, but done in 0.06 sec, prob exp env
+- 10900 hz, -18 db done in 0.25 sec, linear decay
+
+Mug 2
+- 2300 Hz, -14, env .3 sec
+- 3600 HZ - 18, env .1
+- 6400 hz, -13db env .05
+- 8000 hz, -22, ec .014
+

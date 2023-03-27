@@ -1,0 +1,12 @@
+Questions for tutoring
+
+- how to use Jupyter notebooks
+
+- a2q5: Show how the amplitudes and phases can be estimated for this sound
+  in two ways: a) by brute force checking even possible phase value and
+  selecting that one that results in the highest dot product with a basis 
+  sinusoid of the appropriate frequency b) by taking the dot product of 
+  the mixture with a sine component and a cosine component.
+
+- implementing the parametric two pole filter question
+
