@@ -140,6 +140,8 @@ On a note off this is reversed.
 
 A demo recording demonstrating polyphony, voice stealing, and a patch
 using LFOs and envelopes on the modulation is in **recordings/my_poly.wav**.
+In the recording, the max voices is set to 3 so that you can hear the bottom 
+voice being stolen for the top note.
 
 **10**)
 The external includes a message receiving layer and a dispatch table
