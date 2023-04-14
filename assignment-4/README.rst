@@ -15,7 +15,7 @@ For me personally, it was also encouraging to learn that Chowning
 came from a music background and had to learn to program to do this work.
 
 **2)** I used the Ableton Live "Operator" instrument rather than the DX21. 
-This is similar in many ways to a DX 21, and four operators with a
+This is similar in many ways to a DX 21, with four operators with a
 harmonic multiplier control (the "course" knob), a frequency control,
 and an amplitude for each operator. A difference is that the amplitude
 replaces the Modulation Index control, and is a dial with a scale
@@ -25,14 +25,14 @@ how much phase shift full corresponds to.
 
 I found two patches, "FM Bass Disto" and "FM Harpsichord Lead". 
 These were recorded into Reaper and plotted using Sonic Visualizer, with screenshots
-of the plots enclosed. One can see at a glance that the harpsichord
-like sound was created by using a high degree of modulation 
+of the plots enclosed. One can see that the harpsichord
+sound was created by using a high degree of modulation 
 producing a large number of similarly strong sidebands, all of which
 last some time, while the bass sound has a smaller number of sidebands,
 with a more pronounced change in their decay right from high to low.
 
 **3)**
-These are both based on a single multiple operator stack, the former
+Both be bass and harpsichord patch are based on a single multiple operator stack, the former
 using three and the latter all four operators, thus only the first
 operator is a carrier, and the remaining are acting as modulators
 for the next operator down the stack. 
@@ -71,7 +71,10 @@ pulse wave, rather than the hollow square sound. I also pulled the
 envelope on the top operator down into a sharp decay, thus
 producing an effect similar to a sharply decaying resonant filter
 over a pulse wave. 
-The spectogram and waveform plots are attached.
+
+The spectogram and waveform plots are attached are in the **plots** directory,
+and recordings are **fm_bass_edit_C.wav** and **fm_bass_edit_G.wav**.
+
 
 **5 and 6**)
 I created a real-time FM synthesizer by making a Max external
@@ -97,7 +100,7 @@ are **fm4op-poly.maxpat** and **fm4op-host-mono.maxpat**.
 
 
 **7)**
-I attempted to copy my bass sound, and got pretty close. 
+I attempted to copy my edited bass sound, and got pretty close. 
 This uses 3 operators in 1:2:3 ratio with sharp envelopes on all
 of them and a high amount of envelope to modulation index.
 
@@ -127,6 +130,7 @@ and one a vector by voice number holding the id of the incoming event
 (an auto incrementing integer).
 
 On a new note:
+
 * we check if the note is already being played, and reuse the playing voice if so
 * if not, we iterate through the voices, keeping track of the current oldest event
 * if a free voice is found, we use it
