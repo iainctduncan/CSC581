@@ -1,0 +1,52 @@
+Compositions in Progress
+=========================
+
+Notes
+-----
+- need to start recording where I have left off on things so I can audition them after some time
+
+Ableton file corruption fix:
+https://www.youtube.com/watch?v=qWpsQT_oO5I
+
+feb-16 2023-02-16
+-----------------
+- new wacky tune
+
+
+oct-1 2022-12-29
+--------------------------------------------------------------------------------
+- ambient 80bpm, no drums
+- some good material, arrangement no good
+- was disappointed when I came back to it
+
+skua 2022-12-29
+--------------------------------------------------------------------------------
+- 110bpm electro-techno 
+- currently in riff/sketch state
+- short (1bar) bass/drum/chord stab loop which is good
+- some nice synth lines
+- potentially good drum groove to play live
+- worth picking up again
+
+kestrel 2022-12-29
+--------------------------------------------------------------------------------
+- 118 bpm deep house thing
+- uses current file workflow
+- has the live perc bell in it
+- has a bit of an incomplete arrangement
+- def worth finishing
+- would be good for a dusky style arrangement and mix
+- maybe add a pad?
+
+
+dubby 2022-12-29
+--------------------------------------------------------------------------------
+- predated the new tune folder system, does not have its own als file
+- playback is producing scheme errors
+- need to convert it over to the new system I think
+  - ie copy the new tune file and step through the errors
+
+rain 2022-12-29
+--------------------------------------------------------------------------------
+- this is just four arp files, not sure if it never had a main file or what?
+- should spend time converting to the new system

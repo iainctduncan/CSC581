@@ -1,0 +1,6 @@
+List of what is too hard to do
+------------------------------
+- programming normally composed melodies in the arp interface
+  - need some kind of step editor that makes it simple, or gui
+
+- fix the bug in the save dir thing (session loads with no trailing slash)

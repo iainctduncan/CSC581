@@ -1,0 +1,74 @@
+Notes on making drum controller
+
+- notes are steps and are hot
+- flag for weather velocity is copied or taken from key press
+- could use pitch bend for erasing?
+
+Mapping notes:
+
+
+TODO:
+- converting midi note nums to steps
+- add listeners for the four knobs and the mod wheel 
+  - note that mod wheel and first knob are the same CC, stupid!
+
+ISSUES:
+- input only thinks there is one keystep right now
+- how do make these flexible for num-ptrks??
+- return value from controller methods gets used to determine fall through
+  not a great situation
+
+NOTES:
+- can change CCs on the keystep to 4 banks of CC
+- so we need a way to turn on and off params 
+
+
+Design:
+- pitch, vel, dur all need to be set
+- ptrks are enabled for writing or not
+- ptrks have values
+- if shift-high on, writes to values that get copied by default
+- if shift-low on, par touch erases default vals
+- pedal down takes precedence
+
+Pedal:
+- if the pedal is down, any touched values become hot until the pedal is released
+
+
+On a hot button:
+- current value for pitch, dur, vel, need to be found
+- knob default should be vel, fc, del, fdbk
+
+- TODO sequencers should be able to have a default pitch
+  - if filled, if no pitch value, that is what gets played
+
+TO ADD:
+- when in drum mode, display params-hot and params-set in the gui
+- how to toggle writing velocity?
+- a note when shift-high on can set pitch
+  - Later: how to unset it? for leaving pitch alone in other seqs??
+- mode in which notes on key step 2 should override pitch
+
+OUTSTANDING:
+- how to set dur??
+- a switch to determine whether keyb-2 writes to last-note or
+  actually writes to the step - light on top of keyb-2?
+- update the manual
+
+BUGS:
+- view model craps out if chord track has more than 5 entries
+- issue with CV outs
+
+STATUS
+- drum machine working
+- todo write manual for how drum mixing is working
+
+NEXT:
+- test seqs and samples setup
+- Next: add using keyb-2 for step mode, last mode
+
+TO add to issue lists - we need to be able to recreate the external I guess?
+- to totally recreate the s7 interpreter once GC hits trashing
+
+LEFT OFF:
+-  

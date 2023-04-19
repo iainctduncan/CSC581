@@ -1,0 +1,17 @@
+Perform mode notes
+------------------
+- used to mute tracks and change loop lengths
+
+- grid buttons set loop lengths
+  - have submodes: split, low, high, track
+  - in track mode, bottom buttom sets chord loop length
+- grid-submode determines which tracks or ptracks are address by the buttons
+- fire meta buttons on left set grid submode to: split, low, high, or track
+- fire top right hand buttons choose steps vs bars for setting loop length
+
+- keysteps set track mutes
+
+- pad right and left buttons are still available
+
+- in future there could be some kind of song mode for programming in changes
+

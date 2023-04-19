@@ -1,0 +1,41 @@
+To Do
+------
+
+To add to meta view:
+- current bar and step of selected track
+- buttons for clear cur seq
+- show mode
+- cur selected dur
+
+
+
+- add current ptrk to meta view
+- make a snapshot save and restore - saves state of all sequencers
+- put a reset button on the meta-view ui
+- figure out how we will do the drums for mixes
+
+- arp view changing bars? did this get done??
+- saving a seq's settings that have been edited from the controllers
+- hooking up controllers for each line
+
+
+- fix being able to set many things from one line (ie seq-1 'set ....)
+- this doesn't work: (seq-5 'update-chord-seq  0 '(60) 16 ('60))
+
+- figure out how to fix the sync issue of scenes and chord updates
+  - the chord update doesn't take place fast enough
+  - scenes need to fire early somehow?
+
+Arp seq/controller
+- how to set master loop len for a seq?
+- how to set chord loop len for a seq?
+- start and stop sequences with quantization
+- how to switch the keystep from arp controller mode
+  to mute mode??  perform button? - use other keystep?
+- shuffle? 
+
+- drum programming device?
+- allow shuffle setting
+
+- would be good to have way to make a snapshot of *everything* wherever we are
+  in order to insert this at some point while working on the arrangement

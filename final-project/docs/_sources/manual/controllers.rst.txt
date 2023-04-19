@@ -1,0 +1,110 @@
+Input Controllers
+=================
+
+Input Routing
+-------------
+- Live has midi input tracks for each device, which get input, prepend the device selector,
+  and pass on to s4m on track 0
+- the function they call winds up being (midiin 'device-name bytes)
+
+Meta component
+--------------
+- the meta object is used to hold selections that will stay active across controllers and modes,
+  such as track, bar, step
+  - this so one doesn't have to rechoose the track when switching controllers
+- it is saved as the global 'meta', and can be called to get or set track, step, bar, mode
+  (meta :track)     ; get selected track
+  (meta :track 4)   ; set selected track
+- other controllers assume access to the global meta object (acts like a thread local)
+
+
+midi-input
+----------
+- (midi-in) gets a message with a device indicator and bytes
+  - calls (parse-midi data-bytes) to parse into a msg hashtable with keys for :msg :chan: :note :vel :cc-num :cc-val
+  - calls (parse-input-for-device) which looks for a device specific parser function, this turns
+      the hash into a generic message with an :action key ('grid-button, etc)
+  - looks up mode from meta component
+- branching by mode and input device is done in body of midi-in - this is where the mapping of what means what when happens
+  - the appropriate controller object is found using get-controller, based on these mappings
+  - controller then gets called with a message
+  - this way controllers only know about messages like 'grid-btn or left-btn instead of midi mapping
+ 
+contollers
+-----------
+- they get called by branches in the midi-in function
+- when called, they are passed generic messages that are no longer midi:
+  - 'grid-btn {row} {col} 
+- they persist choices internally, and on certain actions do things
+  - when they do things, they are writing into sequencers (e.g. to update data, etc)
+- essentially a controller implements a Mode - which encapsulates what does what
+  - except that midi-mappings to a controller are handles separately, in the midi-in branches
+
+Arp Mode
+--------------
+- modes: program, play, override, chosen with the top buttons on the keystep
+  - play changes the chord, but the programmed sequence still also plays
+  - program inserts the chord played on the chosen step
+  - override uses played chord and mutes chord sequence
+-grid: 
+  - left hand button selects the ptrk
+  - values are mapped in the controllers.scm file for each row
+- righthand launchpad buttons are actions
+  - 0 = master loop length for bottom buttons in bars
+  - 1 = chord loop length for btm btn in bars
+  - bottom two will be erase current step chords and erase current bar chords
+  - clears the current selected step or bar
+- bottom buttons can be loop length setter for ptrks, according to current ptrk
+
+Drum Controller
+---------------
+- meta keys are Pedal, Shift-H, Shift-L (from pitchbend)
+- params-hot vector holds values for each ptrk that are used as long as params-hot holds them
+- anything touched once pedal is down goes into params-hot, pedal up wipes it
+- S-H + note sets the default pitch by writing it to the params-set vector
+- S-H + any param puts them in params-set (e.g. wheel for vel mostly)
+- S-L + any param takes it out of params-set (deactivates)
+- S-L + note erases a step 
+- if use-step-vel is #t, the velocity from the keyboard takes precedence
+- if use-last-vel is #t, then whatever was last set on the modwheel is stored in last-vel and used,
+  regardless of params-hot or params-set
+- midi-note C above the erase octaves erases an entire bar (all ptrks)
+- of course a seq can initialize pitch in setup to locked value per track
+- the keysteps 4 faders write to the params-hot and params set vectors 
+- grid:
+  - right: sel param (top 2 are dur) for bottom btn to put into params-set
+    - shift-low right removes param from params-set
+  - btm: enters value to params set for whatever was touched on right, writes to params-set
+  - TODO: holding a step in 8 x 16 grid down allows changing its params with other tools
+- TODO select last-note from second keyboard
+
+Perform Mode
+------------
+- grid buttons set loop lengths
+  - have submodes: split, low, high, track
+  - in track mode, bottom buttom sets chord loop length
+- grid-submode determines which tracks or ptracks are address by the buttons
+- fire meta buttons on left set grid submode to: split, low, high, or track
+- fire top right hand buttons choose steps vs bars for setting loop length
+
+
+Need to document step mode
+--------------------------
+
+To Do:
+------
+- run more than one controller at once
+- add current (override) chord to the view
+- make a convenient way to erase the chord program for a step
+- add current selections to the view (track, bank, bar, step, ptrk)
+- set chord loop length - done in perform
+- show chord loop length - to add to GUI
+
+Questions
+---------
+
+Next:
+-----
+
+ 
+  

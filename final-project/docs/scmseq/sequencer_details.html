@@ -1,0 +1,749 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Sequencer Implementation &#8212; ScmSeq  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Developer File Guide" href="files.html" />
+    <link rel="prev" title="Architecture" href="architecture.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">ScmSeq  documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contents:
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   ScmSeq Manual
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="overview.html">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="live_setup.html">
+     Ableton Live Setup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="projects.html">
+     Projects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="realtime_input.html">
+     Real-time Input
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="object_model.html">
+     Object Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="architecture.html">
+     Architecture
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Sequencer Implementation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="files.html">
+     Developer File Guide
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/scmseq/sequencer_details.rst.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#playback-and-scheduling">
+   Playback and Scheduling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simple-example">
+   Simple Example
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-chord-step-sequencer">
+   The chord-step-sequencer
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-chord-track">
+     The chord track
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#chord-mode">
+     Chord mode
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arp-mode">
+     Arp mode
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arp-controller">
+     Arp controller
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hook-functions">
+     Hook functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#absolute-time-tracking">
+     Absolute time tracking
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Sequencer Implementation</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#playback-and-scheduling">
+   Playback and Scheduling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simple-example">
+   Simple Example
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-chord-step-sequencer">
+   The chord-step-sequencer
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-chord-track">
+     The chord track
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#chord-mode">
+     Chord mode
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arp-mode">
+     Arp mode
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arp-controller">
+     Arp controller
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hook-functions">
+     Hook functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#absolute-time-tracking">
+     Absolute time tracking
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="sequencer-implementation">
+<h1>Sequencer Implementation<a class="headerlink" href="#sequencer-implementation" title="Permalink to this headline">#</a></h1>
+<p>This page will look more closely at the internal workings of the sequencer components, which
+are the heart of the ScmSeq system.</p>
+<p>Fundamentally a sequencer is a component that:</p>
+<ul class="simple">
+<li><p>Stores various settings used in playback</p></li>
+<li><p>Stores sequence data in internal vectors</p></li>
+<li><p>Keeps track of loop counters, both at a track and ptrack level</p></li>
+<li><p>Runs a function on a step to look up data in the vectors according
+to settings and the loop counters, outputing it as lists sent
+to other output functions</p></li>
+</ul>
+<p>Sequencer objects follow the standard object model, and have, at a minimum,
+the following elements:</p>
+<ul class="simple">
+<li><p>Settings that should be saved as part of a piece, stored in the <strong>_</strong> hash-table
+as keyword/value entries (e.g. :loop-length, :transpose, :time-factor).</p></li>
+<li><p>Internal variables that do not need to be saved, kept as local variables
+(e.g. current loop counter variables).</p></li>
+<li><p>Sequence data, stored as a collection of vectors, where each vector
+holds data for one ptrack. These vectors are in turn stored as part of the <strong>_</strong> hash-table.</p></li>
+<li><p>A <strong>run-step</strong> function, containing the logic used to run on every sequencer step,
+including looking up data, outputing data, and scheduling the next run-step iteration.</p></li>
+<li><p>Various getter and setter functions that provide ways for other components
+to request or update data and settings.</p></li>
+<li><p>Various transport functions, such as <strong>start</strong>, <strong>stop</strong>, and <strong>reset</strong>.</p></li>
+</ul>
+<section id="playback-and-scheduling">
+<h2>Playback and Scheduling<a class="headerlink" href="#playback-and-scheduling" title="Permalink to this headline">#</a></h2>
+<p>The simplest possible sequencer would contain a run-step function, some data
+for it to use, an output function, and some methods to start, stop, and reset the sequencer.</p>
+<p>Scheduling is achieved by having the run-step function schedule the next iteration,
+done by putting a lambda function wrapping run-step on to the scheduler.
+This has a number of interesting advantages over clocking an external source:</p>
+<ul class="simple">
+<li><p>Steps do not have to be same length - a sequencer can change the duration of a step
+programmatically or on receipt of a message from an external component, or according
+to an arbitrary (not necessarily even) schedule</p></li>
+<li><p>Sequencers are not bound to a meter or structure of time that comes from some higher level object,
+they can each have their own meter, timebase, and clocking</p></li>
+<li><p>Sequencers can be stopped, started, and sped up or slowed down independently of each other,
+again under programmatic control</p></li>
+</ul>
+<p>Scheduling in run-step uses one of the various S4M functions that enable putting a function
+on the scheduler, such as: <strong>delay</strong>, <strong>delay-t</strong>, <strong>delay-tq</strong>. This allows a sequencer
+to use a millisecond delay, a time-in-ticks delay, or a time-in-ticks that is quantized
+to the global clock.</p>
+</section>
+<section id="simple-example">
+<h2>Simple Example<a class="headerlink" href="#simple-example" title="Permalink to this headline">#</a></h2>
+<p>Below is the an example of a very simple sequencer. We will not repeat
+the boilerplate of the common object model, or show the getter and setter functions.</p>
+<p>In this example, we can see the following:</p>
+<ul class="simple">
+<li><p>a <strong>run-step</strong> function that reschedules itself based on the <strong>playing</strong> and <strong>:step-dur</strong> variables</p></li>
+<li><p>a <strong>play-step</strong> function, called from run-step, that looks up sequence data for a particular step</p></li>
+<li><p>a <strong>play-note</strong> function, called from play-step, that outputs sequence data to the global <strong>note-output</strong>
+function as a hash-table with meaningful key names (:pitch, :dur, :vel)</p></li>
+<li><p>a sequence data store consisting of vectors for four ptracks, used for gate (per note muting),
+pitch, duration, and velocity</p></li>
+</ul>
+<div class="highlight-Scheme notranslate"><div class="highlight"><pre><span></span><span class="c1">; example of a simple sequencer with four ptracks, but no separate ptrack loop controls</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">simple-seq</span> <span class="nv">name</span> <span class="o">.</span> <span class="nv">init-args</span><span class="p">)</span>
+
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">playing?</span> <span class="no">#f</span><span class="p">)</span>             <span class="c1">; flag for if on or not (regardless of how clocked)</span>
+        <span class="p">(</span><span class="nf">delay-handle</span> <span class="no">#f</span><span class="p">)</span>         <span class="c1">; handle for self-scheduling</span>
+        <span class="p">(</span><span class="nf">step-index</span> <span class="mi">0</span><span class="p">)</span>            <span class="c1">; step index within full pattern</span>
+
+        <span class="c1">; ordered list of the state keys for serialization</span>
+        <span class="p">(</span><span class="nf">meta-keywords</span> <span class="o">&#39;</span><span class="p">(</span>
+          <span class="nv">:channel</span> <span class="nv">:params</span> <span class="nv">:steps</span> <span class="nv">:step-dur</span> <span class="nv">:loop-len</span>
+        <span class="o">&#39;</span><span class="p">))</span>
+
+        <span class="c1">; settings hash-table, holds serializable settings</span>
+        <span class="c1">; all of these can be overriden through constructor arguments</span>
+        <span class="p">(</span><span class="nf">_</span>  <span class="p">(</span><span class="nf">hash-table</span>
+          <span class="nv">:params</span>         <span class="mi">8</span>     <span class="c1">; number of param tracks</span>
+          <span class="nv">:steps</span>          <span class="mi">128</span>   <span class="c1">; number of steps in a sequence</span>
+          <span class="nv">:step-dur</span>       <span class="mi">120</span>   <span class="c1">; step-duration in ticks</span>
+          <span class="nv">:loop-len</span>       <span class="no">#f</span>    <span class="c1">; if set, is length of loops in steps, if #f, loop is length of sequence vector</span>
+          <span class="nv">:channel</span>        <span class="mi">0</span>
+          <span class="nv">:seq-data</span>       <span class="no">#f</span>    <span class="c1">; sequence data, will be multi-dimensional vector</span>
+          <span class="nv">:time-factor</span>    <span class="mi">1</span>     <span class="c1">; a multipler for the sequencers conception of time</span>
+          <span class="nv">:mute</span>           <span class="no">#f</span>    <span class="c1">; is this sequencer muted</span>
+          <span class="p">)))</span>
+
+    <span class="c1">; save am explicit reference to the current local environment</span>
+    <span class="p">(</span><span class="k">define </span><span class="nv">env</span> <span class="p">(</span><span class="nf">curlet</span><span class="p">))</span>
+
+    <span class="c1">; step handler that does step logic, this is what gets scheduled</span>
+    <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">run-step</span><span class="p">)</span>
+      <span class="c1">; call play-step with current step-index</span>
+      <span class="p">(</span><span class="nf">play-step</span> <span class="nv">step-index</span><span class="p">)</span>
+      <span class="c1">; update step counter, inc-to automatically rolls over to zero</span>
+      <span class="p">(</span><span class="nf">inc-to!</span> <span class="nv">step-index</span> <span class="p">(</span><span class="nf">_</span> <span class="nv">:loop-len</span><span class="p">))</span>
+      <span class="c1">; schedule next step if playing</span>
+      <span class="p">(</span><span class="k">if </span><span class="nv">playing?</span>
+        <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">delay-dur</span> <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">_</span> <span class="nv">:time-factor</span><span class="p">)</span> <span class="p">(</span><span class="nf">_</span> <span class="nv">:step-dur</span><span class="p">))))</span>
+          <span class="c1">; here is the call to put the next iteration on the scheduler</span>
+          <span class="p">(</span><span class="k">set! </span><span class="nv">delay-handle</span> <span class="p">(</span><span class="nf">delay-t</span> <span class="nv">delay-dur</span> <span class="nv">run-step</span><span class="p">)))))</span>
+
+
+    <span class="c1">; function to look up values for an individual step and call play-note with them</span>
+    <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">play-step</span> <span class="nv">step</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">let* </span><span class="p">((</span><span class="nf">loop-len</span> <span class="p">(</span><span class="nf">_</span> <span class="nv">:loop-len</span><span class="p">))</span>
+             <span class="p">(</span><span class="nf">step-pvals</span> <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">param</span><span class="p">)</span>
+                                <span class="p">(</span><span class="k">let* </span><span class="p">((</span><span class="nf">step-index</span> <span class="p">(</span><span class="nb">modulo </span><span class="nv">step</span> <span class="nv">loop-len</span><span class="p">))</span>
+                                       <span class="p">((</span><span class="nf">_</span> <span class="nv">:seq-data</span><span class="p">)</span> <span class="nv">param</span><span class="p">)</span> <span class="nv">step-index</span><span class="p">)))</span>
+                              <span class="p">(</span><span class="nf">range</span> <span class="mi">0</span> <span class="p">(</span><span class="nf">_</span> <span class="nv">:params</span><span class="p">)))))</span>
+          <span class="c1">; if there is data and the gate is open, call play-note</span>
+          <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nf">_</span> <span class="nv">:mute</span><span class="p">))</span> <span class="p">(</span><span class="nb">&gt; </span><span class="p">(</span><span class="nf">step-pvals</span> <span class="mi">0</span><span class="p">)</span> <span class="mi">0</span><span class="p">))</span>
+            <span class="p">(</span><span class="nf">play-note</span> <span class="nv">step-pvals</span><span class="p">))))</span>
+
+
+    <span class="c1">; default play-note method, intent is that this is commonly overridden</span>
+    <span class="c1">; this calls the external note-output function</span>
+    <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">play-note</span> <span class="nv">step-data</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">let* </span><span class="p">((</span><span class="nf">gate</span>     <span class="p">(</span><span class="nf">step-data</span> <span class="mi">0</span><span class="p">))</span>
+             <span class="p">(</span><span class="nf">dur</span>      <span class="p">(</span><span class="nf">step-data</span> <span class="mi">1</span><span class="p">))</span>
+             <span class="p">(</span><span class="nf">note-num</span> <span class="p">(</span><span class="nf">step-data</span> <span class="mi">2</span><span class="p">))</span>
+             <span class="p">(</span><span class="nf">vel</span>      <span class="p">(</span><span class="nf">step-data</span> <span class="mi">3</span><span class="p">))</span>
+            <span class="p">)</span>
+        <span class="c1">; note-num zero (or #f) always means no output</span>
+        <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="k">and </span><span class="nv">note-num</span> <span class="p">(</span><span class="nb">&gt; </span><span class="nv">note-num</span> <span class="mi">0</span><span class="p">))</span>
+            <span class="c1">; call the note-ouput top level function which routes according to the tune setup</span>
+            <span class="p">(</span><span class="nf">note-output</span> <span class="p">(</span><span class="nf">_</span> <span class="nv">:channel</span><span class="p">)</span>
+              <span class="p">(</span><span class="nf">hash-table</span> <span class="nv">:dur</span> <span class="nv">dur-out</span>  <span class="nv">:pitch</span> <span class="nv">note-num</span>   <span class="nv">:vel</span> <span class="nv">vel</span><span class="p">)))))</span>
+
+    <span class="c1">; transport functions</span>
+    <span class="c1">; stop cancels next scheduled iteration and stop playback</span>
+    <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">stop</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">cancel-delay</span> <span class="nv">delay-handle</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">set! </span><span class="nv">playing?</span> <span class="no">#f</span><span class="p">))</span>
+
+    <span class="c1">; reset state to beginning and start playback</span>
+    <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">start</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">reset</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">set! </span><span class="nv">playing?</span> <span class="no">#t</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">run-step</span><span class="p">))</span>
+
+    <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">reset</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">cancel-delay</span> <span class="nv">delay-handle</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">set! </span><span class="nv">step-index</span> <span class="mi">0</span><span class="p">))</span>
+
+    <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">init-seq-data</span> <span class="nv">params</span> <span class="nv">steps</span><span class="p">)</span>
+      <span class="s">&quot;initialize the internal sequence data&quot;</span>
+      <span class="c1">; make a vector of {params} vectors to hold our seq data</span>
+      <span class="c1">; and initialize to zeros</span>
+      <span class="p">(</span><span class="k">set! </span><span class="p">(</span><span class="nf">_</span> <span class="nv">:seq-data</span><span class="p">)</span> <span class="p">(</span><span class="nb">make-vector </span><span class="nv">params</span> <span class="no">#f</span><span class="p">))</span>
+      <span class="p">(</span><span class="nf">for-each</span>
+        <span class="p">(</span><span class="nf">lambda</span><span class="p">(</span><span class="nf">i</span><span class="p">)(</span><span class="k">set! </span><span class="p">((</span><span class="nf">_</span> <span class="nv">:seq-data</span><span class="p">)</span> <span class="nv">i</span><span class="p">)</span> <span class="p">(</span><span class="nb">make-vector </span><span class="nv">steps</span> <span class="mi">0</span><span class="p">)))</span>
+        <span class="p">(</span><span class="nf">range</span> <span class="mi">0</span> <span class="nv">params</span><span class="p">)))</span>
+
+    <span class="c1">; constructor logic</span>
+    <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">init</span> <span class="nv">init-args</span><span class="p">)</span>
+      <span class="s">&quot;constructor, sets up values and initializes sequencer&quot;</span>
+      <span class="c1">; call process-kwargs to setup kwarg settings</span>
+      <span class="p">(</span><span class="nf">process-kwargs</span> <span class="nv">init-args</span><span class="p">)</span>
+      <span class="c1">; if initial seq data not passed in as constructor arg, make it</span>
+      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nf">_</span> <span class="nv">:seq-data</span><span class="p">))</span>   <span class="p">(</span><span class="nf">init-seq-data</span> <span class="p">(</span><span class="nf">_</span> <span class="nv">:params</span><span class="p">)</span> <span class="p">(</span><span class="nf">_</span> <span class="nv">:steps</span><span class="p">)))</span>
+      <span class="c1">; init loop-len and loop-top to num steps if not set in constructor</span>
+      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nf">_</span> <span class="nv">:loop-len</span><span class="p">))</span> <span class="p">(</span><span class="k">set! </span><span class="p">(</span><span class="nf">_</span> <span class="nv">:loop-len</span><span class="p">)</span> <span class="p">(</span><span class="nf">_</span> <span class="nv">:steps</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nf">export-envs</span> <span class="nv">name</span><span class="p">))</span>
+
+    <span class="c1">; ... common object code and simple getters/setted omitted</span>
+</pre></div>
+</div>
+<p>))</p>
+<p>Output from the sequencer is handled by the call to the globally defined <strong>note-output</strong> function,
+sending it a hash-table of event data. The note-output function
+is defined in <strong>output.scm</strong> and is intended to provide the user with a function that they
+can override on a per-project basis to specify the destination of sequence data from each sequencer.
+This way we can keep routing to specific instruments (likely to be unique to a piece) out
+of the sequencer.</p>
+<p>A sample, simple note output function is shown below that sends the output data out of
+outlet 0 of the s4m object, prepended with a channel number so that it can be routed in Max.
+This would likely passed to a Max subpatch that uses the makenote object or similar.</p>
+<div class="highlight-Scheme notranslate"><div class="highlight"><pre><span></span><span class="c1">; note is a hashtable with keys :dur :note :vel :mod-1 :mod-2 :mod-3 :mod-4</span>
+<span class="c1">; it&#39;s common to redefine this in the track specific tools to set which tracks</span>
+<span class="c1">; get what kind of output</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">note-output</span> <span class="nv">channel</span> <span class="nv">note</span><span class="p">)</span>
+  <span class="c1">;(post &quot;note-output&quot; channel note)</span>
+  <span class="c1">; MIDI version: we send two mod args that get turned into modwheel and pitchbend</span>
+  <span class="p">(</span><span class="nf">out</span> <span class="mi">0</span> <span class="p">(</span><span class="nb">list </span><span class="nv">channel</span> <span class="p">(</span><span class="nf">note</span> <span class="nv">:pitch</span><span class="p">)</span> <span class="p">(</span><span class="nf">note</span> <span class="nv">:vel</span><span class="p">)</span> <span class="p">(</span><span class="nf">note</span> <span class="nv">:dur</span><span class="p">))))</span>
+</pre></div>
+</div>
+<p>This overview of the sequencer architecture should provide the reader with the foundation
+needed to understand the more complex
+sequencers, such as that in <strong>chord-step-sequencer.scm</strong>, which is the one I use for most
+purposes at present.</p>
+</section>
+<section id="the-chord-step-sequencer">
+<h2>The chord-step-sequencer<a class="headerlink" href="#the-chord-step-sequencer" title="Permalink to this headline">#</a></h2>
+<p>During development of ScmSeq, I have gone through multiple sequencer designs, but have
+recently been merging features into one main sequencer that is my default sequencer for
+almost all purposes, the <strong>chord-step-seq</strong>, in the file <strong>chord-sequencer.scm</strong>.
+We will not go into exhaustive detail on the code of this sequencer as it has gotten
+rather large, but we will look at some of its more interesting features.</p>
+<section id="the-chord-track">
+<h3>The chord track<a class="headerlink" href="#the-chord-track" title="Permalink to this headline">#</a></h3>
+<p>In addition to the multiple vectors for each parameter track, the chord-step-seq includes
+the <strong>chord-data</strong> data structure, an additional vector of lists to hold chord voicings, where
+each voicing is a list at the step location in the chord-data vector. These
+lists can be null, or contain a list of note numbers for the chord. This is essentially
+a parrallel step-sequencer data track with one row, where each row is a list or null,
+and the list can hold some arbitrary number of notes.</p>
+<p>This track is used essentially like a chord chart: when the sequencer hits an entry,
+it updates a data structure storing the <em>current chord</em>, which is then used in various
+ways. This allows the user
+to program chord progressions in by only entering data in the chord track where the chord changes.
+This also makes real-time overrides of the active chord possible, which is used in the
+arp-mode-controller to allow the user to play new chord progressions, similar to how
+one does in an arpegiattor.</p>
+<p>The sequencer has two modes for how it uses the current chord: <strong>chord-mode</strong> and <strong>arp-mode</strong>.</p>
+</section>
+<section id="chord-mode">
+<h3>Chord mode<a class="headerlink" href="#chord-mode" title="Permalink to this headline">#</a></h3>
+<p>In chord-mode, the regular sequencer tracks are used as normal, but the chord data
+overrides the pitch track. Used in conjunction with a custom note-output function for chords,
+this allows <em>paraphonic</em> chord output, where a chord is sent out as one unit with identical
+values for each pfield with the exception of pitch. By combining this with variable
+ptrk loop lengths, one can program chord vamps very quickly, and one can also
+create chord sequences in which elements of the chord (velocity,
+modulation data, etc) have polyrhythmic relations to each other.</p>
+</section>
+<section id="arp-mode">
+<h3>Arp mode<a class="headerlink" href="#arp-mode" title="Permalink to this headline">#</a></h3>
+<p>In arp mode, the pitch ptrack data is not ignored, but is instead interpreted as
+an integer corresponding to the <em>factor</em> of the data in the chord track. Options
+exist to wrap or to wrap with octave. That is to say, that given a four-note
+chord in the chord track, a pitch value of 1 will play the first (bottom) note, while 5
+can either result in playing either the first note of the chord, or the first note up an octave.
+This allows programming in arpeggiation patterns that change actual notes
+when the currently active chord changes.</p>
+<p>This can also be useful for percussion tracking, as one can have “chords” that are
+mapped to banks of logically similar samples (e.g. four types of snare hit),
+and the factors correspond to those.</p>
+</section>
+<section id="arp-controller">
+<h3>Arp controller<a class="headerlink" href="#arp-controller" title="Permalink to this headline">#</a></h3>
+<p>These features are meant to be used with the <strong>arp-controller</strong> input mode
+(in controllers.scm). This controller includes facilities to allow a user
+to play a chord on one of the keyboards, and have it either
+overide, program, or play chords in the chord sequencer:</p>
+<ul class="simple">
+<li><p>In <strong>program</strong>, the played chord is written (permanently) into the chord track
+at the curently selected track, much like programming in step-mode</p></li>
+<li><p>In <strong>override</strong>, the played chord replaces the active playing chord until the chord
+track hits a new chord</p></li>
+<li><p>In <strong>play</strong>, the played chord replaces the active playing chord until one reverts
+the sequencer to playing stored chords</p></li>
+</ul>
+<p>Additionally, the grid buttons are used in this controller to program the numerical
+steps for the pitch ptrack (the chord factors). By combining this with the
+chord playing facility, and the fact that the gate (on/off) and velocity
+ptracks can loop at different settings from the factor ptrack, one can very quickly
+create sophisticated arpeggiation patterns with complex polyrhythmic elements.</p>
+<p>Finally, all of the elements highlighted can of course be controlled from
+Scheme functions scheduled as a score or triggered by MIDI notes from the
+host sequencer (e.g. Live “scenes”). This enables the rapid creation of complex arrangements
+of chord lines by changing chord data or ptrack settings at various
+points in a score.</p>
+</section>
+<section id="hook-functions">
+<h3>Hook functions<a class="headerlink" href="#hook-functions" title="Permalink to this headline">#</a></h3>
+<p>The chord-step-sequencer (and in fact the regular step-seq as well) implements
+lifecycle hook functions for creating algorithmic music. These are places where
+the sequencer looks for a function, and if one exists, runs this <em>in the scope
+of the local environment</em>. This allows the user to specify, for example,
+a local function that should be run every bar, eight bars, beat, and so on,
+and which has the capability of changing anything in the sequencer.
+Hook points exist for:</p>
+<ul class="simple">
+<li><p>before-step</p></li>
+<li><p>after-step</p></li>
+<li><p>before-loop</p></li>
+<li><p>after-loop</p></li>
+<li><p>before-reps</p></li>
+<li><p>after-reps</p></li>
+<li><p>on-start</p></li>
+<li><p>on-stop</p></li>
+</ul>
+<p>These can write to any of the sequencers local variables, or even redefine
+functions. This is particularly useful for stochastic music, where on
+some temporal boundary, we want to execute a function that has some probability
+of mutating the sequencer or the sequence data. An interesting effect can
+be achieved, for example, by changing the <strong>time-factor</strong>, so that the
+duration of steps changes as the sequence plays. This can use chance,
+or follow a pattern specified in the function or in any data structure
+accessible to the sequencer.</p>
+</section>
+<section id="absolute-time-tracking">
+<h3>Absolute time tracking<a class="headerlink" href="#absolute-time-tracking" title="Permalink to this headline">#</a></h3>
+<p>The chord-step-seq also keeps a running total of ticks, steps, and loop
+repetitions elapsed. In conjunction with the hook functions, this can
+be used to inject function calls at some arbitrary time
+of playback. This can be used, for example, to have the sequencer
+stop itself at a time or after a certain number of repeitions, or to have it execute
+functions that schedule such.</p>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="architecture.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Architecture</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="files.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Developer File Guide</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Iain C.T. Duncan<br/>
+  
+      &copy; Copyright 2022, Iain C.T. Duncan.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

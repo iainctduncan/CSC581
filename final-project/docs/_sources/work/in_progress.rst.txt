@@ -1,0 +1,90 @@
+In Progress & Up Next
+======================
+Status updates for work underway.
+
+Priority
+- making live sets with the live editable sequencers, with gui and track saving
+- playing them with csound and modular
+- ability to improvise on more than one track - arp, chords, step, drum
+- able to start new tune with one touch
+
+Up Next
+-------
+- full control of modular
+- making new track template system
+- quantized triggering of sequencers from repl
+- global snapshot?
+
+Misc Fixes
+----------
+- add option so setting a chord automatically adds a gate
+- add mode to the meta view
+- swap pitch and dur rows
+- make buttons 1-8 for arps
+- hook up stop and play buttons on the fire
+- a save session function that saves all seqs??
+- need the data dir to persist on a reset!
+- need a way to disable controller input to just play the keystep
+- need to improve symbol formatting functions
+
+Modular
+-------
+- getting modulation data out from other ptracks
+
+Mix Template
+------------
+
+Live Set
+--------
+
+Drum Sequencers
+---------------
+
+File Workflow
+-------------
+- issue, we lose the save dir on a reset right now, 
+- should prob switch to a reboot with init function 
+- created new.py, script for making a new tune
+- TODO add opening the ableton project to the new-tune script
+- TODO add making a vim file and opening it to the new-tune script
+
+Seq Mute Automation from Live
+-----------------------------
+- new track uses piano roll with a Velocity note for each C 
+  - this will get sent to the correct seq track to mute or enable
+- M4L device that received the midi
+
+Arrangements
+------------
+copy and paste for bars?
+
+Filter & Delay controls
+-----------------------
+- remoting UI now created for Tracks 1-8, vol, plus XY1-4 of
+  device 3 (zebrafy delays) - assumes it sends 0 to 1
+- turned out too many remotes is a big CPU drain, need to make it optional
+
+Controllers
+-----------
+- drum mode
+- made perform mode, so far it only handles track mutes
+  - it should also do loop-lengths
+
+Grid
+----
+
+Live API
+--------
+
+
+ViewModel
+---------
+- chord factor view needs adjusting
+- usable as is for now though
+- how to get note names for cs-views in pitch column???
+  - it's not using the formatters args
+
+GUI
+---
+- a visual on the meta of which seqs are muted would be good 
+

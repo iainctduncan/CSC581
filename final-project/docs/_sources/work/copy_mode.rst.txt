@@ -1,0 +1,63 @@
+Copy Mode notes
+---------------
+
+operations
+
+- pick track - meta
+- pick start
+- pick end/length
+- dest track
+- dest start
+- pick active ptracks
+- reps 
+- rep interval
+
+length needs to be able to take steps and bars
+
+Decisions
+---------
+- paste is keystep, because it's fast - relieves need for reps mostly
+- paste mode is keystep 2, play button
+- reuse the grid split/high/low thing 
+
+Issues to think about:
+----------------------
+- wrap around or not?
+- time expansion
+  - does dur expand
+- ability to copy empty space or only events
+- keystep probably fastest for selecting active ptrks
+- can use shift keys for a from-to on keystep
+
+Implementation notes
+- vector for contained ptrks
+
+Manual
+------
+- pad grid picks source track and start point
+- key-2.record picks ptracks active (high low for off on)
+- grid picks source-track and source-bar 
+- key-1.stop is used to copy individual steps, top C is whole bar
+- key-1.play is paste the whole copied pattern to a bar offset
+- key-1.rec is paste to steps in a bar (uses meta :bar)
+- meta.step can be step offset for entire operation
+
+- left buttons can select groups of tracks
+   
+
+Use case
+- pick source track/top on grid
+  - for a step offset, use bottom buttons
+- key1.stop - select length to copy by selecting all steps or specific steps or range
+- key1.play - hitting a key puts it into a bar
+- later: key2.play - copies only selected steps
+
+Implemented
+-----------
+- fire meta picking grid mode
+- pad grid picking source track and bar
+
+- key-1
+
+LEFT OFF:
+- about to implement the actual copy operation

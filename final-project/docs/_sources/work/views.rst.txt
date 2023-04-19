@@ -1,0 +1,10 @@
+View work notes
+
+
+TODO: 
+- document the grid attributes
+
+- chords read from the array cs-view-1-chords
+- main grid reads from cs-view-1-main
+
+

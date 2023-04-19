@@ -1,0 +1,37 @@
+Backlog
+=======
+Work to get to later, not actively in progress.
+
+- fix midi output so it's not over sends with latency
+
+- MED: figure out how to do mixins for building many sequencers 
+
+- real time play in live sequencer (for basslines, etc)
+
+- live note api thing for programming drums
+
+- recording output from the sequencers in scheme as timestamped messages
+
+- try out rigging up a listener to run the GC on stop in live
+  - also try the offbeat gc thing so it doesn't run on a downbeat
+
+
+- scheme arranging of Live automation? (ie for fade ins and stuff??)
+  - should be possible by just hooking up something to Live macros??
+  - maybe csound envelopes to live macros
+
+- get stop button triggering resets
+
+- file organization and backups
+
+- fix arp-seq so I can refer to ptrks by keyword instead of number
+
+- fix arp-seq so one can update-chord-seqs in one call
+  (arp-1 'update-chord-seq 0   '(60 65 67 72) 16  '(58 63 67 70))
+
+- hotkey stroke for cueing
+
+- macro tracker interface
+
+- make a hot key to reload the current file
+

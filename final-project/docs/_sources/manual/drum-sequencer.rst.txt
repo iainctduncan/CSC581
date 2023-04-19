@@ -1,0 +1,21 @@
+Notes on the drum sequencer
+===========================
+
+Questions:
+- is the drum machine one multi-track sequencer for all the drums, unlike regular seqs.
+  - I think probably so, makes more sense for editing, copying, etc
+  - there can always be more than one multi-drack drum machine going
+
+- params:
+  - gate
+  - dur
+  - vel
+  - pitch??
+
+- actually chord data make sense for drums too, allowing easy changing of sample sets
+- in which case I think the only thing that becomes different is the output file
+  so how can we make that a mix in type situation??
+
+- so really there can be the same kind of sequencer and what we need is a drum-mode controller
+
+

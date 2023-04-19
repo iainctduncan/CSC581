@@ -1,0 +1,35 @@
+Saving and Loading Sequences
+============================
+
+Sequencers can be saved and loaded to plain scm data files using the functions in seq-load-save.scm
+The files are string representations of lists that can be loaded into variables by using the normal
+s7 (load {filename}) function. 
+
+*save-dir* is a top level global with the fullpath to the save directory for a session. This is set
+from the top level s4m patcher. 
+
+BUG: it needs a trailing slash
+
+(save-seq seq filename)
+Saves a .scm file with a 3 element list of
+  - hash-table of all serializable params, in the order of the meta-keywords attribute of the sequencer
+  - vector of all the ptrack vectors
+  - vector of the chord data
+
+(load-seq-data filename)
+This returns the loaded data from a file load, using *save-dir* and the filename. The data loaded
+is a 3 element list, suitable for use by load-seq.
+
+(load-seq seq file-or-data)
+This loads a file, using the *save-dir* global plus the filename, setting data in the seq from the
+saved list.
+
+Usage Notes:
+------------
+- using load-seq with a filename will hit disk, which suprisingly seems to be fine!
+- however to not hit disk, one can preload them to data vars, and then sequence
+  setting from the data vars in the score:
+
+  (define s1a-data (load-seq "s1a.scm")
+  ... 
+  (load-seq seq-1 s1a-data)

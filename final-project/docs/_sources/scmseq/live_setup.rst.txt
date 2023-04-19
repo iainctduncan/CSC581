@@ -1,0 +1,99 @@
+Ableton Live Setup
+===================
+ScmSeq is hosted in Max4Live device, where a device is a Max patch loaded
+on a Live track. In an M4L device, MIDI input is only possible from the track
+input, but the device may receive Max message input from other M4L devices
+on other tracks through Max **send** and **receive** pairs. 
+Note that this does add a signal vector of delay (64 samples in Live), 
+but for the purpose of MIDI input to the sequencer, this is acceptable as
+we are typically inputing control data, rathern than doing real time playing.
+
+Midi Input
+--------------------------------------------------------------------------------
+The main ScmSeq device receives MIDI input from the various input devices
+through Max **send** and **receive** pairs. This is accomplished by having 
+Live tracks who's sole purpose is to
+receive MIDI input from a device set in Live as that track's input device,
+and these have M4L devices of their own that simply prepend 
+the device name as a symbol to a MIDI message and send that to the main ScmSeq device.
+This way, the main device receives incoming messages that are generic MIDI
+input messages prepended with a symbol of the source device name.
+
+In the main Max patch, this incoming message is further prepended with the symbol
+**MIDI-input**, which is then passed to the **s4m** object, thus executing the
+**MIDI-input** function. In the example below, we see a call to this function
+from a note-on message from the device named **launchpad-1**.
+
+.. code:: scheme
+  
+  ; the evaluation of a note-on message from the launchpad-1 device
+  (MIDI-input 'lauchpad-1 144 60 90)
+
+Sequencer Output
+--------------------------------------------------------------------------------
+The main Max patch similarly contains subpatchers for handling output. Output comes
+from the **s4m** object as list messages. The s4m object has four outlets, used for 
+different kinds of ouput: MIDI messages destined for Live tracks, gate outputs
+for CV output, non-gate CV outputs, and Csound outputs. 
+
+As previously covered, sequencer output is an arbitrarily long list. 
+For the purposes of this documentation, we will assume the sequencers are configured
+to store 4 *params* in addition to duration and mute: pitch, velocity, mod-1, and mod-2,
+where the mod params can be any kind of modulation data we would like to sequence.
+Thus an output message destined for MIDI instruments will consist
+of **(channel/destination, note-number, velocity, duration, mod-1, mod-2)**.
+
+For MIDI-destined messages, A Max subpatch translates these lists into MIDI messages, where mod-1 becomes the
+modwheel message and mod-2 the aftertouch message. This subpatch uses the Max
+**makenote** facility to schedule a note-off at the end of duration.
+These MIDI messages are then sent over Max **send** objects to instrument tracks
+(see next section).
+
+For CV output, the main M4L device includes subpatches that use the Expert
+Sleepers audio-to-CV encoding patches. These use Live's audio routing facility
+to send CV to the correct destination.
+
+.. TODO this is a bit of a simplification but will do for now
+
+MIDI Instruments
+--------------------------------------------------------------------------------
+The virtual instruments in the Live project that are used to play sequencer
+output each have their own track in Live. 
+This track device chain starts with a Max4Live device with a receive object 
+that can be configured to receive from the main device (see above). This device
+also has toggle buttons to allow the user to toggle on and off messages from the
+regular (Live) track or the sequencer. This allows a user to take over
+a track for live playing by arming that track and disabling sequencing input,
+and then playing whatever input device is configured in the Live track.
+
+CV output requires some understanding of how the Expert Sleepers encoding works 
+and will not be covered in detail here.
+.. TODO details of CV output
+
+ScmSeq Device Features
+--------------------------------------------------------------------------------
+The main ScmSeq Max patch (a Max for Live "device" in the context of Live)
+also includes several other features and UI elements:
+
+* A text input box holds the name of the top level Scheme file for a piece
+* A text input box can be used to set the save directory
+* A reset button and reload button are available to reset the interpreter
+  or simply reload the code respectively
+* A message button is available to open the Max console to see REPL text output
+* A number box allows the user to specify the port number for incoming
+  OSC messages over UDP
+* Several buttons are available to open views, as well as a number box
+  and toggle to set the view update rate (in ms) or toggle updating
+* A GC button opens a subpatch to set the garbage collection frequency
+* A meta button opens a subpatch that displays some top level sequecer state
+* A log-nulls toggle enables the user to mute logging of null or unspecified 
+  return values from the interpreter
+
+REPL Input and Output
+--------------------------------------------------------------------------------
+The main interpreter will log output messages to the Max console,
+and receive messages over the port specified above. 
+Messages received over OSC are simply passed to the interpreter for evaluation.
+They can thus be used to trigger any event over the network, or to define or
+redefine code.
+

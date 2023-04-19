@@ -1,0 +1,22 @@
+Mix Template
+=============
+
+Groups
+------
+- Drums and Bass
+  - KD 
+  - Bass
+  - Drums (including second kick channel)
+    - chain of Main and Dirt
+- Synths & Chords  
+  - Synths
+    - M1
+      - Dry
+      - Delay
+    - M2 .. M4
+  - Chords
+    - C1 
+      - Dry
+      - Delay
+    - C2
+  - Synth & Chord rear bus

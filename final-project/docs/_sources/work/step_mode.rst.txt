@@ -1,0 +1,44 @@
+Step mode working notes
+
+Questions:
+- how to erase a step?
+
+- ? could say that keystep two just turns on and off gates and can be used to erase steps 
+
+- step comes from the meta selection (fire)
+
+
+IMPLEMENTED
+- note-ons write note and vel
+- writing from last selected dur
+- touching knobs and mod are writing params
+key-2
+  - erase step, bar, seq from keyb2 working
+  - in dur submode, key-2 bebop notes set dur
+  - in dur submode, key-2 shift bebop notes set dur ticks
+  - in gate submode, key-2 notes toggle gates. shift-down turns off or upper octaves
+  - key-2-mod sets dur in ticks
+key-1
+  - play buttons turns on step-follow mode, advances by current dur in steps
+    - when already in it, does an extra advance
+  - key-1 S-L plus modw 0 which means take vel from keyb
+  - key-1 S-H plus modw means update last vel without writing to current step
+Grid:
+  - works similar to arp
+  - left buttons select ptrk
+  - grid enters values from 1 to 8 
+  - bottom buttons TBD
+  - right buttons TBD
+
+TODO
+- writing in entire chords
+- allow writing factors for arp sequencers (keyb1 submode?)
+
+Hot:
+- keystep cc's write to params
+- keystep mod writes to vel
+- knobs and faders write instantly to the current step 
+
+IDEAS: 
+
+

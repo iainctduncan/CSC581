@@ -1,0 +1,495 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Real-time Input &#8212; ScmSeq  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Object Model" href="object_model.html" />
+    <link rel="prev" title="Projects" href="projects.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">ScmSeq  documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contents:
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   ScmSeq Manual
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="overview.html">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="live_setup.html">
+     Ableton Live Setup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="projects.html">
+     Projects
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Real-time Input
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="object_model.html">
+     Object Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="architecture.html">
+     Architecture
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="sequencer_details.html">
+     Sequencer Implementation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="files.html">
+     Developer File Guide
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/scmseq/realtime_input.rst.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#my-hardware">
+   My hardware
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#input-mode-examples">
+   Input mode examples
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Real-time Input</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#my-hardware">
+   My hardware
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#input-mode-examples">
+   Input mode examples
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="real-time-input">
+<h1>Real-time Input<a class="headerlink" href="#real-time-input" title="Permalink to this headline">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h2>
+<p>This page describes how real-time input from the hardware controllers works
+from the user’s perspective. (Internal details will be covered in the architecture documentation.)</p>
+<p>The purpose of a controller is to provide a state container for modal editing,
+where particular input motions cause a variety of state changes.
+These usually fall into one of the following categories:</p>
+<ul class="simple">
+<li><p>Selections: track, bar, step, etc.</p></li>
+<li><p>Submode selection: arpeggiator on/off, chord mode on/off, etc.</p></li>
+<li><p>Data entry that is stored, but not yet acted upon (“cold”)</p></li>
+<li><p>Data entry that results in messages to sequencers to update data (“hot”)</p></li>
+</ul>
+<p>The best way to describe the workflow is probably to describe my own
+personal configuration and the input modes I have created for it.
+I will first describe my MIDI hardware controller configuration.</p>
+</section>
+<section id="my-hardware">
+<h2>My hardware<a class="headerlink" href="#my-hardware" title="Permalink to this headline">#</a></h2>
+<p>My hardware devices consist of:</p>
+<ul class="simple">
+<li><p>The <strong>fire</strong>, a 16x4 grid with miscellaneous extra buttons</p></li>
+<li><p>The <strong>grid</strong>, which is actually made up of two 8x8 launchpads acting as one 16x8 grid</p></li>
+<li><p>Two keystep mini keyboards, which have keyboards, a mod and pitch bend ribbon, and various buttons. The larger of which also has 4 dials.</p></li>
+</ul>
+<p>At a high level, when I’m editing I want to to use a global mechanism
+to choose any selections that I want to persist <em>across modes</em>.
+An example would be track selection - I don’t want
+to have re-select track 1 when moving between drum and step mode.
+I also need a way to choose the active mode, which for simplicity I do from the same controller,
+essentially keep, wherever possible, global and meta level input to the same device.</p>
+<p>In my mapping, the Fire acts as the this global controller. Input to it
+changes global selections that are state in the meta component,
+thus all the Fire buttons always do the same thing, regardless of the active input mode.
+(I have also found this easier to remember!)</p>
+<p>In my configuration, the fire grid rows are used to select:</p>
+<ol class="arabic simple">
+<li><p>Track</p></li>
+<li><p>Bank (unused at the moment)</p></li>
+<li><p>Bar</p></li>
+<li><p>Step</p></li>
+</ol>
+<p>Additionally, the Fire has buttons along the bottom used to select the input mode.
+Modes I have currently enabled include <strong>drum</strong>, <strong>step</strong>, <strong>arp</strong>, <strong>perform</strong>, and <strong>copy</strong>,
+which each corresponding to one input controller Scheme object.
+When I change modes, the various buttons and keys on the other three devices (grid, keyb-1, keyb-2)
+mean different things, and different actions are “hot”, meaning they result in writes to sequence data.</p>
+<p>One additional feature worth mentioning before getting into mode details is a trick
+I came up with for entering numerical data from piano keyboards.
+As a jazz player, I have internalized the scale numbers to near-instant recall.
+So to enter the values 0-15 from a piano keyboard, I use two octaves of the C7 bebop scale,
+where the note values of C, D, E, F, G, A, Bb, B correspond to 0 to 7.
+This allows me to enter a series of numbers far faster than on conventional buttons
+and to memorize common rhythmic figures as chord shapes.</p>
+</section>
+<section id="input-mode-examples">
+<h2>Input mode examples<a class="headerlink" href="#input-mode-examples" title="Permalink to this headline">#</a></h2>
+<p>Once we have selected the active input mode from the global input controller,
+actions on the mode-specific input devices are, wherever possible,
+idempotent. This is on the principle that we should not ever <em>need</em> to look at a screen
+for confirmation. If, once in a mode, a button does one thing, and always that thing,
+keeping track of where we are is straightforward (with some practice!).</p>
+<p>So for example, if I am in <strong>drum mode</strong>, input works somewhat like a drum machine:
+I make various selections that are stored in the controller’s local memory, such
+as what pitch or velocity I would like to use.
+Then I hit a button or key that signifies a step, and this causes
+all my parameter selections to be written in.
+In this case, we say that <strong>step selection is hot</strong> -
+it is the act of choosing a step that results
+in all the (already) selected field data being written to sequencer data.</p>
+<p>The drum mode order of operations is roughly:</p>
+<ul class="simple">
+<li><p>We make (or reuse) the current meta selections for track and bar</p></li>
+<li><p>We set some values with sliders (velocity, duration, mod-1, etc.)</p></li>
+<li><p>Perhaps we select a pitch with keyb-2</p></li>
+<li><p>We then hit keyb-1 (“hot”) to enter these notes, resulting in messages going
+to the sequencer for the currently selected track, which result in sequence
+data getting updated.</p></li>
+</ul>
+<p>On the otherhand, when we are in <strong>step mode</strong>, the process is reversed - we
+pick a step (which doesn’t by itself change anything),
+and then any editing motions (notes, sliders, buttons) are written in <em>as they are touched</em>.
+We say that step selection is cold while <strong>parameter selection is hot</strong>.
+We can keep moving faders, and they will keep writing to the same step
+until we select a new step.</p>
+<p>So the step mode order of operations is roughly:</p>
+<ul class="simple">
+<li><p>We make (or remember!) the current global selections for track and bar</p></li>
+<li><p>We pick a specific step from the fire or keyb-2</p></li>
+<li><p>We then move sliders, touch the pads, or play notes on keyb-1 to enter data.</p></li>
+</ul>
+<p>It is important to note that we do not (necessarily) need to reselect everything
+to write it in. For example, in drum mode, if keyb-2 selects C5, the
+selected pitch is C5, and that will be used for every step written until a new
+pitch is selected. This can of course be configured, and in my personal
+(rather complex) input modes, I have included the ability to choose which
+parameter fields automatically persist or not across actions, with the
+pitch bend and pedal used to create meta-keys to accomplish this.</p>
+<p>In addition to the drum and step modes detailed above I have:</p>
+<ul class="simple">
+<li><p><strong>Arp mode</strong>, a variant of step mode that allows chord and arpeggiator input</p></li>
+<li><p><strong>Copy mode</strong> (in progress) for copying sequence data</p></li>
+<li><p><strong>Perform mode</strong> (in progress), for mix and track muting and automation</p></li>
+</ul>
+<p>While this may sound intimidatingly complex, with practice it enables
+extremely fast data entry allowing one to truly improvise step-sequenced
+music. I have found the key to designing modes that
+are effective in practice is be consistent on what kinds of selections
+are global versus local, and to keep (as much as possible) the input
+hardware in alignment with this.</p>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="projects.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Projects</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="object_model.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Object Model</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Iain C.T. Duncan<br/>
+  
+      &copy; Copyright 2022, Iain C.T. Duncan.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

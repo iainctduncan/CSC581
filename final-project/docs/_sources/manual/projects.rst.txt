@@ -1,0 +1,220 @@
+Projects 
+=============
+A project in ScmSeq is the collection of files used for a specific piece,
+along with the Ableton Live project used to host it. It is the top level asset
+one uses in a session, and will most commonly have a one-to-one relationship
+with a piece of music. 
+
+Main Project File
+------------------
+The main entry point for a project is the top level Scheme files 
+that is loaded into the interpreter in the ScmSeq Max for Live device. 
+I normally name this **{piece-name}-main.scm**.
+This file loads other Scheme library files that define and instantiate
+the framework components, and also loads the project-specific files that instantiate sequencers
+and (optionally) fill them with data. 
+
+Note that ScmSeq does not use any kind of special data format for storing sequence data.
+Sequences are saved as string serializations of Scheme data structures that are
+valid Scheme expressions themselves, thus they
+are loaded indentically to loading of executable or runnable components. 
+This gives us enormous flexibility in how we load and save components and data.
+In fact, we can even sequence this loading of data.
+
+Thus a loaded project consists of a running intepreter environment with components
+instantiated and loaded with data.
+
+
+File Organization
+------------------
+There are two types of files loaded in a project, though the distinction is in fact
+solely one of convenience and is not enforced by the system.
+
+* Library files that are reused across projects, such as the function definitions for
+  sequencers, controllers, views, and utilities
+* Proejct files that are unique to a piece and that define or override functions, objects, and data 
+
+A running project will typically have the following components loaded from its main file:
+
+* Sequencer definitions (library)
+* Input controllers (library)
+* Views (library)
+* Utility helpers (library)
+* Lifecyle functions such as Start, Stop (library - but possibly redefined for the project)
+* Sequencer instantiations and data loading functions (project-specific)
+* Arrangement functions (project-specific)
+
+
+Project Files
+-------------
+We will look in detail at the library files in subsequent pages, but
+let's start by looking at the project files, as this is the top level
+of files as far as the interpreter is concerned.
+It is also what you will load into your editor when working on a piece, and
+there is a utility script for creating a new project and all its files from a template.
+
+The main project file is the file that we put in the Max4Live device
+and is loaded on device load or on a reset or reload message. 
+Loading this file kicks off everything that is not built into S4M.
+
+To review, it will normally have the following:
+
+* Load statements to load up the sequencers, controllers, view files, and utilities
+* Scheme code to instantiate the project-specific components to be used 
+  (sequencers and input controllers typically)
+* Load statements that load individual sequencer files in which initial
+  sequence data is declared or sequence data is loaded from serialized data files
+* Override definitions for life-cycle functions such **start**, **stop**, **select-track**.
+
+Note that the only parts strictly necessary to play a piece are the sequencer
+functions and (optionally) the arrangement functions, which are simple 
+method calls to a sequencer that change its data. 
+If we are not interested in interacting with the sequencers through hardware control,
+we don't need to load any input controllers.
+And if we don't need to see the data from the sequencers in the grid view window,
+we don't need to load view models either.
+This is a valid approach if one wants to build a piece entirely in code.
+And in fact, using function calls that trigger the Live API, it's possible to 
+write music and control Live entirely from a text editor this way.
+
+While it is possible to alter input controllers and views on a per-project basis,
+this probably causes more file management headaches than benefits - I tend
+to reuse the same controllers and views across all projects, only changing
+the sequencer files. And in fact, I normally use only one main sequencer definition,
+altering it with mixins for behaviour specific to the project. 
+But as this is a dynamic environment with (by default) one namespace, this is not
+enforced at a code level.
+
+Sequencer Files
+---------------
+To wrap up looking at the code from a project perspective, we will look briefly
+at sequencers as they are seen and used from the the project files. 
+(We will look inside them in subsequent pages.)
+
+Sequencers are playable components that clock themselves. They will be usually be started
+from the top level **start** function, and they execute their **run-step** method
+when it is time to play a step, scheduling the next execution of **run-step** before
+they are done. Essentially a sequencer is inert unless it is executing the run-step
+function, or we are calling into from outside of the sequencer. One can think of them
+as a process that calls its function and then goes to sleep until it is time
+for the next step. This means that while the normal operation is for a
+sequencer to schedule its own next step, there is nothing preventing one from
+forcing a step execution by sending a sequencer the **run-step** message. 
+This can be very helpful in development, and can also be used in algorithmic composition
+by driving the control of the step sequencer clock from something else,
+such as a stochastic process or even another sequencer.
+
+A sequencer object is instantiated from the sequencer main function, which we can
+consider the equivalent of constructor or builder function.
+Instantiation takes a variety of keyword arguments to configure the sequencer,
+including a name and and output channel, and returns a function to which we will want
+to keep a reference.
+
+.. code:: Scheme
+  
+  ; instantiating a chord-step-seq sequencer and saving it to the variable seq-1
+  ; we give it the name seq-1 and send an optional list of keyword arguments
+  (define seq-1 (chord-step-seq 'seq-1 :arp #t :channel 1 :params 8 :steps 64))
+  ; now we have a sequencer, seq-1, but it is not yet doing anything
+
+
+The object returned from this constructor is itself a function, and we will
+interact with it by calling it with a dispatch symbol as the first
+argument. This will result in the function calling an internal function
+that is similarly named and has access to the sequencer internals. 
+It is best to think of this as *sending it a message*, as we don't really
+know how this is implemented internally - all that matters is that we know that
+it can respond to the message. In this example, we send
+the **set** message to change the loop length, and then we start the sequencer with the start message.
+
+.. code:: Scheme
+ 
+  ; set changes state data marked by keywords
+  (seq-1 'set :loop-len 32)
+  ; start it
+  (seq-1 'start)
+
+It is entirely up to the user how many sequencers are used in a project.
+The simplest set up is to have one instantiated sequencer per instrument channel,
+but one can have more than one defined, or more than one playing at once.
+Of course if they are on the same timebase this can result in a lot of Scheme activity
+on downbeats, but I have successfully run 16 at once without issue.
+
+My personal file organization system is to put sequencer definitions in their
+own files, along with functions corresponding to tune sections that load
+data into these sequencers. 
+Then I have the top level file contain a global start function that calls
+some of these functions, and arrangements consist of timed execution
+of subsequent section functions. There are many ways to do this:
+they could be triggered live from hardware, triggered by MIDI messages
+coming from Live scenes, or scheduled in Scheme.
+
+An example of a sequencer file with some section
+functions is below. This would be a file loaded from the top project file.
+
+.. code:: Scheme
+
+  ; file my-piece-seq-1.scm
+  
+  ; instantiate the sequencer
+  (define seq-1 (chord-step-seq 'seq-1 :arp #t :channel 1
+    :params 8 :steps 64 :loop-len 64 :time-factor 1))
+  
+  ; an init function used to load the sequencer with some starting values
+  (define (seq-1-init)
+    (seq-1 'set :loop-len 32)
+    (seq-1 'update-ptrk gate 0    #(1 1 0 1 1 0 0 1))
+    (seq-1 'update-ptrk dur  0    #(110 110 110 110 110 110 110 110)) 
+    (seq-1 'update-ptrk factor 0  #(0 2 1 3 5 0 3 2))
+    (seq-1 'update-ptrk vel 0     #(120 60 90 120 60 90 30 90 90))
+    ; loop lengths for gate dur factor vel
+    (seq-1 'update-loops #(6 8 8 8))
+    ; initial chord values
+    (seq-1 'update-chord-seq 0  '(60 63 67 70 72))
+  )
+  ; call the above on file load 
+  (seq-1-init)
+  
+  ; two arrangement functions that will be called at some musical time
+  ; and that change values in the sequencer
+  (define (seq-1-a)
+    (post "(seq-1-a)")
+    (seq-1 'set :loop-len 32)
+    (seq-1 'update-ptrk gate 0    #(1 1 0 1 1 0 0 1))
+    (seq-1 'update-ptrk dur  0    #(110 110 110 110 110 110 110 110)) 
+    (seq-1 'update-ptrk factor 0  '(0 2 1 3 5 0 3 2))
+    (seq-1 'update-ptrk vel 0     #(120 60 90 120 60 90 30 90 90))
+    ; loop lengths for gate dur factor vel
+    (seq-1 'update-loops #(6 8 8 8))
+  )
+
+  (define (seq-1-b)
+    (post "(seq-1-b)")
+    (seq-1 'set :loop-len 32)
+    (seq-1 'update-loops #(6 8 8 8))
+  )
+
+Then in the project file we will see, among other things:
+
+.. code:: Scheme
+
+  (load-from-max "my-piece-seq-1.scm")
+  (load-from-max "my-piece-seq-1.scm")
+  ; ... more get loaded
+
+  ; function that will be triggered by Live transport starting 
+  (define (start)
+    (post "(start)")
+    (seq-1-a)
+    (seq-1 'start)
+    ; probably others get initialized and started too
+  
+    ; we could schedule the second arrange function after 8 bars
+    ; (there are better ways to do this that we will see later)
+    (delay-tq (* 480 4 8) 480 seq-1-b)
+  )
+  
+
+TODO:
+- add stuff on the python project script
+

@@ -1,0 +1,11 @@
+Notes on the new tune workflow
+==============================
+
+TODO
+----
+- add opening the ableton project to the new-tune script
+- add making a vim file and opening it to the new-tune script
+
+Issues:
+-------
+

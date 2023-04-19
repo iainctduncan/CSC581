@@ -1,0 +1,35 @@
+TODO:
+
+- Add stuff to sequencer section on how ptracks are implemented
+- write up arch section for input modes
+- code level for
+sequencers
+- view driver?
+- manual for modes? might be able to make it wait
+
+Later:
+- saving
+- arranging
+
+
+Apr 15 work:
+- editing all the docs, figuring out what must still be included
+
+Files:
+overview - good
+live_setup - good
+projects - edited - add stuff on the project script
+realtime-input edited - could do with photo
+object model - edited
+
+architecture
+
+
+next:
+edit realtime input
+
+
+TO ADD:
+- a File list document
+- project python script details and file details to projects file
+- controller photos?

@@ -1,0 +1,14 @@
+notes on arch to improve from the doc process.
+
+- How midi-input finds controllers. This is a lookup in the global space,
+  it would be better to use a registry of some kind in meta
+
+- what would happen with two users?
+
+- how the midi mapping is handled and the whole handled by mode
+  thing is kind of shitty
+
+- controllers get sequencers incorrectly, that should 
+  be through the meta thing, not the tunes track-sequencers
+  - should be ready for multiple seqs in a track
+

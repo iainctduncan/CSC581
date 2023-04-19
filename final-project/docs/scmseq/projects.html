@@ -1,0 +1,591 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Projects &#8212; ScmSeq  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Real-time Input" href="realtime_input.html" />
+    <link rel="prev" title="Ableton Live Setup" href="live_setup.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">ScmSeq  documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contents:
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   ScmSeq Manual
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="overview.html">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="live_setup.html">
+     Ableton Live Setup
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Projects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="realtime_input.html">
+     Real-time Input
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="object_model.html">
+     Object Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="architecture.html">
+     Architecture
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="sequencer_details.html">
+     Sequencer Implementation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="files.html">
+     Developer File Guide
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/scmseq/projects.rst.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#main-project-file">
+   Main Project File
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#file-organization">
+   File Organization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#project-files">
+   Project Files
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sequencer-files">
+   Sequencer Files
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Projects</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#main-project-file">
+   Main Project File
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#file-organization">
+   File Organization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#project-files">
+   Project Files
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sequencer-files">
+   Sequencer Files
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="projects">
+<h1>Projects<a class="headerlink" href="#projects" title="Permalink to this headline">#</a></h1>
+<p>A project in ScmSeq is the collection of files used for a specific piece,
+along with the Ableton Live project used to host it. It is the top level asset
+one uses in a session, and will most commonly have a one-to-one relationship
+with a piece of music.</p>
+<section id="main-project-file">
+<h2>Main Project File<a class="headerlink" href="#main-project-file" title="Permalink to this headline">#</a></h2>
+<p>The main entry point for a project is the top level Scheme files
+that is loaded into the interpreter in the ScmSeq Max for Live device.
+I normally name this <strong>{piece-name}-main.scm</strong>.
+This file loads other Scheme library files that define and instantiate
+the framework components, and also loads the project-specific files that instantiate sequencers
+and (optionally) fill them with data.</p>
+<p>Note that ScmSeq does not use any kind of special data format for storing sequence data.
+Sequences are saved as string serializations of Scheme data structures that are
+valid Scheme expressions themselves, thus they
+are loaded indentically to loading of executable or runnable components.
+This gives us enormous flexibility in how we load and save components and data.
+In fact, we can even sequence this loading of data.</p>
+<p>Thus a loaded project consists of a running intepreter environment with components
+instantiated and loaded with data.</p>
+</section>
+<section id="file-organization">
+<h2>File Organization<a class="headerlink" href="#file-organization" title="Permalink to this headline">#</a></h2>
+<p>There are two types of files loaded in a project, though the distinction is in fact
+solely one of convenience and is not enforced by the system.</p>
+<ul class="simple">
+<li><p>Library files that are reused across projects, such as the function definitions for
+sequencers, controllers, views, and utilities</p></li>
+<li><p>Proejct files that are unique to a piece and that define or override functions, objects, and data</p></li>
+</ul>
+<p>A running project will typically have the following components loaded from its main file:</p>
+<ul class="simple">
+<li><p>Sequencer definitions (library)</p></li>
+<li><p>Input controllers (library)</p></li>
+<li><p>Views (library)</p></li>
+<li><p>Utility helpers (library)</p></li>
+<li><p>Lifecyle functions such as Start, Stop (library - but possibly redefined for the project)</p></li>
+<li><p>Sequencer instantiations and data loading functions (project-specific)</p></li>
+<li><p>Arrangement functions (project-specific)</p></li>
+</ul>
+</section>
+<section id="project-files">
+<h2>Project Files<a class="headerlink" href="#project-files" title="Permalink to this headline">#</a></h2>
+<p>We will look in detail at the library files in subsequent pages, but
+let’s start by looking at the project files, as this is the top level
+of files as far as the interpreter is concerned.
+It is also what you will load into your editor when working on a piece, and
+there is a utility script for creating a new project and all its files from a template.</p>
+<p>The main project file is the file that we put in the Max4Live device
+and is loaded on device load or on a reset or reload message.
+Loading this file kicks off everything that is not built into S4M.</p>
+<p>To review, it will normally have the following:</p>
+<ul class="simple">
+<li><p>Load statements to load up the sequencers, controllers, view files, and utilities</p></li>
+<li><p>Scheme code to instantiate the project-specific components to be used
+(sequencers and input controllers typically)</p></li>
+<li><p>Load statements that load individual sequencer files in which initial
+sequence data is declared or sequence data is loaded from serialized data files</p></li>
+<li><p>Override definitions for life-cycle functions such <strong>start</strong>, <strong>stop</strong>, <strong>select-track</strong>.</p></li>
+</ul>
+<p>Note that the only parts strictly necessary to play a piece are the sequencer
+functions and (optionally) the arrangement functions, which are simple
+method calls to a sequencer that change its data.
+If we are not interested in interacting with the sequencers through hardware control,
+we don’t need to load any input controllers.
+And if we don’t need to see the data from the sequencers in the grid view window,
+we don’t need to load view models either.
+This is a valid approach if one wants to build a piece entirely in code.
+And in fact, using function calls that trigger the Live API, it’s possible to
+write music and control Live entirely from a text editor this way.</p>
+<p>While it is possible to alter input controllers and views on a per-project basis,
+this probably causes more file management headaches than benefits - I tend
+to reuse the same controllers and views across all projects, only changing
+the sequencer files. And in fact, I normally use only one main sequencer definition,
+altering it with mixins for behaviour specific to the project.
+But as this is a dynamic environment with (by default) one namespace, this is not
+enforced at a code level.</p>
+</section>
+<section id="sequencer-files">
+<h2>Sequencer Files<a class="headerlink" href="#sequencer-files" title="Permalink to this headline">#</a></h2>
+<p>To wrap up looking at the code from a project perspective, we will look briefly
+at sequencers as they are seen and used from the the project files.
+(We will look inside them in subsequent pages.)</p>
+<p>Sequencers are playable components that clock themselves. They will be usually be started
+from the top level <strong>start</strong> function, and they execute their <strong>run-step</strong> method
+when it is time to play a step, scheduling the next execution of <strong>run-step</strong> before
+they are done. Essentially a sequencer is inert unless it is executing the run-step
+function, or we are calling into from outside of the sequencer. One can think of them
+as a process that calls its function and then goes to sleep until it is time
+for the next step. This means that while the normal operation is for a
+sequencer to schedule its own next step, there is nothing preventing one from
+forcing a step execution by sending a sequencer the <strong>run-step</strong> message.
+This can be very helpful in development, and can also be used in algorithmic composition
+by driving the control of the step sequencer clock from something else,
+such as a stochastic process or even another sequencer.</p>
+<p>A sequencer object is instantiated from the sequencer main function, which we can
+consider the equivalent of constructor or builder function.
+Instantiation takes a variety of keyword arguments to configure the sequencer,
+including a name and and output channel, and returns a function to which we will want
+to keep a reference.</p>
+<div class="highlight-Scheme notranslate"><div class="highlight"><pre><span></span><span class="c1">; instantiating a chord-step-seq sequencer and saving it to the variable seq-1</span>
+<span class="c1">; we give it the name seq-1 and send an optional list of keyword arguments</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">seq-1</span> <span class="p">(</span><span class="nf">chord-step-seq</span> <span class="ss">&#39;seq-1</span> <span class="nv">:arp</span> <span class="no">#t</span> <span class="nv">:channel</span> <span class="mi">1</span> <span class="nv">:params</span> <span class="mi">8</span> <span class="nv">:steps</span> <span class="mi">64</span><span class="p">))</span>
+<span class="c1">; now we have a sequencer, seq-1, but it is not yet doing anything</span>
+</pre></div>
+</div>
+<p>The object returned from this constructor is itself a function, and we will
+interact with it by calling it with a dispatch symbol as the first
+argument. This will result in the function calling an internal function
+that is similarly named and has access to the sequencer internals.
+It is best to think of this as <em>sending it a message</em>, as we don’t really
+know how this is implemented internally - all that matters is that we know that
+it can respond to the message. In this example, we send
+the <strong>set</strong> message to change the loop length, and then we start the sequencer with the start message.</p>
+<div class="highlight-Scheme notranslate"><div class="highlight"><pre><span></span><span class="c1">; set changes state data marked by keywords</span>
+<span class="p">(</span><span class="nf">seq-1</span> <span class="ss">&#39;set</span> <span class="nv">:loop-len</span> <span class="mi">32</span><span class="p">)</span>
+<span class="c1">; start it</span>
+<span class="p">(</span><span class="nf">seq-1</span> <span class="ss">&#39;start</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It is entirely up to the user how many sequencers are used in a project.
+The simplest set up is to have one instantiated sequencer per instrument channel,
+but one can have more than one defined, or more than one playing at once.
+Of course if they are on the same timebase this can result in a lot of Scheme activity
+on downbeats, but I have successfully run 16 at once without issue.</p>
+<p>My personal file organization system is to put sequencer definitions in their
+own files, along with functions corresponding to tune sections that load
+data into these sequencers.
+Then I have the top level file contain a global start function that calls
+some of these functions, and arrangements consist of timed execution
+of subsequent section functions. There are many ways to do this:
+they could be triggered live from hardware, triggered by MIDI messages
+coming from Live scenes, or scheduled in Scheme.</p>
+<p>An example of a sequencer file with some section
+functions is below. This would be a file loaded from the top project file.</p>
+<div class="highlight-Scheme notranslate"><div class="highlight"><pre><span></span><span class="c1">; file my-piece-seq-1.scm</span>
+
+<span class="c1">; instantiate the sequencer</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">seq-1</span> <span class="p">(</span><span class="nf">chord-step-seq</span> <span class="ss">&#39;seq-1</span> <span class="nv">:arp</span> <span class="no">#t</span> <span class="nv">:channel</span> <span class="mi">1</span>
+  <span class="nv">:params</span> <span class="mi">8</span> <span class="nv">:steps</span> <span class="mi">64</span> <span class="nv">:loop-len</span> <span class="mi">64</span> <span class="nv">:time-factor</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="c1">; an init function used to load the sequencer with some starting values</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">seq-1-init</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">seq-1</span> <span class="ss">&#39;set</span> <span class="nv">:loop-len</span> <span class="mi">32</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">seq-1</span> <span class="ss">&#39;update-ptrk</span> <span class="nv">gate</span> <span class="mi">0</span>    <span class="o">#</span><span class="p">(</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">))</span>
+  <span class="p">(</span><span class="nf">seq-1</span> <span class="ss">&#39;update-ptrk</span> <span class="nv">dur</span>  <span class="mi">0</span>    <span class="o">#</span><span class="p">(</span><span class="mi">110</span> <span class="mi">110</span> <span class="mi">110</span> <span class="mi">110</span> <span class="mi">110</span> <span class="mi">110</span> <span class="mi">110</span> <span class="mi">110</span><span class="p">))</span>
+  <span class="p">(</span><span class="nf">seq-1</span> <span class="ss">&#39;update-ptrk</span> <span class="nv">factor</span> <span class="mi">0</span>  <span class="o">#</span><span class="p">(</span><span class="mi">0</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">3</span> <span class="mi">5</span> <span class="mi">0</span> <span class="mi">3</span> <span class="mi">2</span><span class="p">))</span>
+  <span class="p">(</span><span class="nf">seq-1</span> <span class="ss">&#39;update-ptrk</span> <span class="nv">vel</span> <span class="mi">0</span>     <span class="o">#</span><span class="p">(</span><span class="mi">120</span> <span class="mi">60</span> <span class="mi">90</span> <span class="mi">120</span> <span class="mi">60</span> <span class="mi">90</span> <span class="mi">30</span> <span class="mi">90</span> <span class="mi">90</span><span class="p">))</span>
+  <span class="c1">; loop lengths for gate dur factor vel</span>
+  <span class="p">(</span><span class="nf">seq-1</span> <span class="ss">&#39;update-loops</span> <span class="o">#</span><span class="p">(</span><span class="mi">6</span> <span class="mi">8</span> <span class="mi">8</span> <span class="mi">8</span><span class="p">))</span>
+  <span class="c1">; initial chord values</span>
+  <span class="p">(</span><span class="nf">seq-1</span> <span class="ss">&#39;update-chord-seq</span> <span class="mi">0</span>  <span class="o">&#39;</span><span class="p">(</span><span class="mi">60</span> <span class="mi">63</span> <span class="mi">67</span> <span class="mi">70</span> <span class="mi">72</span><span class="p">))</span>
+<span class="p">)</span>
+<span class="c1">; call the above on file load</span>
+<span class="p">(</span><span class="nf">seq-1-init</span><span class="p">)</span>
+
+<span class="c1">; two arrangement functions that will be called at some musical time</span>
+<span class="c1">; and that change values in the sequencer</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">seq-1-a</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">post</span> <span class="s">&quot;(seq-1-a)&quot;</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">seq-1</span> <span class="ss">&#39;set</span> <span class="nv">:loop-len</span> <span class="mi">32</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">seq-1</span> <span class="ss">&#39;update-ptrk</span> <span class="nv">gate</span> <span class="mi">0</span>    <span class="o">#</span><span class="p">(</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">))</span>
+  <span class="p">(</span><span class="nf">seq-1</span> <span class="ss">&#39;update-ptrk</span> <span class="nv">dur</span>  <span class="mi">0</span>    <span class="o">#</span><span class="p">(</span><span class="mi">110</span> <span class="mi">110</span> <span class="mi">110</span> <span class="mi">110</span> <span class="mi">110</span> <span class="mi">110</span> <span class="mi">110</span> <span class="mi">110</span><span class="p">))</span>
+  <span class="p">(</span><span class="nf">seq-1</span> <span class="ss">&#39;update-ptrk</span> <span class="nv">factor</span> <span class="mi">0</span>  <span class="o">&#39;</span><span class="p">(</span><span class="mi">0</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">3</span> <span class="mi">5</span> <span class="mi">0</span> <span class="mi">3</span> <span class="mi">2</span><span class="p">))</span>
+  <span class="p">(</span><span class="nf">seq-1</span> <span class="ss">&#39;update-ptrk</span> <span class="nv">vel</span> <span class="mi">0</span>     <span class="o">#</span><span class="p">(</span><span class="mi">120</span> <span class="mi">60</span> <span class="mi">90</span> <span class="mi">120</span> <span class="mi">60</span> <span class="mi">90</span> <span class="mi">30</span> <span class="mi">90</span> <span class="mi">90</span><span class="p">))</span>
+  <span class="c1">; loop lengths for gate dur factor vel</span>
+  <span class="p">(</span><span class="nf">seq-1</span> <span class="ss">&#39;update-loops</span> <span class="o">#</span><span class="p">(</span><span class="mi">6</span> <span class="mi">8</span> <span class="mi">8</span> <span class="mi">8</span><span class="p">))</span>
+<span class="p">)</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">seq-1-b</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">post</span> <span class="s">&quot;(seq-1-b)&quot;</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">seq-1</span> <span class="ss">&#39;set</span> <span class="nv">:loop-len</span> <span class="mi">32</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">seq-1</span> <span class="ss">&#39;update-loops</span> <span class="o">#</span><span class="p">(</span><span class="mi">6</span> <span class="mi">8</span> <span class="mi">8</span> <span class="mi">8</span><span class="p">))</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Then in the project file we will see, among other things:</p>
+<div class="highlight-Scheme notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">load-from-max</span> <span class="s">&quot;my-piece-seq-1.scm&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">load-from-max</span> <span class="s">&quot;my-piece-seq-1.scm&quot;</span><span class="p">)</span>
+<span class="c1">; ... more get loaded</span>
+
+<span class="c1">; function that will be triggered by Live transport starting</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">start</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">post</span> <span class="s">&quot;(start)&quot;</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">seq-1-a</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">seq-1</span> <span class="ss">&#39;start</span><span class="p">)</span>
+  <span class="c1">; probably others get initialized and started too</span>
+
+  <span class="c1">; we could schedule the second arrange function after 8 bars</span>
+  <span class="c1">; (there are better ways to do this that we will see later)</span>
+  <span class="p">(</span><span class="nf">delay-tq</span> <span class="p">(</span><span class="nb">* </span><span class="mi">480</span> <span class="mi">4</span> <span class="mi">8</span><span class="p">)</span> <span class="mi">480</span> <span class="nv">seq-1-b</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>TODO:
+- add stuff on the python project script</p>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="live_setup.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Ableton Live Setup</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="realtime_input.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Real-time Input</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Iain C.T. Duncan<br/>
+  
+      &copy; Copyright 2022, Iain C.T. Duncan.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

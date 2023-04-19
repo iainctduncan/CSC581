@@ -1,0 +1,956 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Work Log &#8212; ScmSeq  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">ScmSeq  documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contents:
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../scmseq/index.html">
+   ScmSeq Manual
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../scmseq/overview.html">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../scmseq/live_setup.html">
+     Ableton Live Setup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../scmseq/projects.html">
+     Projects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../scmseq/realtime_input.html">
+     Real-time Input
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../scmseq/object_model.html">
+     Object Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../scmseq/architecture.html">
+     Architecture
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../scmseq/sequencer_details.html">
+     Sequencer Implementation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../scmseq/files.html">
+     Developer File Guide
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/work/work_log.rst.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Work Log</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="work-log">
+<h1>Work Log<a class="headerlink" href="#work-log" title="Permalink to this headline">#</a></h1>
+<p>Next:
+- mod data out to modular and to GM</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li><p>this means both modwheel and velocity I think</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>fix view to allow more notes in chords</p></li>
+</ul>
+</div></blockquote>
+<p>Next Milestones:
+- getting copy, perform, snapshots done for complete step seq environment
+- hooking up param fields to modular
+- documenting system to hand in for course
+- new view that shows data for all 16 tracks at once (master loop, gates)</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>can swtich param on it</p></li>
+</ul>
+</div></blockquote>
+<p>High Priorities for seq
+- detaching chord time from main time factor (for counterpoint)</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>adding chord loop len and separate chord time factor</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>view responding to bar selection (to see later bars)</p></li>
+<li><p>add broadcast module for updating meta view widgets</p></li>
+<li><p>enter chord factors in step mode with keyb bebop</p></li>
+<li><p>full save snapshot</p></li>
+<li><p>fix how controllers are instantiated (shouldn’t be in tune)</p></li>
+</ul>
+<p>Ondeck:
+- hopefully start copy mode - can this be in perform mode??</p>
+<p>2023-03-5
+- perform mode works for loop lens and mutes</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>will need to do more once chord looping is improved in the chord seq</p></li>
+</ul>
+</div></blockquote>
+<p>2023-03-4
+- step mode is basically done, will get tweaked as I use it</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>could do with some more meta objects GUI elements</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>left off testing and debugging the grid rows function in perform</p></li>
+</ul>
+<p>2023-03-3
+- working on adding second keyboard and step mode
+- basics of step mode working</p>
+<p>2023-02-23/24
+- working on the seq setup code</p>
+<p>2023-02-18
+- brief work on feb-16 tune in morning to check it</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>have ideas on what to do with it</p></li>
+<li><p>need to come up with way to program chord movements more easily (record them from Live, etc)</p></li>
+</ul>
+</div></blockquote>
+<p>2023-02-17
+- worked on feb-16 tune again, still like it</p>
+<p>2023-02-16
+- started new tune, feb-16. it’s good, woot!</p>
+<p>2022-11-23
+- short session on oct-1 tune
+- intro still bad, fixed that I think?
+- started learning timeless 3, put it on s1</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>need to figure out how to automate from scheme</p></li>
+</ul>
+</div></blockquote>
+<p>2022-11-19
+- worked on oct-1, got arrangement done actually done (wasn’t really done), length is 5 min
+- has auto filter fades at end, which are working nicely
+- todo: ptrk mod, delay mod</p>
+<p>2022-11-14
+- morning writing, worked for about 3 or 4 hours?
+- got overall arrangement of Oct-1 finished
+- next: add dubber automation, switch to modular, work on ptrk auto</p>
+<p>2022-11-11
+- short session, working on oct-1</p>
+<p>2022-11-10
+- doing short writing session in evening
+- working on arrangement for oct-1
+- going to try doing mutes with the live clips</p>
+<p>2022-11-09
+- at desk to write at 7:30</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>initiating plan to try writing every day, esp mornings</p></li>
+<li><p>worked on writing for several hours in morning</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>worked on oct-1. added new bell line, sorted out some arranging stuff</p></li>
+<li><p>ready to now have arrangement done I think
+- maybe one more line?</p></li>
+</ul>
+<p>2022-11-08
+- worked on the oct-1 piece</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>experimented with the Live dub keys device, it has a lot of potential</p></li>
+</ul>
+</div></blockquote>
+<p>2022-10-25
+- working on the writing setup
+- figured out I need keys going to ext out (bpassing master busses) to not get tons of latency
+- going to work on a new tune to practice doing all the things
+- need to get the keyboards overriding chords in the arp seq
+- urgent: need way to wipe chord bars!!</p>
+<p>2022-10-24
+- attempting to do short writing session with full setup
+- issue, no csound6 for M1 yet! need to do that. oops</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>I guess I will use zebra for chords for now on it??</p></li>
+</ul>
+</div></blockquote>
+<p>2022-10-22
+- have been working on thesis lately, hence the gap
+- resuming work on getting four voices from modular running
+- figured out best way to tune is to send 1s out and just move the jacks to get them in tune
+- still need to figure out how I want to output velocity and mod.
+- hooked up grandmother, but how to send out extra values?</p>
+<p>2022-10-07
+- working on getting four synths going
+- fixed the damn vcos, woot!</p>
+<p>2022-10-05
+- get four voices going of synth
+- seems like gate and cv routing is still not right, working on that</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>fixed now I think?</p></li>
+</ul>
+</div></blockquote>
+<p>2022-10-01
+- Goal: on live + modular setup with no send/receive latency issues
+- got gate outputs working, but they are doing this through the cv-note-out function,</p>
+<blockquote>
+<div><p>which is also doing a bunch of shit it doesn’t need to do if we’re using midi to CV
+- this can be figured out later though</p>
+</div></blockquote>
+<p>2022-09-26 to 30
+- got the 0.4 release done
+- put up videos for the ableton version and ableton install
+- made example devices for the package</p>
+<p>2022-09-19
+- DONE gc clock needs to have protection added for when used in the low thread environment
+- arg, in cleaning up the git tree (removing the build path) I borked xcode and now it’s not</p>
+<blockquote>
+<div><p>able to load the compiled external</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Fixed: fucked up my dev environment, need to fix xcode so it loads s4m properly</p></li>
+</ul>
+<p>2022-09-10
+- got live api patcher building automatically
+- determined having it owned by external does not make sense <em>unless</em> it’s always invisible,</p>
+<blockquote>
+<div><p>because otherwise users can delete it and then we have bad references</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>next s4m thing is the gc clock, then it should be release ready</p></li>
+</ul>
+<p>2022-09-9
+- working on code again</p>
+<p>2022-09-8
+- going to do timing comparison eliminating s/r pairs before the gates
+- figured out it’s the send/receive pairs introducing the jitter
+- got gates going out the s4m track, and timing is rock solid, &lt;1ms jitter
+- need to put the CV outs on devices in the same track somehow
+- this would require sending midi messages out by channel on to the same device
+- which probably means that we need to route audio to 7/8 so that the s4m-device</p>
+<blockquote>
+<div><p>can be a midi device instead of an audio one.</p>
+</div></blockquote>
+<p>2022-09-2
+- worked on using modular
+- definitely need the snapshot-all feature!!
+- figuring out delay on new system
+- did timing tests and figured out my send and receives are making bad jitter</p>
+<dl>
+<dt>2022-08-1</dt><dd><ul class="simple">
+<li><p>resuming work on sets</p></li>
+<li><p>fixing up the track gain device, I think I left it with the params still screwed up</p></li>
+<li><p>left off fixing up the track fade things</p></li>
+</ul>
+</dd>
+<dt>2022-06-25</dt><dd><ul class="simple">
+<li><p>working on the live API controlled filter fade plugin</p></li>
+<li><p>made new gain/gate/lp/hp track device with envs that</p></li>
+<li><p>added functions (gain) (fc) (gate) for controlling them</p></li>
+<li><p>left off, need to finalize their param nums so it’s consistent across tracks</p></li>
+<li><p>all tracks will gain and fc, not all need gate or hp</p></li>
+</ul>
+</dd>
+<dt>2022-06</dt><dd><ul class="simple">
+<li><p>working on how arrangements will work</p></li>
+<li><p>got scene functions working off midi clips</p></li>
+<li><p>next: add the gate triggering to the audio tracks with the live API</p></li>
+</ul>
+</dd>
+<dt>2022-05-27</dt><dd><ul class="simple">
+<li><p>view-1 automatically follows track selection now</p></li>
+</ul>
+</dd>
+<dt>2022-05-25</dt><dd><ul class="simple">
+<li><p>worked on full workflow on new tune ‘kestrel’</p></li>
+<li><p>intention to program it all in with controllers</p></li>
+<li><p>got chords to zebra going, and track selecting working properly</p></li>
+<li><p>next: need view to also follow track select</p></li>
+<li><p>recorded a chord prog to use for it too</p></li>
+<li><p>fixed data path to persist on reset
+- still gets lost on device edit though</p></li>
+<li><p>cleaned up new tune template &amp; script</p></li>
+</ul>
+</dd>
+<dt>2022-05-22</dt><dd><ul class="simple">
+<li><p>added tiny grid to view-1, cs-view-1-main-loops, to hold main and chord loop</p></li>
+<li><p>can I change bars yet for where I’m looking??</p></li>
+<li><p>fixed up and documented loading and saving sequences to data files, working!</p></li>
+</ul>
+</dd>
+<dt>2022-05-21</dt><dd><ul class="simple">
+<li><p>created a meta view which shows current track, bar, bank, step</p></li>
+<li><p>made chord seq loop len separate from master loop</p></li>
+</ul>
+</dd>
+<dt>2022-05-20</dt><dd><ul class="simple">
+<li><p>working on chord seq</p></li>
+<li><p>fixed bugs in chord update, added erasing</p></li>
+</ul>
+</dd>
+<dt>2022-05-19</dt><dd><ul class="simple">
+<li><p>taking break from mix setup to get controllers and seq saving working for the chord seqs</p></li>
+</ul>
+</dd>
+<dt>2022-05-08</dt><dd><ul class="simple">
+<li><p>continuing to work on remotes</p></li>
+<li><p>test with fade in of delays on some instruments</p></li>
+<li><p>make midi sends to those??</p></li>
+<li><p>got final system in place for remotes</p></li>
+<li><p>NEXT: copy out what I did for track 1 p1 to the others
+- this allows the control update to stay current from ramps, and saves with the set properly</p></li>
+</ul>
+</dd>
+<dt>2022-05-07</dt><dd><ul class="simple">
+<li><p>working on live api and remoting for the track delays</p></li>
+</ul>
+</dd>
+<dt>2022-05-06</dt><dd><ul class="simple">
+<li><p>got velocity working on csound instrument</p></li>
+<li><p>did ableton track driven seq mutes</p></li>
+<li><p>hooked up zebra filters to macros, but how to send to the macros?</p></li>
+<li><p>got macros going to the delays, and s4m-functions writing to the macros
+- need to review the live remote stuff for ramping them</p></li>
+<li><p>somehow I broke my play and stop functions though, wtf!</p></li>
+</ul>
+</dd>
+<dt>2022-05-05</dt><dd><ul class="simple">
+<li><p>got csound gates working</p></li>
+<li><p>Live’s lfo going to csound instrument</p></li>
+</ul>
+</dd>
+<dt>2022-05-02</dt><dd><ul class="simple">
+<li><p>issue: ticks-&gt;ms is not working in context of live!</p></li>
+<li><p>need to figure out how to get the live tempo and convert it, grr
+- using (meta :bpm) hack for now</p></li>
+<li><p>got instrument working, still needs to send the gate to the modulars</p></li>
+<li><p>also need to figure out how to turn off the stupid steinberg auto loopback shit</p></li>
+</ul>
+</dd>
+<dt>2022-05-01</dt><dd><ul class="simple">
+<li><p>working on the csound instrument</p></li>
+<li><p>got an env going but it doesn’t pick on last note properly</p></li>
+</ul>
+</dd>
+<dt>2022-03-30</dt><dd><ul class="simple">
+<li><p>csound chords - got a chord sequencer playing a chord line to the channel</p></li>
+</ul>
+</dd>
+<dt>2022-03-29</dt><dd><ul class="simple">
+<li><p>working on output with that is midi track compatible</p></li>
+<li><p>added modwheel and aftertouch to CV Instrument input from mod params
+- seqencer sending those from midi routing in the track subpatcher</p></li>
+<li><p>also still working on triggering csound chords from the sequencer and gettting them going with the external filters</p></li>
+</ul>
+</dd>
+<dt>2022-03-28</dt><dd><ul class="simple">
+<li><p>figured out the csound code for legato chords with fractional voices</p></li>
+</ul>
+</dd>
+<dt>2022-03-23</dt><dd><ul class="simple">
+<li><p>working on modular with seq, figured out routing (in s4m-live-cv)</p></li>
+<li><p>learnt the sonic XV filter</p></li>
+<li><p>TODO: make the gate router use a text input for target (copy other device)</p></li>
+<li><p>make it possible to mute input from the seq while preserving midi in</p></li>
+</ul>
+</dd>
+<dt>2022-03-22</dt><dd><ul class="simple">
+<li><p>got modular output working with CV tools and created device to send from tracks to ES5</p></li>
+<li><p>still need to add more outputs for it though (only sends from first track) and haven’t tested</p></li>
+<li><p>with the seq yet</p></li>
+</ul>
+</dd>
+<dt>2022-03-18</dt><dd><ul class="simple">
+<li><p>got modular output doing mods out</p></li>
+</ul>
+</dd>
+<dt>2022-03-18</dt><dd><ul class="simple">
+<li><p>worked on modular output</p></li>
+<li><p>started new patch and scm file, cv-output.scm and cv-out.maxpat</p></li>
+<li><p>got it working, but not doing more than pitch and gate right now</p></li>
+<li><p>need to then put it in Live and see how that goes</p></li>
+</ul>
+</dd>
+<dt>2022-03-17</dt><dd><ul class="simple">
+<li><p>grid needs formatter attributes for blanking zeros and showing midi notes</p></li>
+<li><p>added attribute for blank zeros</p></li>
+<li><p>added attribute for midi note to pitch (whole grid for now)</p></li>
+<li><p>now numbering for the factors is off course…</p></li>
+<li><p>but it runs much better now</p></li>
+</ul>
+</dd>
+<dt>2022-03-16</dt><dd><ul class="simple">
+<li><p>worked on the viewmodels, figured out string handling with defer was making issues</p></li>
+<li><p>started switch to using int array, will put the formatting in the receiver (grid)</p></li>
+</ul>
+</dd>
+<dt>2022-03-14</dt><dd><ul class="simple">
+<li><p>worked on multi views, adding seq labels</p></li>
+<li><p>track info working fine, chord info has weird bugs</p></li>
+</ul>
+</dd>
+<dt>2022-03-14</dt><dd><ul class="simple">
+<li><p>got bar and seq els updating in the cs-view</p></li>
+<li><p>renamed it and cleaned up element naming</p></li>
+<li><p>now can have bar updated properly</p></li>
+</ul>
+</dd>
+<dt>2022-03-13</dt><dd><ul class="simple">
+<li><p>adding loop len and chords to the arp view, with simple objects</p></li>
+<li><p>got view showing chords too and ran it with dubby</p></li>
+<li><p>played with dubby, seems like it could work for OneInstr
+- sounds good with no drums, chords, delay</p></li>
+<li><p>should try making the chord line a static glistening arp thing</p></li>
+</ul>
+</dd>
+<dt>2022-03-10</dt><dd><ul class="simple">
+<li><p>worked on component macros</p></li>
+</ul>
+</dd>
+<dt>2022-03-06</dt><dd><ul class="simple">
+<li><p>worked on macro version of the components</p></li>
+</ul>
+</dd>
+<dt>2022-03-06</dt><dd><ul class="simple">
+<li><p>worked on component framework, but didn’t come up with working result</p></li>
+<li><p>it should probably be done with macros instead to inject methods</p></li>
+</ul>
+</dd>
+<dt>2022-03-05</dt><dd><ul class="simple">
+<li><p>arp view addition grids</p></li>
+</ul>
+</dd>
+<dt>2022-03-04</dt><dd><ul class="simple">
+<li><p>worked on the arp view, adding more output boxes</p></li>
+</ul>
+</dd>
+<dt>2022-03-02</dt><dd><ul class="simple">
+<li><p>worked on the arp view, adding more output boxes</p></li>
+</ul>
+</dd>
+<dt>2022-03-02</dt><dd><ul class="simple">
+<li><p>worked on set file handling, cleaned up patch</p></li>
+<li><p>added ‘clear’ to the s4m.grid</p></li>
+<li><p>got view model messaging the grid directly and added formatters (no zeros, count from 1)</p></li>
+<li><p>working through midi input and controllers</p></li>
+<li><p>created track inputs and devices for KS, fire, LP1, LP2 in Live</p></li>
+<li><p>got pad input going to the arp controller</p></li>
+</ul>
+</dd>
+<dt>2022-03-30</dt><dd><ul class="simple">
+<li><p>created the music docs repo and sphinx project for a proper manual</p></li>
+<li><p>opening up s4m.grid again</p></li>
+<li><p>needed to recompile s4m from s4m arrays branch</p></li>
+<li><p>s4m has not been moved to new sdk yet</p></li>
+<li><p>seems I left partway through s7_array_ref/set - there is no body for them</p></li>
+<li><p>got the view model stuff loaded back in the brain though</p></li>
+</ul>
+</dd>
+<dt>2022-01-20</dt><dd><ul class="simple">
+<li><p>getting back to tracker GUI coding</p></li>
+<li><p>old work is in s4m-seq, but predates the sequencer objects so will need a lot of refactoring</p></li>
+<li><p>added save-dir handling to seq loading and saving</p></li>
+<li><p>saving/loading working well enough to move on</p></li>
+</ul>
+</dd>
+<dt>2022-01-19</dt><dd><ul class="simple">
+<li><p>sequencer save/load</p></li>
+</ul>
+</dd>
+<dt>2022-01-17</dt><dd><ul class="simple">
+<li><p>sequencer serialization stuff</p></li>
+<li><p>got saving and loading working in seq-load-save.scm</p></li>
+</ul>
+</dd>
+<dt>2022-01-15</dt><dd><ul class="simple">
+<li><p>sequencer serialization</p></li>
+</ul>
+</dd>
+<dt>2022-01-14</dt><dd><ul class="simple">
+<li><p>added s4m source and reload commands and fixed up base live patch for easy loading of files</p></li>
+<li><p>started working on serializing sequencers for saving/loading</p></li>
+<li><p>arrangement of dubby tune</p></li>
+</ul>
+</dd>
+<dt>2022-01-08</dt><dd><ul class="simple">
+<li><p>worked on new track template to make firing up new songs painless</p></li>
+</ul>
+</dd>
+<dt>2020-12-29</dt><dd><ul class="simple">
+<li><p>want to get back to actual composing with the s4m stuff</p></li>
+<li><p>would be good to do an arp plus csound/fm thing</p></li>
+<li><p>in which file was doing the automation stuff for a template</p></li>
+</ul>
+</dd>
+<dt>2020-12-27 to 28th</dt><dd><ul class="simple">
+<li><p>working on csound port</p></li>
+</ul>
+</dd>
+<dt>2020-12-17</dt><dd><ul class="simple">
+<li><p>working on the score system with the zebra tune</p></li>
+<li><p>need to add drum track triggering to the score</p></li>
+</ul>
+</dd>
+<dt>2021-11-10 &amp; 11</dt><dd><ul class="simple">
+<li><p>working ableton+modular</p></li>
+<li><p>got things working with midi, need to add score input</p></li>
+</ul>
+</dd>
+<dt>2021-11-09</dt><dd><ul class="simple">
+<li><p>working on ableton+mod template</p></li>
+</ul>
+</dd>
+<dt>2021-11-08</dt><dd><ul class="simple">
+<li><p>added hot keys for starting, stopping, and resetting, switched transport to plugsync</p></li>
+<li><p>TODO: add clip and scene firing from the scripts</p></li>
+</ul>
+</dd>
+<dt>2021-11-07 -</dt><dd><ul class="simple">
+<li><p>did a session with Glyn, demoing stuff</p></li>
+<li><p>worked on the reusable patcher for remote control</p></li>
+</ul>
+</dd>
+<dt>2021-11-06</dt><dd><ul class="simple">
+<li><p>working on live.remoting</p></li>
+</ul>
+</dd>
+<dt>2021-11-02</dt><dd><ul class="simple">
+<li><p>got score working in score.scm</p></li>
+<li><p>next, try making it do an actual arrangement</p></li>
+<li><p>got a multi-part arrangement going</p></li>
+</ul>
+</dd>
+<dt>2021-10-30 - getting back to work after house!</dt><dd><ul class="simple">
+<li><p>picking up the arrange mode tool again</p></li>
+</ul>
+</dd>
+<dt>2021-09-30</dt><dd><ul class="simple">
+<li><p>working on arrange mode/score</p></li>
+<li><p>got basics working but have a bug, left off there</p></li>
+<li><p>details in s4m-live-code/notes/score_notes.txt</p></li>
+</ul>
+</dd>
+<dt>2021-09-28</dt><dd><ul class="simple">
+<li><p>working on arrange mode/score</p></li>
+</ul>
+</dd>
+<dt>2021-09-25</dt><dd><ul class="simple">
+<li><p>got back to work on the live ensembled, tweaking things</p></li>
+<li><p>got it performing well, heap 16KB, gc running every 140 ms or so, disabled other than that</p></li>
+<li><p>would prob be even better running off the beats so they never line up..</p></li>
+<li><p>I think next important thing is going to be arrange mode of some kind that works with Live</p></li>
+</ul>
+</dd>
+<dt>2021-09-24</dt><dd><ul class="simple">
+<li><p>worked on csound6~ for a while, got basic shell going</p></li>
+<li><p>working on the Ableton ensemble again</p></li>
+</ul>
+</dd>
+<dt>2021-09-23</dt><dd><ul class="simple">
+<li><p>get back to running the ensembles!</p></li>
+<li><p>fixed gc run and gc try to return nil, put up rc4, I think it’s done</p></li>
+</ul>
+</dd>
+<dt>2021-09-21</dt><dd><ul class="simple">
+<li><p>trying to wrap up 0.3 release</p></li>
+</ul>
+</dd>
+<dt>2021-09-20</dt><dd><ul class="simple">
+<li><p>TODO: new build of s4m:</p></li>
+<li><p>bug for single arg functions in messages</p></li>
+<li><p>rebuild for windows</p></li>
+<li><p>set heap default to 32?</p></li>
+</ul>
+</dd>
+<dt>2021-09-19/18</dt><dd><ul class="simple">
+<li><p>worked on the cs-additive ensemble for additive synthesis with csound</p></li>
+</ul>
+<p>in Max, got it working ok, though hit the message size limit in csound~
+- would be worth fixing that</p>
+</dd>
+<dt>2021-09-16</dt><dd><ul class="simple">
+<li><p>worked on the help file for 0.3</p></li>
+<li><p>test Max 4 Live with small heap size..</p></li>
+</ul>
+</dd>
+<dt>2021-09-15</dt><dd><ul class="simple">
+<li><p>I think we are ready to release 0.3</p></li>
+<li><p>got the 0.3 release up</p></li>
+<li><p>still needs a new help file</p></li>
+</ul>
+</dd>
+<dt>2021-09-08</dt><dd><ul class="simple">
+<li><p>started on gc lockout feature</p></li>
+</ul>
+</dd>
+<dt>2021-09-07</dt><dd><ul class="simple">
+<li><p>worked on s4m expr handling, tried out Jon’s thread macro</p></li>
+<li><p>decided to shelve it though</p></li>
+</ul>
+</dd>
+<dt>2021-09-06</dt><dd><ul class="simple">
+<li><p>worked on s4m expr handling, tried out Jon’s thread macro</p></li>
+</ul>
+</dd>
+<dt>2021-09-05</dt><dd><ul class="simple">
+<li><p>worked on getting s4m directly into the object without tosymbol and prepend eval-string</p></li>
+<li><p>got it working</p></li>
+</ul>
+</dd>
+<dt>2021-09-04</dt><dd><ul class="simple">
+<li><p>working on adding low priority delay events</p></li>
+</ul>
+</dd>
+<dt>2021-09-04</dt><dd><ul class="simple">
+<li><p>got live API working, does firing events, setting properties, reading properties</p></li>
+</ul>
+</dd>
+<dt>2021-09-03</dt><dd><ul class="simple">
+<li><p>working the sequencer running in m4l</p></li>
+</ul>
+</dd>
+<dt>2021-09-02</dt><dd><ul class="simple">
+<li><p>worked on ableton syncing</p></li>
+<li><p>got s4m-live code running in ableton</p></li>
+<li><p>left off trying to clock it with clock-ticks, but it’s fucked up for some reason,</p></li>
+<li><p>notes in the s4m-ableton-syncing.txt file,</p></li>
+<li><p>live set is s4m4l-live-code</p></li>
+</ul>
+</dd>
+<dt>2021-09-02</dt><dd><ul class="simple">
+<li><p>worked on ableton integraton</p></li>
+</ul>
+</dd>
+<dt>2021-09-01</dt><dd><ul class="simple">
+<li><p>got s4m working inside m4l, timing is solid</p></li>
+<li><p>started looking at live API and learning live better</p></li>
+</ul>
+</dd>
+<dt>2021-08-31</dt><dd><ul class="simple">
+<li><p>got saving and loading to files working, with evalable content</p></li>
+<li><p>will need to make some kind of python/vim handler to load them in all pretty like</p></li>
+<li><p>got basic chord output working</p></li>
+</ul>
+</dd>
+<dt>2021-08-30</dt><dd><ul class="simple">
+<li><p>goal: check out sync with live drum programming, is that reliable?</p></li>
+<li><p>turns out having the Max DAC on is necessary, and then it is locked in, though we get the jitter
+- very solid down to 8 vector size at 256</p></li>
+</ul>
+</dd>
+<dt>2021-08-29</dt><dd><ul class="simple">
+<li><p>did session with Craig</p></li>
+<li><p>got launchpad input working, but not done hooking it up</p></li>
+</ul>
+</dd>
+<dt>2021-08-28</dt><dd><ul class="simple">
+<li><p>got meta controller receiving global choices (mode, track, etc)</p></li>
+<li><p>got arp-seq receiving chord programming on the fly, though wiping it is incomplete</p></li>
+<li><p>arp-controller gets track, bar, step from the meta controller now</p></li>
+<li><p>can play real-time chords over sequence</p></li>
+<li><p>got launchpad input parsing working</p></li>
+</ul>
+</dd>
+<dt>2021-08-27</dt><dd><ul class="simple">
+<li><p>presented to icfp</p></li>
+<li><p>brainstormed a bit on midi recorder</p></li>
+</ul>
+</dd>
+<dt>2021-08-25</dt><dd><ul class="simple">
+<li><p>next thing to do: get fire and launchpad talking to the arpeggiator</p></li>
+</ul>
+</dd>
+<dt>2021-08-24</dt><dd><ul class="simple">
+<li><p>s4m-live-code: got the device input parsing working nicely for handlign device input
+and dispatching normalized messages to controllers</p></li>
+</ul>
+</dd>
+<dt>2021-08-23</dt><dd><ul class="simple">
+<li><p>s4m-live-code: got the component architecture working, with separate midi-input, controllers, and seq
+all talking to each other properly</p></li>
+<li><p>next: add the rest of the controller functions to it for the arp seq to it</p></li>
+</ul>
+</dd>
+<dt>2021-08-22</dt><dd><ul class="simple">
+<li><p>s4-live-code arper: got the real time chord entry working</p></li>
+</ul>
+</dd>
+<dt>2021-08-21</dt><dd><ul class="simple">
+<li><p>chord/arp seq,</p></li>
+<li><p>fixed the dispatcher in s4m-live-code::step-player, it was naively evaling args, needed to be (apply (eval ‘msg) args)</p></li>
+<li><p>update is now working properly on the step-seq, add the log-debug function</p></li>
+</ul>
+</dd>
+<dt>2021-08-16</dt><dd><ul class="simple">
+<li><p>starting on the chord/arp seq, working in the s4m-live-code directory</p></li>
+<li><p>first need to check whether the step-player is working ok, there
+is a note about the update functions being busted</p></li>
+<li><p>fixed step player so it wasnt’ sending outputs on data of zeros</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Iain C.T. Duncan<br/>
+  
+      &copy; Copyright 2022, Iain C.T. Duncan.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

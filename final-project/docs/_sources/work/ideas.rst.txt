@@ -1,0 +1,28 @@
+New Ideas to explore
+--------------------
+
+- negative factors on the arps??
+- allow each ptrk to have its own master loop 
+- allow ptrks to freewheel as well as do modulo math for indexes
+
+s4m ideas
+---------
+- have a hashtable for variables we want to persist after a reset
+- should really be able to send a max message list message from a vector
+
+Modular/synth ideas
+-------------------
+- as gate 5 goes out for track 5, I should be able to clock off that to the GM somehow, explore
+
+Production Notes
+----------------
+- running bass line through delay that is band pass filtered worked very well with the GM
+
+Sequencer
+----------
+Try making version of arp seq where the step time (per step) can be sequenced too
+- this would allow some interesting looping things and exploring rhythmic patterns
+
+- diatonic transposition
+- variable step length sequencer patterns
+

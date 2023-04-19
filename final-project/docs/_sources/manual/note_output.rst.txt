@@ -1,0 +1,50 @@
+Output
+-------
+All output from sequencer now goes through (note-output), in output.scm
+- this is where routing to the appropriate output handler (midi/cv/csound) is
+- this function can be redefined in NAME-tools.scm for per tune routing
+- it currently sends to both midi and cv-output
+
+MIDI Output
+-----------
+- midi out goes out outlet 0 to the ptrack-outs patcher
+- messages are: (chan, pitch, vel, dur)
+- the midi-track-outs patcher uses makenotes and sends to trk-X-in-m
+- CCs not yet implemented
+- this then uses sends to send to the s4m-trk-in devices on each track
+- NOTE: this introduces bad jitter, but is ok for writing sketches
+
+CV Output
+---------
+- code is in cv-output.scm, with test Max patch in cv-out.maxpat
+- CV signals can go out from either direct cv outs with encoders or midi messages to Live CV Tools
+- advantage of CV Tools is the calibration and built in glide
+- however, to get no jitter, the CV Tools need to be on the same track as the sequencer
+- this mostly matters for gates though, slight delay on CV should be ok? (it should just glide?)
+
+TODO:
+-----
+
+Live Track output
+-----------------
+- note that for live track to work with ES-5, we have teh Send to ES-5 device on the
+  individual tracks. This needs to be off for inline gate output (so there aren't double)
+
+TODO: 
+- being able to deactivate a specific gate via a send *from* the track would be good
+  - should be hooked up to the same button that enables s4m seq output
+
+Working Notes
+-------------
+- the cv-outs subpatch is hooked up to sm4 outlet 2
+- currently it just sends to the cv-out-X receives - NO GOOD
+- these are received on the ES 8 1/2 and ES 8 3/4 channels where they
+  get turned into signals in the cv-out-1&2 device
+- problem is that this is after a between track s/r pair
+- what should happen is that the signal part should be used in s4m so that
+  we can use audio routing to get the post glide signal to another track
+
+- the audio routing fix needs to happen in the cv-outs subpatch
+  - deferring this for now though as the gates being direct is enough for good timing
+    with the modular
+

@@ -1,0 +1,643 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Overview &#8212; ScmSeq  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Ableton Live Setup" href="live_setup.html" />
+    <link rel="prev" title="ScmSeq Manual" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">ScmSeq  documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contents:
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   ScmSeq Manual
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="live_setup.html">
+     Ableton Live Setup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="projects.html">
+     Projects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="realtime_input.html">
+     Real-time Input
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="object_model.html">
+     Object Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="architecture.html">
+     Architecture
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="sequencer_details.html">
+     Sequencer Implementation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="files.html">
+     Developer File Guide
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/scmseq/overview.rst.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#design-objectives-and-features">
+   Design Objectives and Features
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#event-sequencing">
+   Event Sequencing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modal-input-mvc-design">
+   Modal Input &amp; MVC Design
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sequencer-clocking">
+   Sequencer Clocking
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#repl-and-live-coding">
+   REPL and Live-Coding
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#design-conclusion">
+   Design Conclusion
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Overview</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#design-objectives-and-features">
+   Design Objectives and Features
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#event-sequencing">
+   Event Sequencing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modal-input-mvc-design">
+   Modal Input &amp; MVC Design
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sequencer-clocking">
+   Sequencer Clocking
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#repl-and-live-coding">
+   REPL and Live-Coding
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#design-conclusion">
+   Design Conclusion
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h1>
+<p>ScmSeq is a Scheme-based sequencing platform.
+It is designed to be an equivalent of Emacs for sequencers - all sequencing activity is implemented
+in Scheme, and runs in Max or M4L in one or more Scheme for Max externals.
+This document provides a high-level overview of what it is, what motivated it,
+its feature goals, and how the implementation meets these goals.</p>
+<section id="design-objectives-and-features">
+<h2>Design Objectives and Features<a class="headerlink" href="#design-objectives-and-features" title="Permalink to this headline">#</a></h2>
+<p>The high-level objective of ScmSeq was to create a real-time, multi-user step sequencing
+environment that is fast enough to be usable in an improvised context, but that is also
+a highly flexible algorithmic composition and live coding platform, and that makes no assumptions
+about how music works and can thus be used for popular or contemporary concert music alike.</p>
+<p>To this end, some of the design goals were:</p>
+<ul class="simple">
+<li><p>Everything the platform does should be sequenceable - there should be no restrictions on what
+may be included in a score, triggered from live input, or driven from an algorithm.</p></li>
+<li><p>Input control should be decoupled from the GUI, and designed in a way that allows modal
+editing such as is common with Vim or Emacs. It should be possible to create input modes
+that, given sufficient practice on the part of the user, are very fast for data entry,
+and crucially, require no visual confirmation cues. The principle here being that
+if you need to look at the screen to do an action, the workflow is not fast enough.</p></li>
+<li><p>It should be straighforward for the user to develop complex input modes (“Controllers”),
+taking advantage of whatever MIDI hardware they have available. Crucially, the modal
+approach means that the same physical controller may do very different things depending
+on the user’s current mode, and thus the code should make creating and navigating these
+complex branching trees practical. It should allow more than one controller to be active at
+a time, and should allow the user to specify which editing selections are stored as local
+to a particular input mode and which are global across input modes.</p></li>
+<li><p>Visual output should be decoupled from input so that multiple users (or automated processes)
+can provide input
+at the same time in a client-server fashion, regardless of what is showing on screen.
+This will also allow any visual displays to be accurate even if algorithmic processes are changing
+the sequencing data. It should be possible for visual output to display on multiple devices
+(including MIDI hardware) and it should be possible to tune the performance of these so
+that visual output does not become a performance bottleneck.</p></li>
+<li><p>Each sequencer track should be clockable on its own, capable of different tempi, time
+signatures, or even notions of time. Step sequencers have many interesting advantages
+over regular midi sequencers, but few (if any) commercial step sequencers are designed
+to support non-standard or shifting meters, or variable meters between tracks.
+Additionally, locking in with the master transport in Ableton Live should be tight enough that one
+can combine material from the sequencers with material in regular Live tracks.</p></li>
+<li><p>The platform should play well with commercial software, rather than forcing the user
+to use an all-or-nothing approach such as one gets with projects like Common Music.
+By implementing this in Max, it is possible for ScmSeq to run inside Ableton Live, or
+in standalone Max in conjunction with other environments (DAWs, Csound, etc.)</p></li>
+<li><p>All components should be possible to edit or redefine on the fly using a Lisp REPL.
+It should be possible to work on the software while the music is playing.
+In essence, one should be able to live-code any of the implementation.</p></li>
+</ul>
+<p>The current version is the 4th iteration of this project, the first having been created
+in 2004 in Csound, followed by an incomplete C++ version, and a Max/JavaScript version in
+about 2018 as part of the UVic Music 507 course with Dr. Andy Schloss.
+In fact, Scheme for Max itself came out of the desire to make a better version of the
+project, requiring better tools for creating it, and was developed as part of directed
+studies with Dr. Schloss as a continuation of the Mus 507 material.</p>
+<p>The remainder of this document will discuss the implementation of the platform
+at a high level and how it achieves these objectives.</p>
+</section>
+<section id="event-sequencing">
+<h2>Event Sequencing<a class="headerlink" href="#event-sequencing" title="Permalink to this headline">#</a></h2>
+<p>ScmSeq is fundamentally an <strong>event step-sequencing system</strong>, where an event can
+be anything one might execute in the Scheme environment or the Max environment.
+This is accomplished by having all activity triggered by Scheme function calls.
+(Which, in fact, is how Emacs works as well, where all editor actions
+are actually Elips calls.)
+Scheme function calls may in turn trigger Max events by sending messages to Max objects through the S4M
+message sending capability or through regular patching.</p>
+<p>At the lower level of the indiviual step sequencer components,
+ScmSeq considers an event to be the output of an arbitrarily long list of numbers (and maybe symbols).
+This is then handled by a function that does whatever the user wants with them, and
+as it is trivial to redefine or add new functions (even while playing), the user can easily create
+output functions that play midi notes, control CV output, trigger Live API events,
+or call other arbitrary Scheme functions (including those scheduled for the future).</p>
+<p>The standard implementation of the step sequencer component outputs event messages
+that are similar to a Music-N or Csound score event:
+the first field specifies the destination of the event,
+the second specifies duration, and the rest can be arbitrarily intrepreted
+by the destination handler. (Similar to Csound p1 and p3, with a p2 assumes to be 0.)
+This differs in significant ways from a MIDI-centric system, in that in a MIDI system, an event’s duration
+is not known from its triggering message, but is instead unknown until a subsequent note-off message.
+Thus, unlike in a MIDI sequencer, ScmSeq considers an event to be merely the timed output
+of a set of parameters to some handler function. (Though in fact, there is nothing in ScmSeq forcing
+the output list to be used in any particular way, one could decide to use durationless messages,
+or even implement a note-off style instrument.)</p>
+<p>An advantage of handling events in this score-like fashion is that output handlers (most commonly components that play a note)
+can know their end time from the beginning of the event, allowing them to shape processes
+and envelopes accordingly.
+Additionally, event parameters are not limited to the number of fields in a MIDI message,
+and the user does not have to use MIDI cc messages to send channel-global messages to change
+other parameters. This is, in some ways, similar to MIDI polyphonic expression (one sends
+parameters to specific notes), but is more open ended.
+This enables techniques that are particularly cumbersome in MIDI-centric implementations,
+such as notes that recursively trigger altered versions of themselves, or instruments
+that glide to the pitch of the next <em>before</em> the attack onset of the next note.</p>
+<p>The nature of Scheme means that it is also trivial to make a handler that translates
+from a list of parameters to a function call, allowing one to make sequencers that sequence
+sequencers, to any depth of recursion.</p>
+</section>
+<section id="modal-input-mvc-design">
+<h2>Modal Input &amp; MVC Design<a class="headerlink" href="#modal-input-mvc-design" title="Permalink to this headline">#</a></h2>
+<p>To achieve the design goals of modal input and decoupled input and visual output,
+ScmSeq uses a true Model-View-Controller pattern, as this term was used originally
+in the context of Smalltalk desktop systems.
+What is meant by this is that:</p>
+<ul class="simple">
+<li><p>The sequencer engine that plays events (the model) does not depend in any way on components
+used for display (the view), or those used for input (the controllers).</p></li>
+<li><p>Views likewise do not depend on controllers; they are driven by functions that
+are run on periodic timers and which query the sequencers for current
+sequencing data, sending messages to display components accordingly.
+Views can be Max GUI widgets, but also any external display that can be triggered from
+a Max message, including hardware controllers that allow LED updating or anything
+we might send messages to over the network.</p></li>
+<li><p>Controllers listen for input from the user (most commonly from MIDI devices),
+and send messages to sequencer components requesting data updates.
+Controllers have state of their own, and may also read global state,
+allowing them to be modal in the sense of Vim or Emacs modes.
+Controllers may also directly update some output GUI
+widgets intended to display Controller state.</p></li>
+</ul>
+<p>Additionally:</p>
+<ul class="simple">
+<li><p>All components are implemented as Scheme objects that receive symbolic messages
+and that can update internal or global state and send messages in turn.
+These are instantiated as functions-as-objects, where sending a message
+consists of a call with the first symbol argument used to indicate the method.</p></li>
+<li><p>Components share a number of standard interfaces, thus the user can easily
+make utilities that rely on common messages across components, and can
+send these messages from a REPL in a live-coding manner.</p></li>
+</ul>
+<p>This design does have some performance consequences, in that this GUI is in effect
+an <em>immediate mode GUI</em>, where screens always update off data state and thus
+there are constantly queries to the state repostitories.
+However, these are manageable by tuning the frequency of queries,
+and the design has a number of significant advantages:</p>
+<ul class="simple">
+<li><p>The engine and views have no dependency on the number or type of input streams
+running to controllers. This makes multi-user, multi-device, and multi-mode input easy to configure. In a sense
+controllers are clients of an engine server and adding more of them is simple.</p></li>
+<li><p>Views can be adjusted to update as frequently as desired for performance. In
+a music context, I have found a very low frequency is acceptable provided the
+input modes are designed such that one does not need <em>visual confirmation</em>. If
+the views are showing the state of the data only, an update every 16th note is ample.</p></li>
+<li><p>Views always reflect the current sequencer data - regardless of where this is
+coming from. This means that sequences may be altered by multiple users,
+by algorithmic agents, or by events coming in over the local network, and
+views will still always show the correct data. This also allows
+views to run on other machines or in other processes.</p></li>
+<li><p>As each controller module is self-contained with its own state, controllers
+can themselves be sequenced. For example, a controller that mutes and
+unmutes tracks based on the incoming MIDI notes can be controlled from
+a ScmSeq sequencer or a built in track sequencer in Live, or even an
+external process capable of sending midi notes. I have used this succesfully
+to drive arrangement-level events from Ableton Live scene-triggered clips, for example.</p></li>
+</ul>
+</section>
+<section id="sequencer-clocking">
+<h2>Sequencer Clocking<a class="headerlink" href="#sequencer-clocking" title="Permalink to this headline">#</a></h2>
+<p>A fundamental goal of this system was to make it possible to step-sequence
+contemporary concert music. The heurisic I use is: <em>Could I program in
+Edgar Varese’s ‘Ionization’?</em>, a complex piece in which there are shifting meters and different
+instruments playing in different meters at the same time.</p>
+<p>To achieve this, each track runs in its own sequencer object, where this object
+is itself responsible for its clocking. In some of the literature this is called
+“temporal recursion”, meaning a function call is reponsible for scheduling the next
+execution of itself. Scheme for Max provides a variety of scheduling functions,
+some of which are synchronized with the global transport and others not.
+This allows ScmSeq to be used in the context of Ableton Live, with Scheme sequencing
+aligned with regular Live sequencing, but also allows sequencers to do some interesting
+things:</p>
+<ul class="simple">
+<li><p>They (or the user) can change their timebase as they play, enabling
+processes that change tempo, meter, or use shifting meters.</p></li>
+<li><p>The notion of a step does not necessarily have to imply that a step is always
+of the same duration. Durations can follow patterns, be randomized, or be sequenced
+from other tools.</p></li>
+<li><p>Sequencers can run hook functions on certain life-cycle events and alter
+their clocking as they go. I explored this technique in a stochastic piece
+in which note and phrase boundaries introduced various degrees of randomization
+to step lengths.</p></li>
+</ul>
+<p>The combination of the ability to clock off the Live transport or off a totally
+independent clock means that it is possible to program something like Ionization
+within the Live environment.</p>
+</section>
+<section id="repl-and-live-coding">
+<h2>REPL and Live-Coding<a class="headerlink" href="#repl-and-live-coding" title="Permalink to this headline">#</a></h2>
+<p>Finally, ScmSeq succeeds in offering an environment that is highly flexible
+with regard to interactive coding.</p>
+<p>The main Max patch in the system (hosting the engine) incudes a facility for receiving
+OSC messages over the local network, piping those message into the Scheme interpreter.
+In conjuction with some Vim script macros and a small Python utility that receives
+text from STDIN and sends it out over TCP, this allows me to arbitrarily send
+Scheme code from a Vim window into the engine. The result is that I can
+redefine functions from my text editor while the sequencer plays, examine data in the Max console,
+and even dump and load text files into the interpreter. This is used
+for a number of features:</p>
+<ul class="simple">
+<li><p>Saving sequence data is achieved through serializing the state hashtable
+in a sequencer and writing to disk. This can be loaded directly into the
+engine, or loaded in a readable form in a text editor and then loaded in the engine.
+This provides a highly flexible loading and saving system. It is trivial
+to save only parts of a project, or to reuse data from one part or project in another.</p></li>
+<li><p>High-level arranging can be done in text files which consist of scores
+of function calls. Because these can trigger any function, this can include
+mix automation, or anything possible with the Live API, and these
+can be triggered manually while building the score.</p></li>
+<li><p>A Live session itself, and even the operation of the entire platform, can
+be controlled from a text editor with short-cuts. Hotkey macros can be made for really
+any operation one might want. I have some that reload the interpreter,
+stop and start playback, or reset various states.</p></li>
+<li><p>One can trivially move data from the sequencing engine into text buffers,
+operate on it there (with whatever programmatic utilities are desired),
+and move it back into the engine. This could be extended to sophisticated
+side-car devices that injest sequences, alter them, and when done, resend
+them to the main engine.</p></li>
+</ul>
+</section>
+<section id="design-conclusion">
+<h2>Design Conclusion<a class="headerlink" href="#design-conclusion" title="Permalink to this headline">#</a></h2>
+<p>Overall, while it is still a work in progress, I have found the environment
+enormously productive and satisfying to work with. It is certainly possible
+to tax it too far, but I am able to run full ensembles of a dozen sequencers
+with a latency of 256 samples, and this is without significant work in optimization.
+One of the positive features of s7 Scheme is how easy it is to add new Scheme
+functions with C implementations, thus an area of exploration is to see what
+can be done that way - parts of the engine that the user is amenable to having locked down
+could be implemented in C, and it should be simple to allow moving back and
+forth between those and Scheme implementations.</p>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">ScmSeq Manual</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="live_setup.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Ableton Live Setup</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Iain C.T. Duncan<br/>
+  
+      &copy; Copyright 2022, Iain C.T. Duncan.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

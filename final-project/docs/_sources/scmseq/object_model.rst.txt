@@ -1,0 +1,201 @@
+Object Model
+================================================================================
+Prior to looking at the architecture, it will make sense for us to look at the
+object model that is used throughout. 
+
+High level components (sequencers, controllers, view drivers) are all 
+implemented using a common object model in which
+objects are implemented as Scheme functions that store internal data in closures.
+Plans exist to create a macro layer to allow defining these objects
+without duplicating code, but at present, each object explicitly defines all member data and methods,
+without using inheritance.
+These objects contain a standard set of common methods and internal data structures
+that simplify inter-object coordination.
+
+The object system is expressly designed to support live-coding, in that
+convenience for the solo programmer interacting over a REPL is prioritized over
+strict encapsulation and privacy, such as might be appropriate to a larger code base
+with multiple developers.
+
+Objects are created by builder functions that take a variety of arguments and
+keyword arguments. Internally, the builder function sets up an environment with a let
+statement, and returns a function from the let. This function is what becomes our object.
+
+A simple, almost empty, component object is shown below. 
+
+.. code:: Scheme
+
+  (define (make-object name . init-args)
+
+    ; internal state is in the let env
+    (let ((playing #f)
+          
+          ; serializable state goes in the _ hash-table
+          (_ (hash-table
+            :loop-length 16
+            :transpose 0
+            )))
+      
+      ; ordered list of the state keys for serialization
+      (meta-keywords '(:loop-length :transpose))
+
+      ; keep an explicit ref to the let env (used later) 
+      (define env (curlet))
+
+      ; define an init function, the equivalent of a class constructor 
+      ; we use this to set up internal state
+      (define (init init-args)
+        ; call process-kwargs to setup kwarg settings
+        (process-kwargs init-args))
+
+      ; define various methods unique to this object
+      (define (run-step)
+        (post "running step"))
+      
+      ; ... more methods here ...
+
+
+      ; from here on, functions are common and duplicated across objects
+      (define (get k) 
+        "get a var from settings hash if keyword, or local env otherwise"
+        (if (keyword? k) (_ k) (env k)))
+      
+      (define (set k v) 
+        "set var in settings hash for keywords, local env otherwise"
+        (if (keyword? k) (set! (_ k) v) (set! (env k) v)))
+
+      ; loop through an arg list, stripping out kw/v pairs and setting them in _
+      ; this allows setting state vars using k/v pairs in *any* method call
+      (define (process-kwargs args)
+        "filter kwargs arguments, setting in settings hash and removing from args"
+        (let kwargs-loop ((args args))
+          (cond 
+            ((null? args) '())
+            ((keyword? (car args))
+              (set! (_ (car args)) (cadr args))
+              (kwargs-loop (cddr args)))
+            (else 
+                (cons (car args) (kwargs-loop (cdr args)))))))
+ 
+      ; we must call our construtor explicitly in this pattern
+      ; here's the call to init that runs as part of the call to make-object
+      (init init-args)
+
+      ; the message dispatcher function, converst (obj 'method args) to an internal call
+      (lambda args
+        (let* ((msg (car args)) 
+               (fun-args (cdr args))
+               ; list of methods that don't get kwarg processing
+               (no-process-funs '(get set))  
+               (fun-args (if (member? msg no-process-funs) fun-args (process-kwargs fun-args))))
+
+          ; eval the msg symbol in the current env to get a function and call it
+          (apply (eval msg) fun-args))))))
+
+There are several features in the above that are worth discussing.
+
+State Variables
+---------------
+First, we see that there are two kinds of internal varaibles:
+those that are simply internal definitions in the let, and those
+stored in the *settings hash-table* named **_**, which is also defined in the let.
+
+The rationale here is that anything in the settings hash-table is meant to be 
+a setting that one may want to load or save as part of a piece, and that a
+user may want to write to as part of a piece, while the regular variables
+are private. 
+For example, when we load a piece, we don't want **playing** to start off as
+true, but we do want our loaded sequencer to be able to restore its loop-length.
+
+The saveable state variables have keyword names, such as
+**:loop-len**, while private variables have regular symbolic names.
+The private variable **meta-keywords** holds an explicit, ordered list of state
+keywords, and this is used for objects that save themselves in the serialization process.
+
+Note that our generic **get** and **set** methods expect that we are using this pattern:
+if the variable name is a keyword, they use the **_** setttings hash-table,
+and otherwise set in the let environment.
+
+Dispatcher Evaluation
+---------------------
+The dispatcher is implemented by returning a lambda from our builder function.
+This takes any arguments and bundles them into the **args** list, does
+some argument processing in a let, and then evaluates the first argument 
+(the symbol for our desired method) to get a function, applying it with
+the processed args.
+
+There are two points to note about this dispatcher:
+
+The first is that by calling **(eval msg)** to get our function,
+(rather than through an explict dispatch table), we have the unusual 
+but convenient effect that we can send a message to an object corresponding
+to any function defined in in the object's closure (without having to
+add an entry in a dispatch table), or *any environment above the object
+in the environment hierarchy*. 
+The function will be evaluated *in the object's environment*. 
+While this might be considered dangerous in a large code base, this
+is very convenient for exploratory coding, and also enables us to 
+provide overrides of standard functions in our object scope.
+
+So we could, for example, overload the post function inside our object to
+add some additional forensic output, and then ask to use it by doing:
+
+.. code:: Scheme
+
+  (my-obj 'post "From internal override of post, if it exists")
+
+This has the advantage that it does not require our objects to have defined
+a base implementation of **post** - if they have not overridden it, we
+get whichever definition of post the object sees, which will mean 
+calling post from the enclosing environment.
+
+
+Kwarg Processing
+----------------
+
+The second point of note is that our dispatcher receives any arguments,
+bundling them into **args**, but then *processes* these args with the
+**process-kwargs** function, which filters out keyword-value pairs it consumes.
+
+The purpose of this is specific to interactive and musical coding. 
+I have found that when coding a piece, a very common pattern is
+that, at a specific time, I want to set a group of state variables some way, 
+and then trigger a function. 
+Whether in an interactive live-coding session or in a file that represents
+an arrangement, having to do this with a collection of functions is cumbersome.
+The more code on the page, the harder it is to read and see the musical structure.
+
+So rather than having:
+
+.. code:: Scheme
+
+  (seq-1 'set :loop-len 16)
+  (seq-1 'set :timebase 1.5)
+  (seq-1 'set :transpose 7)
+  (seq-1 'start)
+
+I can have:
+
+.. code:: Scheme
+
+  (seq-1 'start :loop-len 16 :timebase 1.5 :transpose 7)
+
+However, there are some functions for which this would not make sense,
+or where perhaps one might want to use keywords in another way, so we can
+remove methods from the kwarg processing by adding them to the **no-process-funs** 
+list in the dispatcher to skip processing.
+
+Removing functions from kwargs-processing is not ideal at the moment - it must
+be specified in the dispatcher function. I plan to improve this as part
+of the project to make a CLOS-inspired macro-based object system.
+
+
+Wherever possible, large components in the platform use this object model.
+
+
+
+
+
+      
+
+

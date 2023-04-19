@@ -1,0 +1,607 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Architecture &#8212; Music Docs 2022 documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Object Model" href="object_model.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Music Docs 2022 documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contents:
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   ScmSeq Manual
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="overview.html">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="live_setup.html">
+     Ableton Live Setup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="projects.html">
+     Projects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="realtime_input.html">
+     Real-time Input
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="object_model.html">
+     Object Model
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Architecture
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/manual/architecture.rst.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#components">
+   Components
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sequencers">
+   Sequencers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-meta-component">
+   The Meta component
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-midi-input-module">
+   The midi-input module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#input-controllers">
+   Input controllers
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Architecture</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#components">
+   Components
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sequencers">
+   Sequencers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-meta-component">
+   The Meta component
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-midi-input-module">
+   The midi-input module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#input-controllers">
+   Input controllers
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="architecture">
+<h1>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">#</a></h1>
+<p>This page provides an overview of the high-level architecture: what
+the major components are, their responsibilities, and how they interact.</p>
+<section id="components">
+<h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">#</a></h2>
+<p>A full ScmSeq system for playing a piece consists of the following components:</p>
+<ul class="simple">
+<li><p>Some <strong>sequencers</strong>, which store sequence data and state internally</p></li>
+<li><p>A <strong>meta</strong> component that stores global state such as track selections</p></li>
+<li><p>A <strong>midi-input</strong> handler in which midi messages from the user’s specific hardware,
+normalize them, and routed them to controllers or the meta component</p></li>
+<li><p>One or more <strong>input-controllers</strong>, which receive normalized input messages
+(typically from the midi-input component), store modal editing state, and
+ultimately send messages to sequencers to update sequence data or trigger actions</p></li>
+<li><p>One or more <strong>view-drivers</strong>, which control GUI elements on screen used to see sequence data</p></li>
+<li><p>A project, which is a collection of Scheme files specific to a piece.</p></li>
+</ul>
+</section>
+<section id="sequencers">
+<h2>Sequencers<a class="headerlink" href="#sequencers" title="Permalink to this headline">#</a></h2>
+<p>Sequencers store sequence data and play it back.
+They keep sequence data in local variables, and provide a number of functions to update
+or get at this data.
+In addition to sequence data, they have a collection of saveable state variables
+that determine how they play: transpose, timebase, various loop related settings,
+offsets for various parameters, output channels, and so on.</p>
+<p>Sequence data is stored in vectors, with each param having its own vector,
+and ever param also having its own loop-length and loop-top. There is additionally
+a master loop-length which acts as a ratchet.</p>
+<p>A sequencer plays a step by executing its <strong>run-step</strong> method, which will look
+sequence data according to the various settings, output it if desired, and
+then schedule the next iteration (again using various settings to do so).</p>
+<p>This model means that sequencers are completely indepedent from each other.
+The only syncronization they use is that which comes with the functions they
+use to schedule their next pass. If this is a <strong>delay-tq</strong> call (the default)
+then the next pass is scheduled using a delay with ticks
+as timebase and quantized execution, which will be locked in with the whatever
+the main transport is in the host (Max or Live).</p>
+<p>Normally sequencers receive messages several ways:</p>
+<ul class="simple">
+<li><p>from Scheme code sent in over the OSC network connection (live-code)</p></li>
+<li><p>from scheduled functions in a piece’s project arrangement files</p></li>
+<li><p>from input controllers in response to real-time hardware actions</p></li>
+</ul>
+<p>The sequencer has no notion itself of any difference between these, it
+just runs whatever function it gets.
+If the host is running with a reasonable latency (128 or 256 sample buffer depending
+on how much other audio processing is happening), the sequencers can
+update themselves on the same beat in which they play without issue.
+Thus arrangements can be made by specifying timed functions that update
+sequence data and state settings.</p>
+<p>Sequencers also have the capability of saving and loading from disk,
+which will be documented in its own page.</p>
+<p>The main sequencer is the <strong>chord-step-sequencer</strong>, and this will be looked
+at in detail subsquently.</p>
+<p>It can be found in <strong>chord-step-sequencer.scm</strong></p>
+</section>
+<section id="the-meta-component">
+<h2>The Meta component<a class="headerlink" href="#the-meta-component" title="Permalink to this headline">#</a></h2>
+<p>The meta component is a global object used to act as container for
+settings that should be shared across sequencers or input controllers.
+Examples might be the currently selected track, input mode, bar.
+It also holds top level configuration information such as
+<strong>steps-per-beat</strong>, <strong>beats-per-bar</strong>, <strong>bpm</strong>, etc.</p>
+<p>Note that while this is available to sequencers, there is nothing forcing
+a sequencer to use these globals - a sequencer can have its own meter
+if desired.</p>
+<p>The meta component is available as a global object named <strong>meta</strong>
+and provides convenient setters and getters using keyword arguments.</p>
+<div class="highlight-Scheme notranslate"><div class="highlight"><pre><span></span><span class="c1">; get steps-per-beat</span>
+<span class="p">(</span><span class="nf">meta</span> <span class="nv">:steps-per-beat</span><span class="p">)</span>
+
+<span class="c1">; set steps-per-beat</span>
+<span class="p">(</span><span class="nf">meta</span> <span class="nv">:steps-per-beat</span> <span class="mi">16</span><span class="p">)</span>
+
+<span class="c1">; return the entire meta hash-table for inspection in the console</span>
+<span class="nv">meta</span>
+</pre></div>
+</div>
+<p>The meta component is also special in that it acts as the central
+registry for other components to find each other or data in an organized
+way. It acts as the <em>dirty main</em> in a dependency injection system.
+This means that other components do depend on the existence of the meta
+component and that it is bound to <strong>‘meta</strong>.</p>
+</section>
+<section id="the-midi-input-module">
+<h2>The midi-input module<a class="headerlink" href="#the-midi-input-module" title="Permalink to this headline">#</a></h2>
+<p>The midi-input component is implemented as a function, <strong>midi-input</strong>,
+that expects to receive a first argument of a symbol indicating the source,
+and subsequent arguments representing raw midi input.</p>
+<p>The file <strong>midi-input.scm</strong> also includes several utility functions.</p>
+<p>The intent is that the midi-input module should be the <em>only</em> place that
+settings specific to a user’s hardware configuration live, and that a user
+will build their own midi-input module(s) around their hardware and how
+they want modal editing to work.</p>
+<p>The lifecycle of midi input in the context of a Live set is:</p>
+<ul class="simple">
+<li><p>A midi message comes in on a track, passing through a small device specific
+M4L device that prepens the source device (e.g. launchpad-1) to the message</p></li>
+<li><p>The device-tagged message is routed to the main intepreter where it results
+in a call to <strong>midi-input</strong></p></li>
+<li><p>The <strong>parse-midi</strong> function is called, which returns a hash-map representing
+one midi message, with keys: <strong>:msg :chan :note :vel :cc-num :cc-val</strong></p></li>
+<li><p>The midi-input function then checks for an input-specific midi parsing
+function, named to match the device, such <strong>parse-input-pad-1</strong> where
+<strong>pad-1</strong> is the device symbol. If one is found for the source device, it is called and has the
+opportunity to change the incoming midi message.</p></li>
+<li><p>midi-input then enters its branching map. This is a nested branching tree
+that routes by the current editing mode, retrieved from <strong>(meta :mode)</strong>,
+and by the source device, and by the specific message on the source device,
+ending with a an expression to send a message to a specific controller,
+sequencer, or the meta object.</p></li>
+</ul>
+<p>The intent is that the user will edit this mapping tree in <strong>midi-in</strong>,
+resulting in calls to other components in which midi numbers are no longer
+relevant and messages use a higher-level abstraction.</p>
+<p>In my personal setup, for example, I have two Launchpad Mini’s, which are each
+8x8 button grids with additional side and top rows of 8 buttons. I use them together, with
+one of them rotated, to make a 16x8 grid, with a row of 8 on the left, 8 on the right,
+16 on the bottom. To handle this, we have <strong>parse-input-pad-1</strong> and <strong>parse-input-pad-2</strong>
+functions that are called by from <strong>midi-input</strong>. Thes handle translating the raw
+input midi messages into grid abstractions and add to the message hashtable the
+keys: <strong>:action</strong>, <strong>row</strong>, and <strong>col</strong>, where action can be <strong>‘grid-btn</strong>,
+<strong>‘left-btn</strong>, or <strong>‘bottom-btn</strong>.</p>
+<p>A this point, the message hash-table now has the original midi fields, and
+some new fields to use in it’s map to actions.</p>
+<p>In the example below, we see the branching in the body of <strong>midi-input</strong> after
+this has happened.
+In this snippet we have a map for when the user is in <strong>arp</strong>
+mode, handling input from the <strong>keystep</strong> device and the <strong>pad-1</strong> and <strong>pad-2</strong>
+devices. On a match, a controller is passed a message that may include the normalized
+action (<strong>grid-btn</strong> etc.) To the receiving controller,
+there is something sending grid messages, but it does not need to be aware
+that this is originated from two side by side launchpads (with one rotated)
+that are acting as one larger 16x8 grid.</p>
+<p>By doing this, we could have multiple sources for grid messages, including
+GUI emulations, and the controllers do not need to change anything.</p>
+<div class="highlight-Scheme notranslate"><div class="highlight"><pre><span></span><span class="c1">; branching by mode and device here</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">handled-by-mode</span>
+  <span class="p">(</span><span class="k">case </span><span class="nv">mode</span>
+    <span class="p">(</span><span class="ss">&#39;arp</span>   <span class="c1">; ARP MODE MAPPINGS</span>
+      <span class="p">(</span><span class="nf">cond</span>
+        <span class="c1">; messages from keystep mini keyboard</span>
+        <span class="p">((</span><span class="nb">eq? </span><span class="nv">device</span> <span class="ss">&#39;keystep</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">cond</span>
+            <span class="p">((</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">m</span> <span class="nv">:msg</span><span class="p">)</span> <span class="ss">&#39;note-on</span><span class="p">)</span>
+              <span class="p">((</span><span class="nf">get-controller</span> <span class="ss">&#39;arp</span><span class="p">)</span> <span class="ss">&#39;note-on</span> <span class="p">(</span><span class="nf">m</span> <span class="nv">:note</span><span class="p">)</span> <span class="p">(</span><span class="nf">m</span> <span class="nv">:vel</span><span class="p">)))</span>
+            <span class="c1">; play vs program mode on the keystep from the top buttons</span>
+            <span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">m</span> <span class="nv">:cc-num</span><span class="p">)</span> <span class="mi">51</span><span class="p">)</span> <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">m</span> <span class="nv">:cc-val</span><span class="p">)</span> <span class="mi">127</span><span class="p">))</span>
+              <span class="p">((</span><span class="nf">get-controller</span> <span class="ss">&#39;arp</span><span class="p">)</span> <span class="ss">&#39;set-mode</span> <span class="ss">&#39;program</span><span class="p">))</span>
+            <span class="c1">; other arp mode trimmed</span>
+            <span class="p">(</span><span class="k">else </span><span class="no">#f</span><span class="p">)))</span>
+        <span class="c1">; messages from the two side by side launchpads</span>
+        <span class="p">((</span><span class="k">or </span><span class="p">(</span><span class="nb">eq? </span><span class="nv">device</span> <span class="ss">&#39;pad-1</span><span class="p">)</span> <span class="p">(</span><span class="nb">eq? </span><span class="nv">device</span> <span class="ss">&#39;pad-2</span><span class="p">))</span>
+          <span class="p">(</span><span class="nf">cond</span>
+            <span class="p">((</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">m</span> <span class="nv">:action</span><span class="p">)</span> <span class="ss">&#39;grid-btn</span><span class="p">)</span>
+              <span class="p">((</span><span class="nf">get-controller</span> <span class="ss">&#39;arp</span><span class="p">)</span> <span class="ss">&#39;grid-btn</span> <span class="p">(</span><span class="nf">m</span> <span class="nv">:row</span><span class="p">)</span> <span class="p">(</span><span class="nf">m</span> <span class="nv">:col</span><span class="p">)))</span>
+            <span class="p">((</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">m</span> <span class="nv">:action</span><span class="p">)</span> <span class="ss">&#39;left-btn</span><span class="p">)</span>
+              <span class="p">((</span><span class="nf">get-controller</span> <span class="ss">&#39;arp</span><span class="p">)</span> <span class="ss">&#39;left-btn</span> <span class="p">(</span><span class="nf">m</span> <span class="nv">:btn</span><span class="p">)))</span>
+            <span class="c1">; buttons for right side and bottom trimmed</span>
+          <span class="p">))</span>
+        <span class="p">(</span><span class="k">else </span><span class="no">#f</span><span class="p">)</span> <span class="c1">; must return false to have message bubble up to meta</span>
+      <span class="p">))</span><span class="c1">;end arp mode</span>
+    <span class="c1">; other mode mappings here</span>
+    <span class="c1">; ...</span>
+    <span class="p">(</span><span class="k">else </span><span class="no">#f</span><span class="p">))</span><span class="c1">; end case mode</span>
+<span class="p">)</span><span class="c1">; end mode branch</span>
+
+<span class="c1">; non-modal meta routings - handles global messages (track, bank, bar, etc)</span>
+<span class="c1">; handled-by-mode will be #f if the msg was not caught by a case above</span>
+<span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">not </span><span class="nv">handled-by-mode</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">begin</span>
+    <span class="p">(</span><span class="k">case </span><span class="p">(</span><span class="nf">m</span> <span class="nv">:action</span><span class="p">)</span>
+      <span class="p">(</span><span class="ss">&#39;grid-btn</span>
+        <span class="p">(</span><span class="nf">meta</span> <span class="ss">&#39;grid-btn</span> <span class="p">(</span><span class="nf">m</span> <span class="nv">:row</span><span class="p">)</span> <span class="p">(</span><span class="nf">m</span> <span class="nv">:col</span><span class="p">)))</span>
+      <span class="p">(</span><span class="ss">&#39;mode-btn</span>
+        <span class="c1">; TODO mode btns should go to meta too</span>
+        <span class="p">(</span><span class="nf">meta</span> <span class="ss">&#39;mode-btn</span> <span class="p">(</span><span class="nf">m</span> <span class="nv">:btn</span><span class="p">)))</span>
+    <span class="p">)))</span>
+</pre></div>
+</div>
+</section>
+<section id="input-controllers">
+<h2>Input controllers<a class="headerlink" href="#input-controllers" title="Permalink to this headline">#</a></h2>
+<p>Once input has been normalized and mapped to messages bound for controllers, we
+enter the controller scope.</p>
+<p>A controller is implemented using the standard component model, but
+rather than having most state in serialized hash, state is principally
+stored in standard variables in objects closure. This is because we don’t
+need to save a controller’s state.</p>
+<p>We will look at the simplest controller, the <strong>perform mode controller</strong>,
+which is used to mute and unmute tracks, change loop lengths, and other
+settings we might use in a live performance context.</p>
+<p>The beginning of our component has our standard construction
+with two state variables, one for a submode and one for units,
+and several methods: get-sequencer, set-grid-unit, and set-grid-mode:</p>
+<div class="highlight-Scheme notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-perform-controller</span> <span class="nv">name</span> <span class="o">.</span> <span class="nv">init-args</span><span class="p">)</span>
+
+  <span class="p">(</span><span class="k">let* </span><span class="p">((</span><span class="nf">debug</span> <span class="no">#t</span><span class="p">)</span>               <span class="c1">; for logging</span>
+         <span class="p">(</span><span class="nf">grid-mode</span> <span class="ss">&#39;split</span><span class="p">)</span>       <span class="c1">; submodes &#39;split, &#39;low, &#39;high or &#39;ptrk</span>
+         <span class="p">(</span><span class="nf">grid-unit</span> <span class="ss">&#39;steps</span><span class="p">)</span>       <span class="c1">; can be bars or steps, for setting loop length</span>
+         <span class="c1">; settings hash-table, unused in this one</span>
+         <span class="p">(</span><span class="nf">_</span>  <span class="p">(</span><span class="nf">hash-table</span><span class="p">)))</span>
+
+  <span class="c1">; get a sequencer, depends on existine of the track-sequencer hash-table</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">get-sequencer</span> <span class="nv">track</span><span class="p">)</span>
+    <span class="c1">; will return false if no seq</span>
+    <span class="p">(</span><span class="nf">post</span> <span class="s">&quot;get-sequencer&quot;</span> <span class="nv">track</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">track-sequencers</span> <span class="nv">track</span><span class="p">))</span>
+
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">set-grid-unit</span> <span class="nv">unit</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">set! </span><span class="nv">grid-unit</span> <span class="nv">unit</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">post</span> <span class="s">&quot;perform.grid-unit:&quot;</span> <span class="nv">grid-unit</span><span class="p">))</span>
+
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">set-grid-mode</span> <span class="nv">mode-num</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">let* </span><span class="p">((</span><span class="nf">modes</span> <span class="p">(</span><span class="nf">hash-table</span> <span class="mi">0</span> <span class="ss">&#39;split</span>  <span class="mi">1</span> <span class="ss">&#39;low</span>  <span class="mi">2</span> <span class="ss">&#39;high</span>  <span class="mi">3</span> <span class="ss">&#39;track</span><span class="p">))</span>
+           <span class="p">(</span><span class="nf">mode</span>  <span class="p">(</span><span class="nf">modes</span> <span class="nv">mode-num</span><span class="p">)))</span>
+      <span class="p">(</span><span class="k">if </span><span class="nv">mode</span> <span class="p">(</span><span class="k">set! </span><span class="nv">grid-mode</span> <span class="nv">mode</span><span class="p">))</span>
+      <span class="p">(</span><span class="nf">post</span> <span class="s">&quot;perform.grid-mode: &quot;</span> <span class="nv">grid-mode</span><span class="p">)))</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="object_model.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Object Model</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Iain C.T. Duncan<br/>
+  
+      &copy; Copyright 2022, Iain C.T. Duncan.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

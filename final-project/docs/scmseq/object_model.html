@@ -1,0 +1,550 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Object Model &#8212; ScmSeq  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Architecture" href="architecture.html" />
+    <link rel="prev" title="Real-time Input" href="realtime_input.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">ScmSeq  documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contents:
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   ScmSeq Manual
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="overview.html">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="live_setup.html">
+     Ableton Live Setup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="projects.html">
+     Projects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="realtime_input.html">
+     Real-time Input
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Object Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="architecture.html">
+     Architecture
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="sequencer_details.html">
+     Sequencer Implementation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="files.html">
+     Developer File Guide
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/scmseq/object_model.rst.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#state-variables">
+   State Variables
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dispatcher-evaluation">
+   Dispatcher Evaluation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#kwarg-processing">
+   Kwarg Processing
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Object Model</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#state-variables">
+   State Variables
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dispatcher-evaluation">
+   Dispatcher Evaluation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#kwarg-processing">
+   Kwarg Processing
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="object-model">
+<h1>Object Model<a class="headerlink" href="#object-model" title="Permalink to this headline">#</a></h1>
+<p>Prior to looking at the architecture, it will make sense for us to look at the
+object model that is used throughout.</p>
+<p>High level components (sequencers, controllers, view drivers) are all
+implemented using a common object model in which
+objects are implemented as Scheme functions that store internal data in closures.
+Plans exist to create a macro layer to allow defining these objects
+without duplicating code, but at present, each object explicitly defines all member data and methods,
+without using inheritance.
+These objects contain a standard set of common methods and internal data structures
+that simplify inter-object coordination.</p>
+<p>The object system is expressly designed to support live-coding, in that
+convenience for the solo programmer interacting over a REPL is prioritized over
+strict encapsulation and privacy, such as might be appropriate to a larger code base
+with multiple developers.</p>
+<p>Objects are created by builder functions that take a variety of arguments and
+keyword arguments. Internally, the builder function sets up an environment with a let
+statement, and returns a function from the let. This function is what becomes our object.</p>
+<p>A simple, almost empty, component object is shown below.</p>
+<div class="highlight-Scheme notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-object</span> <span class="nv">name</span> <span class="o">.</span> <span class="nv">init-args</span><span class="p">)</span>
+
+  <span class="c1">; internal state is in the let env</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">playing</span> <span class="no">#f</span><span class="p">)</span>
+
+        <span class="c1">; serializable state goes in the _ hash-table</span>
+        <span class="p">(</span><span class="nf">_</span> <span class="p">(</span><span class="nf">hash-table</span>
+          <span class="nv">:loop-length</span> <span class="mi">16</span>
+          <span class="nv">:transpose</span> <span class="mi">0</span>
+          <span class="p">)))</span>
+
+    <span class="c1">; ordered list of the state keys for serialization</span>
+    <span class="p">(</span><span class="nf">meta-keywords</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">:loop-length</span> <span class="nv">:transpose</span><span class="p">))</span>
+
+    <span class="c1">; keep an explicit ref to the let env (used later)</span>
+    <span class="p">(</span><span class="k">define </span><span class="nv">env</span> <span class="p">(</span><span class="nf">curlet</span><span class="p">))</span>
+
+    <span class="c1">; define an init function, the equivalent of a class constructor</span>
+    <span class="c1">; we use this to set up internal state</span>
+    <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">init</span> <span class="nv">init-args</span><span class="p">)</span>
+      <span class="c1">; call process-kwargs to setup kwarg settings</span>
+      <span class="p">(</span><span class="nf">process-kwargs</span> <span class="nv">init-args</span><span class="p">))</span>
+
+    <span class="c1">; define various methods unique to this object</span>
+    <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">run-step</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">post</span> <span class="s">&quot;running step&quot;</span><span class="p">))</span>
+
+    <span class="c1">; ... more methods here ...</span>
+
+
+    <span class="c1">; from here on, functions are common and duplicated across objects</span>
+    <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">get</span> <span class="nv">k</span><span class="p">)</span>
+      <span class="s">&quot;get a var from settings hash if keyword, or local env otherwise&quot;</span>
+      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">keyword?</span> <span class="nv">k</span><span class="p">)</span> <span class="p">(</span><span class="nf">_</span> <span class="nv">k</span><span class="p">)</span> <span class="p">(</span><span class="nf">env</span> <span class="nv">k</span><span class="p">)))</span>
+
+    <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">set</span> <span class="nv">k</span> <span class="nv">v</span><span class="p">)</span>
+      <span class="s">&quot;set var in settings hash for keywords, local env otherwise&quot;</span>
+      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">keyword?</span> <span class="nv">k</span><span class="p">)</span> <span class="p">(</span><span class="k">set! </span><span class="p">(</span><span class="nf">_</span> <span class="nv">k</span><span class="p">)</span> <span class="nv">v</span><span class="p">)</span> <span class="p">(</span><span class="k">set! </span><span class="p">(</span><span class="nf">env</span> <span class="nv">k</span><span class="p">)</span> <span class="nv">v</span><span class="p">)))</span>
+
+    <span class="c1">; loop through an arg list, stripping out kw/v pairs and setting them in _</span>
+    <span class="c1">; this allows setting state vars using k/v pairs in *any* method call</span>
+    <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">process-kwargs</span> <span class="nv">args</span><span class="p">)</span>
+      <span class="s">&quot;filter kwargs arguments, setting in settings hash and removing from args&quot;</span>
+      <span class="p">(</span><span class="k">let </span><span class="nv">kwargs-loop</span> <span class="p">((</span><span class="nf">args</span> <span class="nv">args</span><span class="p">))</span>
+        <span class="p">(</span><span class="nf">cond</span>
+          <span class="p">((</span><span class="nb">null? </span><span class="nv">args</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
+          <span class="p">((</span><span class="nf">keyword?</span> <span class="p">(</span><span class="nb">car </span><span class="nv">args</span><span class="p">))</span>
+            <span class="p">(</span><span class="k">set! </span><span class="p">(</span><span class="nf">_</span> <span class="p">(</span><span class="nb">car </span><span class="nv">args</span><span class="p">))</span> <span class="p">(</span><span class="nb">cadr </span><span class="nv">args</span><span class="p">))</span>
+            <span class="p">(</span><span class="nf">kwargs-loop</span> <span class="p">(</span><span class="nb">cddr </span><span class="nv">args</span><span class="p">)))</span>
+          <span class="p">(</span><span class="nf">else</span>
+              <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">args</span><span class="p">)</span> <span class="p">(</span><span class="nf">kwargs-loop</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">args</span><span class="p">)))))))</span>
+
+    <span class="c1">; we must call our construtor explicitly in this pattern</span>
+    <span class="c1">; here&#39;s the call to init that runs as part of the call to make-object</span>
+    <span class="p">(</span><span class="nf">init</span> <span class="nv">init-args</span><span class="p">)</span>
+
+    <span class="c1">; the message dispatcher function, converst (obj &#39;method args) to an internal call</span>
+    <span class="p">(</span><span class="k">lambda </span><span class="nv">args</span>
+      <span class="p">(</span><span class="k">let* </span><span class="p">((</span><span class="nf">msg</span> <span class="p">(</span><span class="nb">car </span><span class="nv">args</span><span class="p">))</span>
+             <span class="p">(</span><span class="nf">fun-args</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">args</span><span class="p">))</span>
+             <span class="c1">; list of methods that don&#39;t get kwarg processing</span>
+             <span class="p">(</span><span class="nf">no-process-funs</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">get</span> <span class="nv">set</span><span class="p">))</span>
+             <span class="p">(</span><span class="nf">fun-args</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">member?</span> <span class="nv">msg</span> <span class="nv">no-process-funs</span><span class="p">)</span> <span class="nv">fun-args</span> <span class="p">(</span><span class="nf">process-kwargs</span> <span class="nv">fun-args</span><span class="p">))))</span>
+
+        <span class="c1">; eval the msg symbol in the current env to get a function and call it</span>
+        <span class="p">(</span><span class="nb">apply </span><span class="p">(</span><span class="nb">eval </span><span class="nv">msg</span><span class="p">)</span> <span class="nv">fun-args</span><span class="p">))))))</span>
+</pre></div>
+</div>
+<p>There are several features in the above that are worth discussing.</p>
+<section id="state-variables">
+<h2>State Variables<a class="headerlink" href="#state-variables" title="Permalink to this headline">#</a></h2>
+<p>First, we see that there are two kinds of internal varaibles:
+those that are simply internal definitions in the let, and those
+stored in the <em>settings hash-table</em> named <strong>_</strong>, which is also defined in the let.</p>
+<p>The rationale here is that anything in the settings hash-table is meant to be
+a setting that one may want to load or save as part of a piece, and that a
+user may want to write to as part of a piece, while the regular variables
+are private.
+For example, when we load a piece, we don’t want <strong>playing</strong> to start off as
+true, but we do want our loaded sequencer to be able to restore its loop-length.</p>
+<p>The saveable state variables have keyword names, such as
+<strong>:loop-len</strong>, while private variables have regular symbolic names.
+The private variable <strong>meta-keywords</strong> holds an explicit, ordered list of state
+keywords, and this is used for objects that save themselves in the serialization process.</p>
+<p>Note that our generic <strong>get</strong> and <strong>set</strong> methods expect that we are using this pattern:
+if the variable name is a keyword, they use the <strong>_</strong> setttings hash-table,
+and otherwise set in the let environment.</p>
+</section>
+<section id="dispatcher-evaluation">
+<h2>Dispatcher Evaluation<a class="headerlink" href="#dispatcher-evaluation" title="Permalink to this headline">#</a></h2>
+<p>The dispatcher is implemented by returning a lambda from our builder function.
+This takes any arguments and bundles them into the <strong>args</strong> list, does
+some argument processing in a let, and then evaluates the first argument
+(the symbol for our desired method) to get a function, applying it with
+the processed args.</p>
+<p>There are two points to note about this dispatcher:</p>
+<p>The first is that by calling <strong>(eval msg)</strong> to get our function,
+(rather than through an explict dispatch table), we have the unusual
+but convenient effect that we can send a message to an object corresponding
+to any function defined in in the object’s closure (without having to
+add an entry in a dispatch table), or <em>any environment above the object
+in the environment hierarchy</em>.
+The function will be evaluated <em>in the object’s environment</em>.
+While this might be considered dangerous in a large code base, this
+is very convenient for exploratory coding, and also enables us to
+provide overrides of standard functions in our object scope.</p>
+<p>So we could, for example, overload the post function inside our object to
+add some additional forensic output, and then ask to use it by doing:</p>
+<div class="highlight-Scheme notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">my-obj</span> <span class="ss">&#39;post</span> <span class="s">&quot;From internal override of post, if it exists&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This has the advantage that it does not require our objects to have defined
+a base implementation of <strong>post</strong> - if they have not overridden it, we
+get whichever definition of post the object sees, which will mean
+calling post from the enclosing environment.</p>
+</section>
+<section id="kwarg-processing">
+<h2>Kwarg Processing<a class="headerlink" href="#kwarg-processing" title="Permalink to this headline">#</a></h2>
+<p>The second point of note is that our dispatcher receives any arguments,
+bundling them into <strong>args</strong>, but then <em>processes</em> these args with the
+<strong>process-kwargs</strong> function, which filters out keyword-value pairs it consumes.</p>
+<p>The purpose of this is specific to interactive and musical coding.
+I have found that when coding a piece, a very common pattern is
+that, at a specific time, I want to set a group of state variables some way,
+and then trigger a function.
+Whether in an interactive live-coding session or in a file that represents
+an arrangement, having to do this with a collection of functions is cumbersome.
+The more code on the page, the harder it is to read and see the musical structure.</p>
+<p>So rather than having:</p>
+<div class="highlight-Scheme notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">seq-1</span> <span class="ss">&#39;set</span> <span class="nv">:loop-len</span> <span class="mi">16</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">seq-1</span> <span class="ss">&#39;set</span> <span class="nv">:timebase</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">seq-1</span> <span class="ss">&#39;set</span> <span class="nv">:transpose</span> <span class="mi">7</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">seq-1</span> <span class="ss">&#39;start</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>I can have:</p>
+<div class="highlight-Scheme notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">seq-1</span> <span class="ss">&#39;start</span> <span class="nv">:loop-len</span> <span class="mi">16</span> <span class="nv">:timebase</span> <span class="mf">1.5</span> <span class="nv">:transpose</span> <span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>However, there are some functions for which this would not make sense,
+or where perhaps one might want to use keywords in another way, so we can
+remove methods from the kwarg processing by adding them to the <strong>no-process-funs</strong>
+list in the dispatcher to skip processing.</p>
+<p>Removing functions from kwargs-processing is not ideal at the moment - it must
+be specified in the dispatcher function. I plan to improve this as part
+of the project to make a CLOS-inspired macro-based object system.</p>
+<p>Wherever possible, large components in the platform use this object model.</p>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="realtime_input.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Real-time Input</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="architecture.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Architecture</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Iain C.T. Duncan<br/>
+  
+      &copy; Copyright 2022, Iain C.T. Duncan.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

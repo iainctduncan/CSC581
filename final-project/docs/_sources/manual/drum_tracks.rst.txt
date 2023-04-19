@@ -1,0 +1,11 @@
+Drum Tracks
+-----------
+
+Design Notes
+------------
+
+- it probably makes sense (to start) to have them route to one channel that is drums?
+  - can work on best situation for routing later
+- we can have the option of the sequencer always being locked to one note
+
+- we have a track 8 in already, which gets all messages that go out with channel 8

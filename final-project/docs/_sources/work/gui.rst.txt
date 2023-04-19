@@ -1,0 +1,8 @@
+Working notes on gui
+--------------------
+
+To add to meta view
+
+- current mode
+- submode settings for the modes (prob need a pane for each mode)
+

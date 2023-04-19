@@ -1,0 +1,26 @@
+Workflow in Live
+================
+
+* s4m-live-code.amdx is the root device loaded on track 0 for any piece
+
+Files
+-----
+* in the 'tunes' folder there are folders for each piece
+* there is a 'new' folder that acts as a template for making a piece
+* new-main.scm is the top level scm file for the piece
+* the 'Main' text box sets the file for Live set, which is saved with the set
+* tunes/new/s4m-new.als is intended to stay as the template live file for a blank tune
+* The Save Dir: sets the s4m save directory through the set-save-dir function, setting global \*save-dir\*
+* this is also patched into the main file (new-main.scm) so that it's always right on a reset
+
+Making a new tune
+-----------------
+* in the tunes directory: python3 new_tune.py {tune_name}
+* open the Ableton file, and change the main .scm file in s4m and reset
+* check audio port is set correctly
+* open the files go into the new tune dir and do: mvim -S new-tune.vim
+* update the tempo in the new tune
+
+TODO:
+-----
+- figure out the tempo thing somehow??

@@ -1,0 +1,8 @@
+Modular order
+--------------
+- order expert sleepers addition ins (for csound instrument)
+- doepfer small VCA
+- doepfer env/VCA thing
+- second A-103 for stereo csounding
+- gemini!
+

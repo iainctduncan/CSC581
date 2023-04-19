@@ -1,0 +1,39 @@
+TODO:
+
+- write up arch section for input modes
+- code level for sequencers
+- view driver?
+- manual for modes? might be able to make it wait
+
+Later maybe:
+- saving
+- arranging
+
+Apr 15 work:
+- editing all the docs, figuring out what must still be included
+
+NARRATIVE FILES:
+overview - good
+live_setup - good
+projects - edited - add stuff on the project script
+realtime-input edited - could do with photo
+object model - edited
+architecture in progress
+
+files
+
+
+TO ADD:
+- a File list document
+- project python script details and file details to projects file
+- controller photos?
+
+Editing arch file.
+
+TO FINISH
+- sequencer internals
+- developer FILE guide
+
+TODO:
+- finish the file guide
+

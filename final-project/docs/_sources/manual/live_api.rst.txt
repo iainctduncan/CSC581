@@ -1,0 +1,44 @@
+Notes on the Live API from Scheme
+===================================
+
+Implementation
+---------------
+- there is a p live-api subpatch attached to the low s4m instance
+- it has a live.path object ('live-path), which sends ids of found objects
+  to s4m through a route and prepend object, calling (live-api 'id {ID})
+  - this updates an object ID state var in the live-api object in Scheme
+- it also has a live.object ('live-object) that receives input from a message box ('live-object-id)
+  in order to get pointed at an object
+  - this sends values out which get sent back to scheme through (live-api 'value {X})
+- the live-api object in live-api.scm has an object id and value variable that get updated by these
+- using the live-api scheme object consists of calling (find-path {path}) which results in 
+  the live id being found and sent to live.object, and then calling send-object, which results
+  in a message being sent to it, (possible side effects) and any value returned being sent back
+  to live-api
+- the high level send-path function combines these, returning the returned value if one is sent
+  back from the live.object
+  
+- all of this happens in the low thread, but the high thread file live-remote.scm has wrappers
+  for sending calls to the low instance
+  (l 'start), ('l fire-clip 0 0), etc
+- the low object is running file: live-code-low.scm, which loads the local live-api-local.scm file
+
+Examples
+--------
+- to set a device param, we want the low-api to call (set-device-param track device param value)
+  - param 0 is device enable
+  - macros are params 1+ and are set with 0 to 127
+
+Remoting
+--------
+- the xtm.remote object takes a symbol name, track, device, param
+- it works by sending a lines value to a live.remote object, which has had
+  it's id set from a live.path object
+- one needs a live.remote object for every param controlled, and when a param is under remote
+  control, we can't change it manually (a message should show up in the bottom)
+- NB: remoting doesn't actually do anything in edit mode! 
+  - also, I had an issue where xtm.remote wasn't loading, and copied it to my Max Library folder
+- we send messages with (send 't1-vol value ms)
+- the scripting name is set with the "pattr #1" in xtm.remote, attached to the line object
+
+

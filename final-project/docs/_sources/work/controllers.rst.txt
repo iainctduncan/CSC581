@@ -1,0 +1,31 @@
+Working notes for controllers
+-----------------------------
+
+Outstanding Large Items
+-----------------------
+- changing loop settings (perform mode)
+- triggering fades (perform mode)
+- use of pedal for turning off tracks in perform mode
+- step mode
+  - step follow mode (ie set duration and it follows down a melody, like old cakewalk thing)
+  - editing params in step mode
+- entering pitches with drum mode
+  - that are factors
+  - that aren't factors
+- copy and paste bars
+- snapshot: saves state of all seqs to a special file we can reload
+
+
+Workflow
+--------
+- need instantiation of the controllers to come out of the tune loading them
+
+Mutes
+-----
+- added perform mode with mutes 
+
+
+Next:
+-----
+- copy mode
+

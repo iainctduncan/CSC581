@@ -1,0 +1,65 @@
+Developer File Guide 
+===========================
+This page provides a guide to the source files.
+
+Platform Files
+--------------
+helpers.scm
+  - contains various utility functions used by the components 
+
+midi-input.scm
+  * midi-in: generic midi input function that accepts a device symbol as first name
+  * various device specific parse functions (fire, pad, etc)
+  * contains the hard mapping for midi/mode/controller routing, and is thus
+    the only file in which device-specific MIDI values should live
+
+controllers.scm
+  - contains the meta component
+  - contains the various modal input controllers
+  - controllers: perform, copy, step, drum, arp
+
+chord-sequencer.scm
+  - defines the chord-sequencer step sequencer
+
+score.scm
+  - tools for the linear score system (instead of scenes)
+  - make-score: for linear scores
+
+seq-load-save.scm
+  - serialization and saving/loading functions
+  - sequencers do not depend on this, but it does depend on sequencer data structure
+
+views.scm
+  - component for driving the grid view
+  - queries sequencers for data, updates s4m arrays used by the grid patcher
+
+sequencer-mutes.scm
+  - top level functions for muting sequencers under midi control
+
+output.scm
+  - note output function definitions, defines globals called by sequencers
+  - intended to be overriden on a per-project basis
+
+patchers/s4m-live-code.maxpat
+  - top level Max patch 
+
+
+Project Files
+-------------
+tunes/new_tune.py
+  - Python script for making a new piece template
+
+tunes/new
+  - template directory for a piece
+
+tunes/new/NAME-main.scm
+  - top level file for a set, pulls in all deps, and all individual seq files
+  - seqs are loaded up and assumed to be instanted as seq-1, seq-2, etc.
+
+tunes/new/NAME-seq-X.scm
+  - instantiates a seq-X object from one of the sequencers
+  - contains section functions for loading the seqs with data
+
+tunes/new/s4m-new Project
+  - Ableton Live project, used as the template for a piece
+

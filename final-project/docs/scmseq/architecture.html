@@ -1,0 +1,743 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Architecture &#8212; ScmSeq  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sequencer Implementation" href="sequencer_details.html" />
+    <link rel="prev" title="Object Model" href="object_model.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">ScmSeq  documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contents:
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   ScmSeq Manual
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="overview.html">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="live_setup.html">
+     Ableton Live Setup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="projects.html">
+     Projects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="realtime_input.html">
+     Real-time Input
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="object_model.html">
+     Object Model
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Architecture
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="sequencer_details.html">
+     Sequencer Implementation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="files.html">
+     Developer File Guide
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/scmseq/architecture.rst.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#components">
+   Components
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sequencers">
+   Sequencers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-meta-component">
+   The Meta component
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-midi-input-module">
+   The midi-input module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#input-controllers">
+   Input controllers
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Architecture</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#components">
+   Components
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sequencers">
+   Sequencers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-meta-component">
+   The Meta component
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-midi-input-module">
+   The midi-input module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#input-controllers">
+   Input controllers
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="architecture">
+<h1>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">#</a></h1>
+<p>This page provides an overview of the high-level architecture: what
+the major components are, their responsibilities, and how they interact.</p>
+<section id="components">
+<h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">#</a></h2>
+<p>A full ScmSeq system for playing a piece consists of the following components:</p>
+<ul class="simple">
+<li><p>Some <strong>sequencers</strong>, which store sequence data and state internally,
+play notes, and schedule themselves</p></li>
+<li><p>A <strong>meta</strong> component that stores global state such as track selections that
+are share across input modes or which should be globally available</p></li>
+<li><p>A <strong>midi-input</strong> handler which receives MIDI messages from the user’s specific hardware,
+normalizes them, and routes them to controllers or the meta component</p></li>
+<li><p>One or more <strong>input-controllers</strong>, which receive normalized input messages
+(typically from the midi-input component), store modal editing state, and
+ultimately send messages to sequencers and the meta component to update sequence data or trigger actions</p></li>
+<li><p>A <strong>project</strong>, which is a collection of Scheme files specific to a piece</p></li>
+</ul>
+</section>
+<section id="sequencers">
+<h2>Sequencers<a class="headerlink" href="#sequencers" title="Permalink to this headline">#</a></h2>
+<p>Sequencers store sequence data and play it back.
+They keep sequence data in local variables, and provide a number of functions to update
+or get at this data.
+In addition to sequence data, they have a collection of saveable state variables
+that determine how they play: transpose, timebase, various loop related settings,
+offsets for various parameters, output channels, and so on.</p>
+<p>A sequence stores various note parameters, such as velocity/amplitude, pitch,
+duration, and modulation data. In the ScmSeq nomenclature, we call these
+<em>params</em> or <em>pfields</em> (from the Csound nomenclature).</p>
+<p>Sequence data is stored in vectors, with each param having its own vector,
+which we refer to as a <strong>ptrack</strong>, and one <strong>track</strong> comprising some number
+of ptracks.
+A sequencer has various global, or <em>track level</em> settings: time-base,
+ticks per step, main loop length, and so on.
+However, ptracks also have their own loop-length and loop-top, allowing us
+to use ratcheting with the main track level loop. This allows easy creation
+of poly-rhythmic patterns between params - we can, for example, specify that
+the loop-length for pitch is 8 but for velocity is 3.</p>
+<p>A sequencer plays a step by executing its <strong>run-step</strong> method, which looks up
+sequence data based on various settings and the loop-lengths, outputs it if desired, and
+then schedules the next iteration (again using various settings to do so).</p>
+<p>This model means that sequencers are completely indepedent from each other.
+The only syncronization they use is that which comes with the functions they
+use to schedule their next pass. If this is a <strong>delay-tq</strong> call (the default)
+then the next pass is scheduled using a delay with ticks
+as timebase and quantized execution, which will be locked in with the whatever
+the main transport is in the host (Max or Live). However, if one wants
+freely running sequencers with completely different timebases, replacying
+<strong>delay-tq</strong> with a non-quantized delay in ms allows this.</p>
+<p>Normally sequencers receive messages from several sources:</p>
+<ul class="simple">
+<li><p>Scheme code sent in over the OSC network connection (live-code)</p></li>
+<li><p>Scheduled (scored) functions in a piece’s project arrangement files</p></li>
+<li><p>Input controllers in response to real-time hardware actions</p></li>
+</ul>
+<p>The sequencer has no notion itself of any difference between these, it
+just runs whatever function it gets asked to run in a message.
+If the host is running with a reasonable latency (128 or 256 sample buffer depending
+on how much other audio processing is happening), the sequencers can
+update themselves on the same beat in which they play without issue.
+Thus arrangements can be made by specifying timed functions that update
+sequence data and state settings, and various helper functions exist to
+make this straightforward.</p>
+<p>Sequencers also have the capability of saving and loading from disk,
+in which they store a serialized version of their <strong>_</strong> state hash-table.
+(The sequencer vectors are also in this table).
+This allows one to schedule functions that completely or partially replace
+any of the sequence state, either from disk, or from preloaded Scheme data structures.</p>
+<p>The main sequencer component I use is the <strong>chord-step-sequencer</strong>, and this will be looked
+at in detail subsquently.  It can be found in <strong>chord-step-sequencer.scm</strong></p>
+</section>
+<section id="the-meta-component">
+<h2>The Meta component<a class="headerlink" href="#the-meta-component" title="Permalink to this headline">#</a></h2>
+<p>The meta component is a global object used to act as container for
+settings that should be shared across sequencers or input controllers,
+and for state that any other component might need to get at.
+Meta is defined in the file <strong>controllers.scm</strong>.</p>
+<p>Examples of meta data are the currently selected track or bar, the current input mode, and so on.
+Meta also holds top level configuration information such as
+<strong>steps-per-beat</strong>, <strong>beats-per-bar</strong>, <strong>bpm</strong>.
+Note that while this is available to sequencers, there is nothing forcing
+a sequencer to use these globals - a sequencer can have its own meter
+if desired.</p>
+<p>The meta component is available as a global object named <strong>meta</strong>
+and provides convenient setters and getters using keyword arguments.</p>
+<div class="highlight-Scheme notranslate"><div class="highlight"><pre><span></span><span class="c1">; get steps-per-beat</span>
+<span class="p">(</span><span class="nf">meta</span> <span class="nv">:steps-per-beat</span><span class="p">)</span>
+
+<span class="c1">; set steps-per-beat</span>
+<span class="p">(</span><span class="nf">meta</span> <span class="nv">:steps-per-beat</span> <span class="mi">16</span><span class="p">)</span>
+
+<span class="c1">; return the entire meta hash-table for inspection in the console</span>
+<span class="nv">meta</span>
+</pre></div>
+</div>
+<p>The meta component is also special in that it acts as the central
+registry for other components to find each other or data in an organized
+way. We could say it acts as the <em>dirty main</em> in a dependency injection system.
+This means that other components do depend on the existence of the meta
+component and the fact that it is bound to <strong>‘meta</strong>.</p>
+</section>
+<section id="the-midi-input-module">
+<h2>The midi-input module<a class="headerlink" href="#the-midi-input-module" title="Permalink to this headline">#</a></h2>
+<p>The midi-input component is implemented as a top-level function, <strong>midi-input</strong>,
+that expects to receive a first argument of a symbol indicating the source of the MIDI message,
+and subsequent arguments representing raw input.
+The file <strong>midi-input.scm</strong> contains this component along with various related functions.</p>
+<p>The intent of the design is that the midi-input module should be the <em>only</em> place for
+input routing values <em>specific to a user’s hardware configuration</em>.
+We expect that a user will build their own midi-input module(s) around their hardware and how
+they want modal editing to work.</p>
+<p>While ScmSeq can be used in standalone Max, my main use is from within Ableton Live,
+and this will be assumed for the remaining documentation.</p>
+<p>The lifecycle of MIDI input in the context of a Live set is:</p>
+<ul class="simple">
+<li><p>A MIDI message comes in on a Live track, passing through a small
+M4L device that prepends the source device name as a symbol (e.g. launchpad-1) to the message</p></li>
+<li><p>The device-tagged message is routed to the main intepreter where it results
+in a call to <strong>midi-input</strong></p></li>
+<li><p>The <strong>parse-midi</strong> function is called, which returns a hash-map representing
+one MIDI message, with keys: <strong>:msg, :chan, :note, :vel, :cc-num, and :cc-val</strong>.
+This allows the remaining input handling to use this normalized hashtable rather
+than raw MIDI bytes.</p></li>
+<li><p>The midi-input function then checks for an <em>input-device-specific</em> MIDI parsing
+function, which is asssumed to be named to match the device, such <strong>parse-input-pad-1</strong> where
+<strong>pad-1</strong> is the device symbol. If one is found for the source device, it is called and has the
+opportunity to change the incoming MIDI message, updating the message hash-table.</p></li>
+<li><p>midi-input then enters its branching map. This is a nested branching tree
+that routes by the current editing mode,
+by the source device, and by the specific message on the source device. This
+branching ends ending with a call to send a message to a specific controller,
+sequencer, or the meta object.</p></li>
+</ul>
+<p>The intent is that the user will edit this mapping tree in <strong>midi-in</strong>,
+resulting in calls to other components in which MIDI numbers are no longer
+relevant and messages use a higher-level abstraction.</p>
+<p>In my personal setup, for example, I have two Launchpad Mini’s, which are each
+8x8 button grids with additional side and top rows of 8 buttons. I use them together, with
+one of them rotated, to make a 16x8 grid, along with a row of 8 on the left, 8 on the right,
+and 16 on the bottom. To handle this, we have <strong>parse-input-pad-1</strong> and <strong>parse-input-pad-2</strong>
+functions that are called by from <strong>midi-input</strong>. These handle translating the raw
+input MIDI messages into grid abstractions and add to the message hashtable the
+keys: <strong>:action</strong>, <strong>:row</strong>, and <strong>:col</strong>, where action can be <strong>‘grid-btn</strong>,
+<strong>‘left-btn</strong>, or <strong>‘bottom-btn</strong>.
+A this point, the message hash-table now has the original MIDI fields, and
+some new fields to use in its map to actions.</p>
+<p>In the example below, we see the branching in the body of <strong>midi-input</strong> after
+this has happened.
+In this snippet we have a map for when the user is in <strong>arp</strong>
+mode, handling input from the <strong>keystep</strong> device and the <strong>pad-1</strong> and <strong>pad-2</strong>
+devices. On a match, a controller is passed a message that may include the normalized
+action, such as <strong>grid-btn</strong>. To the receiving controller,
+there is something sending grid messages, but the controller does not need to be aware
+that this is originated from two side by side launchpads (with one rotated)
+that are acting as one larger 16x8 grid.</p>
+<p>By doing this, we could have multiple sources for grid messages, including
+GUI emulations for testing or mobile development, but we will not need
+to change our controllers. One can see in the example below that we
+depend on the MIDI implementation of the Launchpad here, but only here - this
+is the only file in which we specify numerical CC and note messages specific
+to the Launchpad.</p>
+<div class="highlight-Scheme notranslate"><div class="highlight"><pre><span></span><span class="c1">; example of branching within the midi-input function</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">handled-by-mode</span>
+  <span class="p">(</span><span class="k">case </span><span class="nv">mode</span>
+    <span class="p">(</span><span class="ss">&#39;arp</span>   <span class="c1">; ARP MODE MAPPINGS</span>
+      <span class="p">(</span><span class="nf">cond</span>
+        <span class="c1">; messages from keystep mini keyboard</span>
+        <span class="p">((</span><span class="nb">eq? </span><span class="nv">device</span> <span class="ss">&#39;keystep</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">cond</span>
+            <span class="p">((</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">m</span> <span class="nv">:msg</span><span class="p">)</span> <span class="ss">&#39;note-on</span><span class="p">)</span>
+              <span class="p">((</span><span class="nf">get-controller</span> <span class="ss">&#39;arp</span><span class="p">)</span> <span class="ss">&#39;note-on</span> <span class="p">(</span><span class="nf">m</span> <span class="nv">:note</span><span class="p">)</span> <span class="p">(</span><span class="nf">m</span> <span class="nv">:vel</span><span class="p">)))</span>
+            <span class="c1">; play vs program mode on the keystep from the top buttons</span>
+            <span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">m</span> <span class="nv">:cc-num</span><span class="p">)</span> <span class="mi">51</span><span class="p">)</span> <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">m</span> <span class="nv">:cc-val</span><span class="p">)</span> <span class="mi">127</span><span class="p">))</span>
+              <span class="p">((</span><span class="nf">get-controller</span> <span class="ss">&#39;arp</span><span class="p">)</span> <span class="ss">&#39;set-mode</span> <span class="ss">&#39;program</span><span class="p">))</span>
+            <span class="c1">; other arp mode trimmed</span>
+            <span class="p">(</span><span class="k">else </span><span class="no">#f</span><span class="p">)))</span>
+        <span class="c1">; messages from the two side by side launchpads, abstracted as &#39;grid-btn action</span>
+        <span class="p">((</span><span class="k">or </span><span class="p">(</span><span class="nb">eq? </span><span class="nv">device</span> <span class="ss">&#39;pad-1</span><span class="p">)</span> <span class="p">(</span><span class="nb">eq? </span><span class="nv">device</span> <span class="ss">&#39;pad-2</span><span class="p">))</span>
+          <span class="p">(</span><span class="nf">cond</span>
+            <span class="p">((</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">m</span> <span class="nv">:action</span><span class="p">)</span> <span class="ss">&#39;grid-btn</span><span class="p">)</span>
+              <span class="p">((</span><span class="nf">get-controller</span> <span class="ss">&#39;arp</span><span class="p">)</span> <span class="ss">&#39;grid-btn</span> <span class="p">(</span><span class="nf">m</span> <span class="nv">:row</span><span class="p">)</span> <span class="p">(</span><span class="nf">m</span> <span class="nv">:col</span><span class="p">)))</span>
+            <span class="p">((</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">m</span> <span class="nv">:action</span><span class="p">)</span> <span class="ss">&#39;left-btn</span><span class="p">)</span>
+              <span class="p">((</span><span class="nf">get-controller</span> <span class="ss">&#39;arp</span><span class="p">)</span> <span class="ss">&#39;left-btn</span> <span class="p">(</span><span class="nf">m</span> <span class="nv">:btn</span><span class="p">)))</span>
+            <span class="c1">; buttons for right side and bottom trimmed</span>
+          <span class="p">))</span>
+        <span class="p">(</span><span class="k">else </span><span class="no">#f</span><span class="p">)</span> <span class="c1">; must return false to have message bubble up to meta</span>
+      <span class="p">))</span><span class="c1">;end arp mode</span>
+    <span class="c1">; other mode mappings here</span>
+    <span class="c1">; ...</span>
+    <span class="p">(</span><span class="k">else </span><span class="no">#f</span><span class="p">))</span><span class="c1">; end case mode</span>
+<span class="p">)</span><span class="c1">; end mode branch</span>
+
+<span class="c1">; non-modal meta routings - handles global messages (track, bank, bar, etc)</span>
+<span class="c1">; these result in messages to the meta component rather than specific controllers</span>
+<span class="c1">; handled-by-mode will be #f if the msg was not caught by a case above</span>
+<span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">not </span><span class="nv">handled-by-mode</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">begin</span>
+    <span class="p">(</span><span class="k">case </span><span class="p">(</span><span class="nf">m</span> <span class="nv">:action</span><span class="p">)</span>
+      <span class="p">(</span><span class="ss">&#39;grid-btn</span>
+        <span class="p">(</span><span class="nf">meta</span> <span class="ss">&#39;grid-btn</span> <span class="p">(</span><span class="nf">m</span> <span class="nv">:row</span><span class="p">)</span> <span class="p">(</span><span class="nf">m</span> <span class="nv">:col</span><span class="p">)))</span>
+      <span class="p">(</span><span class="ss">&#39;mode-btn</span>
+        <span class="c1">; TODO mode btns should go to meta too</span>
+        <span class="p">(</span><span class="nf">meta</span> <span class="ss">&#39;mode-btn</span> <span class="p">(</span><span class="nf">m</span> <span class="nv">:btn</span><span class="p">)))</span>
+    <span class="p">)))</span>
+</pre></div>
+</div>
+<p>A user thus has one place to build their hardware setup mapping
+and if they have multiple hardware setups, they can have multiple versions of this file,
+loading the correct one from the top level project file.</p>
+</section>
+<section id="input-controllers">
+<h2>Input controllers<a class="headerlink" href="#input-controllers" title="Permalink to this headline">#</a></h2>
+<p>Once input has been normalized and transformed into messages bound for controllers, we
+enter the controller scope.
+A controller is implemented using the standard component model, but
+rather than having most state in serialized hash, state is principally
+stored in regular variables in the object’s closure. This is because we don’t
+need to save a controller’s state.</p>
+<p>We will look at the simplest controller, the <strong>perform mode controller</strong>,
+which is used to mute and unmute tracks, change loop lengths, and other
+settings we might use in a live performance context. Other controllers
+contain significantly more complexity, but follow the same pattern, and thus
+should be comprehensible subsquent to this discussion.</p>
+<p>The beginning of our component follows our standard object model’s structure,
+with two state variables, one for a submode and one for units,
+and several internal methods: get-sequencer, set-grid-unit, and set-grid-mode.</p>
+<div class="highlight-Scheme notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-perform-controller</span> <span class="nv">name</span> <span class="o">.</span> <span class="nv">init-args</span><span class="p">)</span>
+
+  <span class="p">(</span><span class="k">let* </span><span class="p">((</span><span class="nf">debug</span> <span class="no">#t</span><span class="p">)</span>               <span class="c1">; for logging</span>
+         <span class="p">(</span><span class="nf">grid-mode</span> <span class="ss">&#39;split</span><span class="p">)</span>       <span class="c1">; submodes &#39;split, &#39;low, &#39;high or &#39;ptrk</span>
+         <span class="p">(</span><span class="nf">grid-unit</span> <span class="ss">&#39;steps</span><span class="p">)</span>       <span class="c1">; can be bars or steps, for setting loop length</span>
+         <span class="c1">; settings hash-table, unused in this one</span>
+         <span class="p">(</span><span class="nf">_</span>  <span class="p">(</span><span class="nf">hash-table</span><span class="p">)))</span>
+
+  <span class="c1">; get a sequencer, depends on existence of the track-sequencer hash-table</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">get-sequencer</span> <span class="nv">track</span><span class="p">)</span>
+    <span class="c1">; will return false if no seq</span>
+    <span class="p">(</span><span class="nf">post</span> <span class="s">&quot;get-sequencer&quot;</span> <span class="nv">track</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">track-sequencers</span> <span class="nv">track</span><span class="p">))</span>
+
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">set-grid-unit</span> <span class="nv">unit</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">set! </span><span class="nv">grid-unit</span> <span class="nv">unit</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">post</span> <span class="s">&quot;perform.grid-unit:&quot;</span> <span class="nv">grid-unit</span><span class="p">))</span>
+
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">set-grid-mode</span> <span class="nv">mode-num</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">let* </span><span class="p">((</span><span class="nf">modes</span> <span class="p">(</span><span class="nf">hash-table</span> <span class="mi">0</span> <span class="ss">&#39;split</span>  <span class="mi">1</span> <span class="ss">&#39;low</span>  <span class="mi">2</span> <span class="ss">&#39;high</span>  <span class="mi">3</span> <span class="ss">&#39;track</span><span class="p">))</span>
+           <span class="p">(</span><span class="nf">mode</span>  <span class="p">(</span><span class="nf">modes</span> <span class="nv">mode-num</span><span class="p">)))</span>
+      <span class="p">(</span><span class="k">if </span><span class="nv">mode</span> <span class="p">(</span><span class="k">set! </span><span class="nv">grid-mode</span> <span class="nv">mode</span><span class="p">))</span>
+      <span class="p">(</span><span class="nf">post</span> <span class="s">&quot;perform.grid-mode: &quot;</span> <span class="nv">grid-mode</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>Following these we have function definitions for the methods that will
+respond to messages from the midi-input dispatching component. These
+are named to match the normalized message actions from the midi-input module,
+simply to make tracing execution simpler, though there is no special significance
+to the name - they could alternatively be named for what they do as the method
+dispatching in midi-input explicitly indicates the controller method to which
+it dispatches.</p>
+<p>In the perform controller we have:</p>
+<ul class="simple">
+<li><p><strong>note-on</strong> - mutes and unmutes sequencer tracks</p></li>
+<li><p><strong>grid-btn</strong> - sets sequencer loop lengths and ptrack loop lengths</p></li>
+<li><p><strong>bottom-btn</strong> - sets the chord loop length for the chord sequencer</p></li>
+</ul>
+<p>In the example code below, we see that two of these branch according
+to the internal variable <strong>grid-mode</strong>, which is a submode of the perform
+controller that indicates how the 16x8 grid should be interpreted.</p>
+<div class="highlight-Scheme notranslate"><div class="highlight"><pre><span></span><span class="c1">; from body of perform-controller</span>
+
+<span class="c1">; notes mute and unmute tracks</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">note-on</span> <span class="nv">note-num</span> <span class="nv">vel</span><span class="p">)</span>
+  <span class="c1">;(post &quot;perform-controller &#39;note-on&quot; note-num vel)</span>
+  <span class="p">(</span><span class="nf">cond</span>
+    <span class="p">((</span><span class="nf">between?</span> <span class="nv">note-num</span> <span class="mi">60</span> <span class="mi">83</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">seq-num</span> <span class="p">(</span><span class="nf">note-&gt;number</span> <span class="nv">note-num</span> <span class="mi">60</span><span class="p">)))</span>
+        <span class="p">(</span><span class="nf">seq-mute</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="nv">seq-num</span><span class="p">)</span> <span class="mi">1</span><span class="p">)))</span>
+    <span class="p">((</span><span class="nf">between?</span> <span class="nv">note-num</span> <span class="mi">36</span> <span class="mi">59</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">seq-num</span> <span class="p">(</span><span class="nf">note-&gt;number</span> <span class="nv">note-num</span> <span class="mi">36</span><span class="p">)))</span>
+        <span class="p">(</span><span class="nf">seq-mute</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="nv">seq-num</span><span class="p">)</span> <span class="mi">0</span><span class="p">)))</span>
+  <span class="p">))</span>
+
+<span class="c1">; grid-btns set loop length in bars or steps depending on submode</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">grid-btn</span> <span class="nv">row</span> <span class="nv">col</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">post</span> <span class="s">&quot;perform.ctl &#39;grid-btn&quot;</span> <span class="nv">row</span> <span class="nv">col</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">case </span><span class="nv">grid-mode</span>
+    <span class="p">(</span><span class="ss">&#39;split</span>
+      <span class="p">(</span><span class="k">let* </span><span class="p">((</span><span class="nf">track</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&gt;= </span><span class="nv">col</span> <span class="mi">8</span><span class="p">)</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">row</span> <span class="mi">8</span><span class="p">)</span> <span class="nv">row</span><span class="p">))</span>
+             <span class="p">(</span><span class="nf">seq-target</span> <span class="p">(</span><span class="nf">get-sequencer</span> <span class="nv">track</span><span class="p">))</span>
+             <span class="p">(</span><span class="nf">val</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="p">(</span><span class="nb">modulo </span><span class="nv">col</span> <span class="mi">8</span><span class="p">)))</span>
+             <span class="p">(</span><span class="nf">steps</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">eq? </span><span class="nv">grid-unit</span> <span class="ss">&#39;steps</span><span class="p">)</span> <span class="nv">val</span> <span class="p">(</span><span class="nb">* </span><span class="nv">val</span> <span class="p">(</span><span class="nf">meta</span> <span class="nv">:steps-per-bar</span><span class="p">)))))</span>
+        <span class="p">(</span><span class="k">if </span><span class="nv">seq-target</span> <span class="p">(</span><span class="nf">seq-target</span> <span class="ss">&#39;set</span> <span class="nv">:loop-len</span> <span class="nv">steps</span><span class="p">))))</span>
+    <span class="p">(</span><span class="ss">&#39;low</span>
+      <span class="p">(</span><span class="k">let* </span><span class="p">((</span><span class="nf">track</span> <span class="nv">row</span><span class="p">)</span>
+             <span class="p">(</span><span class="nf">seq-target</span> <span class="p">(</span><span class="nf">get-sequencer</span> <span class="nv">track</span><span class="p">))</span>
+             <span class="p">(</span><span class="nf">steps</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">eq? </span><span class="nv">grid-unit</span> <span class="ss">&#39;steps</span><span class="p">)</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="nv">col</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="nv">col</span><span class="p">)</span> <span class="p">(</span><span class="nf">meta</span> <span class="nv">:steps-per-bar</span><span class="p">)))))</span>
+        <span class="p">(</span><span class="k">if </span><span class="nv">seq-target</span> <span class="p">(</span><span class="nf">seq-target</span> <span class="ss">&#39;set</span> <span class="nv">:loop-len</span> <span class="nv">steps</span><span class="p">))))</span>
+    <span class="p">(</span><span class="ss">&#39;high</span>
+      <span class="p">(</span><span class="k">let* </span><span class="p">((</span><span class="nf">track</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">8</span> <span class="nv">row</span><span class="p">))</span>
+             <span class="p">(</span><span class="nf">seq-target</span> <span class="p">(</span><span class="nf">get-sequencer</span> <span class="nv">track</span><span class="p">))</span>
+             <span class="p">(</span><span class="nf">steps</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">eq? </span><span class="nv">grid-unit</span> <span class="ss">&#39;steps</span><span class="p">)</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="nv">col</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="nv">col</span><span class="p">)</span> <span class="p">(</span><span class="nf">meta</span> <span class="nv">:steps-per-bar</span><span class="p">)))))</span>
+        <span class="p">(</span><span class="k">if </span><span class="nv">seq-target</span> <span class="p">(</span><span class="nf">seq-target</span> <span class="ss">&#39;set</span> <span class="nv">:loop-len</span> <span class="nv">steps</span><span class="p">))))</span>
+    <span class="p">(</span><span class="ss">&#39;track</span>
+      <span class="p">(</span><span class="k">let* </span><span class="p">((</span><span class="nf">ptrk</span> <span class="nv">row</span><span class="p">)</span>
+             <span class="p">(</span><span class="nf">seq-target</span> <span class="p">(</span><span class="nf">get-sequencer</span> <span class="p">(</span><span class="nf">meta</span> <span class="nv">:track</span><span class="p">)))</span>
+             <span class="p">(</span><span class="nf">steps</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">eq? </span><span class="nv">grid-unit</span> <span class="ss">&#39;steps</span><span class="p">)</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="nv">col</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="nv">col</span><span class="p">)</span> <span class="p">(</span><span class="nf">meta</span> <span class="nv">:steps-per-bar</span><span class="p">)))))</span>
+        <span class="p">(</span><span class="k">if </span><span class="nv">seq-target</span> <span class="p">(</span><span class="nf">seq-target</span> <span class="ss">&#39;set-ptrk-loop-len</span> <span class="nv">ptrk</span> <span class="nv">steps</span><span class="p">))))</span>
+  <span class="p">))</span>
+
+<span class="c1">; in track mode bottom btn does chord loop len</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">bottom-btn</span> <span class="nv">btn-num</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">post</span> <span class="s">&quot;(perform-controller &#39;bottom-btn&quot;</span> <span class="nv">btn-num</span> <span class="s">&quot;)&quot;</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">case </span><span class="nv">grid-mode</span>
+    <span class="p">(</span><span class="ss">&#39;track</span>
+      <span class="p">(</span><span class="k">let* </span><span class="p">((</span><span class="nf">seq-target</span> <span class="p">(</span><span class="nf">get-sequencer</span> <span class="p">(</span><span class="nf">meta</span> <span class="nv">:track</span><span class="p">)))</span>
+             <span class="p">(</span><span class="nf">steps</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">eq? </span><span class="nv">grid-unit</span> <span class="ss">&#39;steps</span><span class="p">)</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="nv">col</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="nv">col</span><span class="p">)</span> <span class="p">(</span><span class="nf">meta</span> <span class="nv">:steps-per-bar</span><span class="p">)))))</span>
+        <span class="p">(</span><span class="k">if </span><span class="nv">seq-target</span> <span class="p">(</span><span class="nf">seq-target</span> <span class="ss">&#39;set</span> <span class="nv">:c-loop-len</span> <span class="nv">steps</span><span class="p">))))</span>
+    <span class="p">))</span>
+</pre></div>
+</div>
+<p>Below this we have the boilerplate code from our standard object model, which we will not repeat here.</p>
+<p>The output of the controllers can be anything to which we might want to write based on
+input from a MIDI device. Thus we can see that building modal editing facilities consists
+of:</p>
+<ul class="simple">
+<li><p>creating a controller for our input mode</p></li>
+<li><p>editing midi-input to map hardware input to normalized messages to controllers</p></li>
+<li><p>creating “cold” controller methods that change local and global state based on motions</p></li>
+<li><p>creating “hot” controller methods that send messages to sequencers to update data</p></li>
+</ul>
+<p>In the controllers.scm file, code is defined for the following controllers, each representing
+an input-mode mapped from midi-input.</p>
+<ul class="simple">
+<li><p><strong>perform mode</strong> - mute/unmute tracks and change loop lengths</p></li>
+<li><p><strong>copy mode</strong> - copy sequence data</p></li>
+<li><p><strong>drum mode</strong> - enter sequence data with step selection hot</p></li>
+<li><p><strong>step mode</strong> - enter sequence data with “fader motions” hot</p></li>
+<li><p><strong>arp mode</strong> - a variant of step mode with chord and arpegiattor entry</p></li>
+</ul>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="object_model.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Object Model</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="sequencer_details.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Sequencer Implementation</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Iain C.T. Duncan<br/>
+  
+      &copy; Copyright 2022, Iain C.T. Duncan.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

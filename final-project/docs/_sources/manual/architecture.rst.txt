@@ -1,0 +1,246 @@
+Architecture
+=============
+This page provides an overview of the high-level architecture: what
+the major components are, their responsibilities, and how they interact.
+
+Components
+----------
+A full ScmSeq system for playing a piece consists of the following components:
+
+* Some **sequencers**, which store sequence data and state internally
+* A **meta** component that stores global state such as track selections
+* A **midi-input** handler in which midi messages from the user's specific hardware,
+  normalize them, and routed them to controllers or the meta component
+* One or more **input-controllers**, which receive normalized input messages
+  (typically from the midi-input component), store modal editing state, and
+  ultimately send messages to sequencers to update sequence data or trigger actions
+* One or more **view-drivers**, which control GUI elements on screen used to see sequence data
+* A project, which is a collection of Scheme files specific to a piece.
+
+Sequencers
+-----------
+Sequencers store sequence data and play it back. 
+They keep sequence data in local variables, and provide a number of functions to update
+or get at this data. 
+In addition to sequence data, they have a collection of saveable state variables
+that determine how they play: transpose, timebase, various loop related settings,
+offsets for various parameters, output channels, and so on.
+
+Sequence data is stored in vectors, with each param having its own vector,
+and ever param also having its own loop-length and loop-top. There is additionally
+a master loop-length which acts as a ratchet.
+
+A sequencer plays a step by executing its **run-step** method, which will look
+sequence data according to the various settings, output it if desired, and
+then schedule the next iteration (again using various settings to do so).
+
+This model means that sequencers are completely indepedent from each other. 
+The only syncronization they use is that which comes with the functions they
+use to schedule their next pass. If this is a **delay-tq** call (the default)
+then the next pass is scheduled using a delay with ticks
+as timebase and quantized execution, which will be locked in with the whatever
+the main transport is in the host (Max or Live). 
+
+Normally sequencers receive messages several ways:
+
+* from Scheme code sent in over the OSC network connection (live-code)
+* from scheduled functions in a piece's project arrangement files
+* from input controllers in response to real-time hardware actions
+
+The sequencer has no notion itself of any difference between these, it
+just runs whatever function it gets. 
+If the host is running with a reasonable latency (128 or 256 sample buffer depending
+on how much other audio processing is happening), the sequencers can
+update themselves on the same beat in which they play without issue. 
+Thus arrangements can be made by specifying timed functions that update
+sequence data and state settings.
+
+Sequencers also have the capability of saving and loading from disk,
+which will be documented in its own page.
+
+The main sequencer is the **chord-step-sequencer**, and this will be looked
+at in detail subsquently. 
+
+It can be found in **chord-step-sequencer.scm**
+
+The Meta component
+-------------------
+The meta component is a global object used to act as container for
+settings that should be shared across sequencers or input controllers.
+Examples might be the currently selected track, input mode, bar.
+It also holds top level configuration information such as
+**steps-per-beat**, **beats-per-bar**, **bpm**, etc. 
+
+Note that while this is available to sequencers, there is nothing forcing
+a sequencer to use these globals - a sequencer can have its own meter
+if desired.
+
+The meta component is available as a global object named **meta**
+and provides convenient setters and getters using keyword arguments.
+
+.. code:: Scheme
+
+  ; get steps-per-beat
+  (meta :steps-per-beat)
+  
+  ; set steps-per-beat
+  (meta :steps-per-beat 16)
+
+  ; return the entire meta hash-table for inspection in the console
+  meta
+
+The meta component is also special in that it acts as the central
+registry for other components to find each other or data in an organized 
+way. It acts as the *dirty main* in a dependency injection system.
+This means that other components do depend on the existence of the meta
+component and that it is bound to **'meta**.
+
+The midi-input module
+----------------------
+The midi-input component is implemented as a function, **midi-input**,
+that expects to receive a first argument of a symbol indicating the source,
+and subsequent arguments representing raw midi input.
+
+The file **midi-input.scm** also includes several utility functions.
+
+The intent is that the midi-input module should be the *only* place that
+settings specific to a user's hardware configuration live, and that a user
+will build their own midi-input module(s) around their hardware and how
+they want modal editing to work.
+
+The lifecycle of midi input in the context of a Live set is:
+
+* A midi message comes in on a track, passing through a small device specific
+  M4L device that prepens the source device (e.g. launchpad-1) to the message
+* The device-tagged message is routed to the main intepreter where it results
+  in a call to **midi-input**
+* The **parse-midi** function is called, which returns a hash-map representing
+  one midi message, with keys: **:msg :chan :note :vel :cc-num :cc-val**
+* The midi-input function then checks for an input-specific midi parsing
+  function, named to match the device, such **parse-input-pad-1** where
+  **pad-1** is the device symbol. If one is found for the source device, it is called and has the 
+  opportunity to change the incoming midi message. 
+* midi-input then enters its branching map. This is a nested branching tree
+  that routes by the current editing mode, retrieved from **(meta :mode)**,
+  and by the source device, and by the specific message on the source device,
+  ending with a an expression to send a message to a specific controller, 
+  sequencer, or the meta object.
+
+The intent is that the user will edit this mapping tree in **midi-in**, 
+resulting in calls to other components in which midi numbers are no longer
+relevant and messages use a higher-level abstraction. 
+
+In my personal setup, for example, I have two Launchpad Mini's, which are each
+8x8 button grids with additional side and top rows of 8 buttons. I use them together, with
+one of them rotated, to make a 16x8 grid, with a row of 8 on the left, 8 on the right,
+16 on the bottom. To handle this, we have **parse-input-pad-1** and **parse-input-pad-2**
+functions that are called by from **midi-input**. Thes handle translating the raw
+input midi messages into grid abstractions and add to the message hashtable the
+keys: **:action**, **row**, and **col**, where action can be **'grid-btn**, 
+**'left-btn**, or **'bottom-btn**.
+
+A this point, the message hash-table now has the original midi fields, and
+some new fields to use in it's map to actions.
+
+In the example below, we see the branching in the body of **midi-input** after
+this has happened.
+In this snippet we have a map for when the user is in **arp**
+mode, handling input from the **keystep** device and the **pad-1** and **pad-2** 
+devices. On a match, a controller is passed a message that may include the normalized
+action (**grid-btn** etc.) To the receiving controller,
+there is something sending grid messages, but it does not need to be aware 
+that this is originated from two side by side launchpads (with one rotated)
+that are acting as one larger 16x8 grid.
+
+By doing this, we could have multiple sources for grid messages, including
+GUI emulations, and the controllers do not need to change anything.
+
+.. code:: Scheme
+
+    ; branching by mode and device here 
+    (define handled-by-mode
+      (case mode 
+        ('arp   ; ARP MODE MAPPINGS
+          (cond 
+            ; messages from keystep mini keyboard
+            ((eq? device 'keystep)    
+              (cond 
+                ((eq? (m :msg) 'note-on)
+                  ((get-controller 'arp) 'note-on (m :note) (m :vel)))
+                ; play vs program mode on the keystep from the top buttons
+                ((and (= (m :cc-num) 51) (= (m :cc-val) 127)) 
+                  ((get-controller 'arp) 'set-mode 'program))
+                ; other arp mode trimmed
+                (else #f)))
+            ; messages from the two side by side launchpads
+            ((or (eq? device 'pad-1) (eq? device 'pad-2))
+              (cond
+                ((eq? (m :action) 'grid-btn)
+                  ((get-controller 'arp) 'grid-btn (m :row) (m :col)))
+                ((eq? (m :action) 'left-btn)
+                  ((get-controller 'arp) 'left-btn (m :btn)))
+                ; buttons for right side and bottom trimmed
+              ))
+            (else #f) ; must return false to have message bubble up to meta
+          ));end arp mode            
+        ; other mode mappings here
+        ; ...
+        (else #f)); end case mode
+    ); end mode branch
+
+    ; non-modal meta routings - handles global messages (track, bank, bar, etc)
+    ; handled-by-mode will be #f if the msg was not caught by a case above
+    (if (not handled-by-mode)
+      (begin
+        (case (m :action) 
+          ('grid-btn  
+            (meta 'grid-btn (m :row) (m :col)))
+          ('mode-btn
+            ; TODO mode btns should go to meta too
+            (meta 'mode-btn (m :btn)))
+        )))
+
+Input controllers 
+------------------
+Once input has been normalized and mapped to messages bound for controllers, we
+enter the controller scope.
+
+A controller is implemented using the standard component model, but
+rather than having most state in serialized hash, state is principally 
+stored in standard variables in objects closure. This is because we don't
+need to save a controller's state.
+
+We will look at the simplest controller, the **perform mode controller**,
+which is used to mute and unmute tracks, change loop lengths, and other
+settings we might use in a live performance context.
+
+The beginning of our component has our standard construction
+with two state variables, one for a submode and one for units, 
+and several methods: get-sequencer, set-grid-unit, and set-grid-mode:
+
+.. code:: Scheme
+
+  (define (make-perform-controller name . init-args)
+   
+    (let* ((debug #t)               ; for logging
+           (grid-mode 'split)       ; submodes 'split, 'low, 'high or 'ptrk 
+           (grid-unit 'steps)       ; can be bars or steps, for setting loop length 
+           ; settings hash-table, unused in this one
+           (_  (hash-table)))          
+
+    ; get a sequencer, depends on existine of the track-sequencer hash-table
+    (define (get-sequencer track)
+      ; will return false if no seq
+      (post "get-sequencer" track)
+      (track-sequencers track))
+
+    (define (set-grid-unit unit)
+      (set! grid-unit unit)
+      (post "perform.grid-unit:" grid-unit))
+
+    (define (set-grid-mode mode-num)
+      (let* ((modes (hash-table 0 'split  1 'low  2 'high  3 'track))
+             (mode  (modes mode-num)))
+        (if mode (set! grid-mode mode))
+        (post "perform.grid-mode: " grid-mode)))
+

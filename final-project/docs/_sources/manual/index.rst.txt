@@ -1,0 +1,13 @@
+ScmSeq Manual
+=============
+
+.. toctree::
+    :maxdepth: 2
+
+    overview
+    live_setup
+    projects
+    realtime_input
+    object_model
+    architecture
+    files

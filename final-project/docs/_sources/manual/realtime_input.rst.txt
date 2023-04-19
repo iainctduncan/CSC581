@@ -1,0 +1,130 @@
+Real-time Input
+================
+
+Overview
+--------
+This page describes how real-time input from the hardware controllers works 
+from the user's perspective. (Internal details will be covered in the architecture documentation.)
+
+The purpose of a controller is to provide a state container for modal editing,
+where particular input motions cause a variety of state changes.
+These usually fall into one of the following categories:
+
+* Selections: track, bar, step, etc.
+* Submode selection: arpeggiator on/off, chord mode on/off, etc.
+* Data entry that is stored, but not yet acted upon ("cold")
+* Data entry that results in messages to sequencers to update data ("hot")
+
+The best way to describe the workflow is probably to describe my own 
+personal configuration and the input modes I have created for it.
+I will first describe my MIDI hardware controller configuration.
+
+
+My hardware
+------------
+My hardware devices consist of:
+
+* The Akai Fire, a 16x4 grid with miscellaneous extra buttons
+* The grid, which is actually made up of two launchpads acting as one 16x8 grid
+* Two keystep mini keyboards, which have keyboards, a mod and pitch bend ribbon, and various buttons. The larger of which also has 4 dials.
+
+.. TODO photo
+
+At a high level, when I'm editing I want to to use a global mechanism
+to choose any selections that I want to persist **across modes**.
+An example would be track selection - I don't want
+to have re-select track 1 when moving between drum and step mode.
+I also need a way to choose the active mode, which for simplicty I do from the same controller. 
+
+In my mapping, the Fire acts as the this global controller. Input to it
+changes global selections that are state in the meta component, 
+thus all the Fire buttons always do the same thing, regardless of the active input mode. 
+(I have also found this easier to remember!)
+
+In my configuration, the fire grid rows are used to select
+
+#. Track
+#. Bank (unused at the moment)
+#. Bar
+#. Step
+
+Additionally, the Fire has buttons along the bottom used to select the input mode.
+Modes I have currently enabled include **drum**, **step**, **arp**, **perform**, and **copy**,
+which each corresponding to one input controller Scheme object. 
+When I change modes, the various buttons and keys on the other three devices (grid, keyb-1, keyb-2)
+mean different things, and different actions are "hot", meaning they result in writes to sequence data.
+
+One additional feature worth mentioning before getting into mode details is a trick
+I came up with for entering numerical data from piano keyboards. 
+As a jazz player, I have internalized the scale numbers to near-instant recall.
+So to enter the values 0-15 from a piano keyboard, I use two octaves of the C7 bebop scale,
+where the note values of C, D, E, F, G, A, Bb, B correspond to 0 to 7.
+This allows me to enter a series of numbers far faster than on conventional buttons
+and to memorize common rhythmic figures as chord shapes. 
+
+I use two Arturia KeyStep mini piano keyboards for input, and these will be referred to
+as **keyb-1** and **keyb-2**. These also include some knobs, and a pedal input.
+I refer to the 16x8 grid (of the two launchpad mini's)
+as thhe **pad-grid** or **pads**, and the Fire as the **global controller** or **fire**.
+
+
+Input mode examples 
+--------------------------
+
+Once we have selected the active input mode from the global input controller, 
+actions on the mode-specific input devices are, wherever possible,
+idempotent. This on the principle that we should not ever *need* to look at a screen
+for confirmation. If, once in a mode, a button does one thing, and always that thing, 
+keeping track of where we are is straightforward (with some practice!).
+
+So for example, if I am in **drum mode**, input works somewhat like a drum machine:
+I make various selections that are stored in the controllers local memory, such
+as what ptich or velocity I would like to use.
+Then I hit a button or key that signifies a step, and this causes
+all my parameter selections to be written in. 
+In this case, we say that *step selection is hot* - 
+it is the act of choosing a step that results
+in all the (already) selected field data being written to sequencer data.
+
+The drum mode order of operations is roughly:
+
+* We make (or reuse) the current meta selections for track and bar
+* We set some values with sliders (velocity, duration, mod-1, etc.)
+* Perhaps we select a pitch with keyb-2
+* We then hit keyb-1 ("hot") to enter these notes, resulting in messages going
+  to the sequencer for the currently selected track, which result in sequence
+  data getting updated.
+
+On the otherhand, when we are in **step mode**, the process is reversed - we
+pick a step (which doesn't by itself change anything),
+and then any editing motions (notes, sliders, etc) are written in *as they are touched*.
+We say that step selection is cold while faders are hot. 
+We can keep moving faders, and they will keep writing to the same step
+until we select a new step.
+
+So the step mode order of operations is roughly:
+  
+* We make (or remember!) the current global selections for track and bar
+* We pick a specific step from the Fire or keyb-2
+* We then move sliders, touch the pads, or play notes on keyb-1 to enter data.
+
+It is important to note that we do not (necessarily) need to reselect everything
+to write it in. For example, in drum mode, if keyb-2 selects C5, the
+selected pitch is C5, and that will be used for every step written until a new
+pitch is selected. This can of course be configured, and in my personal 
+(rather complex) input modes, I have included the ability to choose which 
+parameter fields automatically persist or not across actions, with the
+pitch bend and pedal used to create meta-keys to accomplish this.
+
+In addition to the drum and step modes detailed above I have:
+
+* Arp mode, a variant of step mode that allows chord and arpeggiator input
+* Copy mode (in progress) for copying sequence data
+* Perform mode (in progress), for mix and track muting and automation
+
+While this may sound intimidatingly complex, with practice it enables
+extremely fast data entry. I have found the key to designing modes that
+are effective in practice is be consistent on what kinds of selections
+are global versus local, and to keep (as much as possible) the input
+hardware in alignment with this. 
+

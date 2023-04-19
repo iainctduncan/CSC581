@@ -1,0 +1,37 @@
+Csound Chord Instrument
+-----------------------
+
+Requirements
+------------
+- each osc needs to be its own thing so they can glide
+
+- we need csound VCO output that accepts
+- what would work nicely is that when a midi note comes in1, 
+
+Done:
+-----
+- created csound instrument cs-chord-1.csd with fractional voice legatos
+- 1.x is the oscillator bank, it's always on
+- 2.x is the instrument that turns it on with the pitch signal
+
+Input:
+------
+- midi input could work by waiting to send a message until there are 4 overlapping
+  notes and then sending a message with 4 (or whatever) voices
+- so a csound message would be 
+- could use standard csound messages and have the orchestrator send them
+  - would need to use the fractional on parts?
+
+Input from S4M:
+---------------
+- s4m out 3 goes to cs-outs patcher, where we route from initial int
+  - this is routed to sends: cs-1, cs-2, etc
+- the csound receiver device has a track number, and will receive on that channel
+- to send csound messages, we do
+  (out 3 (list {cs-num} .... ))
+- need to remember how to do the pitch legato too
+
+
+To Do:
+------
+

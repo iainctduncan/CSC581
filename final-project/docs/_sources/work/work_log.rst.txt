@@ -1,0 +1,529 @@
+Work Log
+========
+
+Next: 
+- mod data out to modular and to GM
+  - this means both modwheel and velocity I think
+ - fix view to allow more notes in chords
+  
+Next Milestones:
+- getting copy, perform, snapshots done for complete step seq environment
+- hooking up param fields to modular
+- documenting system to hand in for course
+- new view that shows data for all 16 tracks at once (master loop, gates)
+  - can swtich param on it
+
+High Priorities for seq
+- detaching chord time from main time factor (for counterpoint)
+  - adding chord loop len and separate chord time factor
+- view responding to bar selection (to see later bars)
+- add broadcast module for updating meta view widgets
+- enter chord factors in step mode with keyb bebop
+- full save snapshot
+- fix how controllers are instantiated (shouldn't be in tune)
+
+Ondeck:
+- hopefully start copy mode - can this be in perform mode??
+
+2023-03-5
+- perform mode works for loop lens and mutes
+  - will need to do more once chord looping is improved in the chord seq
+
+2023-03-4
+- step mode is basically done, will get tweaked as I use it
+  - could do with some more meta objects GUI elements
+- left off testing and debugging the grid rows function in perform
+
+2023-03-3
+- working on adding second keyboard and step mode
+- basics of step mode working
+
+2023-02-23/24
+- working on the seq setup code
+
+2023-02-18
+- brief work on feb-16 tune in morning to check it
+  - have ideas on what to do with it
+  - need to come up with way to program chord movements more easily (record them from Live, etc)
+
+2023-02-17
+- worked on feb-16 tune again, still like it
+
+2023-02-16
+- started new tune, feb-16. it's good, woot!
+
+2022-11-23
+- short session on oct-1 tune
+- intro still bad, fixed that I think?
+- started learning timeless 3, put it on s1
+  - need to figure out how to automate from scheme
+
+2022-11-19
+- worked on oct-1, got arrangement done actually done (wasn't really done), length is 5 min
+- has auto filter fades at end, which are working nicely
+- todo: ptrk mod, delay mod
+
+2022-11-14
+- morning writing, worked for about 3 or 4 hours?
+- got overall arrangement of Oct-1 finished
+- next: add dubber automation, switch to modular, work on ptrk auto
+
+2022-11-11
+- short session, working on oct-1
+
+2022-11-10
+- doing short writing session in evening
+- working on arrangement for oct-1
+- going to try doing mutes with the live clips
+
+2022-11-09
+- at desk to write at 7:30
+  - initiating plan to try writing every day, esp mornings
+  - worked on writing for several hours in morning
+- worked on oct-1. added new bell line, sorted out some arranging stuff
+- ready to now have arrangement done I think
+  - maybe one more line?
+
+2022-11-08
+- worked on the oct-1 piece
+  - experimented with the Live dub keys device, it has a lot of potential
+  
+2022-10-25
+- working on the writing setup
+- figured out I need keys going to ext out (bpassing master busses) to not get tons of latency
+- going to work on a new tune to practice doing all the things
+- need to get the keyboards overriding chords in the arp seq
+- urgent: need way to wipe chord bars!!
+
+2022-10-24
+- attempting to do short writing session with full setup
+- issue, no csound6 for M1 yet! need to do that. oops
+  - I guess I will use zebra for chords for now on it??
+
+2022-10-22
+- have been working on thesis lately, hence the gap
+- resuming work on getting four voices from modular running
+- figured out best way to tune is to send 1s out and just move the jacks to get them in tune
+- still need to figure out how I want to output velocity and mod.
+- hooked up grandmother, but how to send out extra values?
+
+2022-10-07
+- working on getting four synths going
+- fixed the damn vcos, woot!
+
+2022-10-05
+- get four voices going of synth
+- seems like gate and cv routing is still not right, working on that
+  - fixed now I think?
+
+2022-10-01
+- Goal: on live + modular setup with no send/receive latency issues
+- got gate outputs working, but they are doing this through the cv-note-out function,
+  which is also doing a bunch of shit it doesn't need to do if we're using midi to CV
+  - this can be figured out later though
+
+2022-09-26 to 30
+- got the 0.4 release done
+- put up videos for the ableton version and ableton install
+- made example devices for the package
+
+2022-09-19
+- DONE gc clock needs to have protection added for when used in the low thread environment
+- arg, in cleaning up the git tree (removing the build path) I borked xcode and now it's not 
+  able to load the compiled external
+- Fixed: fucked up my dev environment, need to fix xcode so it loads s4m properly
+
+2022-09-10
+- got live api patcher building automatically
+- determined having it owned by external does not make sense *unless* it's always invisible,
+  because otherwise users can delete it and then we have bad references
+- next s4m thing is the gc clock, then it should be release ready
+
+2022-09-9
+- working on code again
+
+2022-09-8
+- going to do timing comparison eliminating s/r pairs before the gates
+- figured out it's the send/receive pairs introducing the jitter
+- got gates going out the s4m track, and timing is rock solid, <1ms jitter
+- need to put the CV outs on devices in the same track somehow
+- this would require sending midi messages out by channel on to the same device
+- which probably means that we need to route audio to 7/8 so that the s4m-device
+  can be a midi device instead of an audio one.
+
+2022-09-2
+- worked on using modular
+- definitely need the snapshot-all feature!!
+- figuring out delay on new system
+- did timing tests and figured out my send and receives are making bad jitter
+
+2022-08-1
+ - resuming work on sets
+ - fixing up the track gain device, I think I left it with the params still screwed up
+ - left off fixing up the track fade things
+
+2022-06-25
+ - working on the live API controlled filter fade plugin
+ - made new gain/gate/lp/hp track device with envs that 
+ - added functions (gain) (fc) (gate) for controlling them
+ - left off, need to finalize their param nums so it's consistent across tracks
+ - all tracks will gain and fc, not all need gate or hp
+
+2022-06
+ - working on how arrangements will work
+ - got scene functions working off midi clips
+ - next: add the gate triggering to the audio tracks with the live API
+
+2022-05-27
+  - view-1 automatically follows track selection now
+
+2022-05-25
+  - worked on full workflow on new tune 'kestrel'
+  - intention to program it all in with controllers
+  - got chords to zebra going, and track selecting working properly
+  - next: need view to also follow track select
+  - recorded a chord prog to use for it too
+  - fixed data path to persist on reset
+    - still gets lost on device edit though
+  - cleaned up new tune template & script
+
+2022-05-22
+  - added tiny grid to view-1, cs-view-1-main-loops, to hold main and chord loop
+  - can I change bars yet for where I'm looking??
+  - fixed up and documented loading and saving sequences to data files, working!
+
+2022-05-21
+  - created a meta view which shows current track, bar, bank, step 
+  - made chord seq loop len separate from master loop 
+
+2022-05-20
+  - working on chord seq
+  - fixed bugs in chord update, added erasing
+
+2022-05-19
+  - taking break from mix setup to get controllers and seq saving working for the chord seqs
+
+2022-05-08
+  - continuing to work on remotes
+  - test with fade in of delays on some instruments
+  - make midi sends to those??
+  - got final system in place for remotes
+  - NEXT: copy out what I did for track 1 p1 to the others
+    - this allows the control update to stay current from ramps, and saves with the set properly
+
+2022-05-07
+  - working on live api and remoting for the track delays
+
+2022-05-06
+  - got velocity working on csound instrument
+  - did ableton track driven seq mutes 
+  - hooked up zebra filters to macros, but how to send to the macros?
+  - got macros going to the delays, and s4m-functions writing to the macros
+    - need to review the live remote stuff for ramping them
+  - somehow I broke my play and stop functions though, wtf!
+
+2022-05-05
+  - got csound gates working
+  - Live's lfo going to csound instrument
+  
+2022-05-02
+  - issue: ticks->ms is not working in context of live!
+  - need to figure out how to get the live tempo and convert it, grr
+    - using (meta :bpm) hack for now
+  - got instrument working, still needs to send the gate to the modulars
+  - also need to figure out how to turn off the stupid steinberg auto loopback shit
+
+2022-05-01
+  - working on the csound instrument
+  - got an env going but it doesn't pick on last note properly
+
+2022-03-30
+  - csound chords - got a chord sequencer playing a chord line to the channel
+
+2022-03-29
+  - working on output with that is midi track compatible
+  - added modwheel and aftertouch to CV Instrument input from mod params
+    - seqencer sending those from midi routing in the track subpatcher
+  - also still working on triggering csound chords from the sequencer and gettting them going with the external filters
+
+2022-03-28
+  - figured out the csound code for legato chords with fractional voices
+
+2022-03-23
+  - working on modular with seq, figured out routing (in s4m-live-cv)
+  - learnt the sonic XV filter
+  - TODO: make the gate router use a text input for target (copy other device)
+  - make it possible to mute input from the seq while preserving midi in
+
+2022-03-22
+  - got modular output working with CV tools and created device to send from tracks to ES5
+  - still need to add more outputs for it though (only sends from first track) and haven't tested
+  - with the seq yet
+
+2022-03-18
+  - got modular output doing mods out
+
+2022-03-18
+  - worked on modular output
+  - started new patch and scm file, cv-output.scm and cv-out.maxpat
+  - got it working, but not doing more than pitch and gate right now
+  - need to then put it in Live and see how that goes
+
+2022-03-17
+  - grid needs formatter attributes for blanking zeros and showing midi notes
+  - added attribute for blank zeros
+  - added attribute for midi note to pitch (whole grid for now)
+  - now numbering for the factors is off course...
+  - but it runs much better now
+
+2022-03-16
+  - worked on the viewmodels, figured out string handling with defer was making issues
+  - started switch to using int array, will put the formatting in the receiver (grid)
+
+2022-03-14
+  - worked on multi views, adding seq labels  
+  - track info working fine, chord info has weird bugs
+
+2022-03-14
+  - got bar and seq els updating in the cs-view
+  - renamed it and cleaned up element naming
+  - now can have bar updated properly
+
+2022-03-13
+  - adding loop len and chords to the arp view, with simple objects
+  - got view showing chords too and ran it with dubby
+  - played with dubby, seems like it could work for OneInstr
+    - sounds good with no drums, chords, delay
+  - should try making the chord line a static glistening arp thing
+
+2022-03-10
+  - worked on component macros
+
+2022-03-06
+  - worked on macro version of the components
+
+2022-03-06
+  - worked on component framework, but didn't come up with working result
+  - it should probably be done with macros instead to inject methods
+
+2022-03-05
+  - arp view addition grids
+
+2022-03-04
+  - worked on the arp view, adding more output boxes 
+
+2022-03-02
+  - worked on the arp view, adding more output boxes 
+
+2022-03-02
+  - worked on set file handling, cleaned up patch
+  - added 'clear' to the s4m.grid
+  - got view model messaging the grid directly and added formatters (no zeros, count from 1)
+  - working through midi input and controllers
+  - created track inputs and devices for KS, fire, LP1, LP2 in Live  
+  - got pad input going to the arp controller
+
+2022-03-30
+  - created the music docs repo and sphinx project for a proper manual
+  - opening up s4m.grid again
+  - needed to recompile s4m from s4m arrays branch
+  - s4m has not been moved to new sdk yet
+  - seems I left partway through s7_array_ref/set - there is no body for them
+  - got the view model stuff loaded back in the brain though
+
+2022-01-20
+  - getting back to tracker GUI coding
+  - old work is in s4m-seq, but predates the sequencer objects so will need a lot of refactoring
+  - added save-dir handling to seq loading and saving
+  - saving/loading working well enough to move on
+
+2022-01-19
+  - sequencer save/load
+
+2022-01-17
+  - sequencer serialization stuff
+  - got saving and loading working in seq-load-save.scm
+
+2022-01-15
+  - sequencer serialization
+
+2022-01-14
+  - added s4m source and reload commands and fixed up base live patch for easy loading of files
+  - started working on serializing sequencers for saving/loading
+  - arrangement of dubby tune
+
+2022-01-08
+  - worked on new track template to make firing up new songs painless
+
+2020-12-29
+  - want to get back to actual composing with the s4m stuff 
+  - would be good to do an arp plus csound/fm thing
+  - in which file was doing the automation stuff for a template
+
+2020-12-27 to 28th
+  - working on csound port
+
+2020-12-17
+  - working on the score system with the zebra tune
+  - need to add drum track triggering to the score
+
+2021-11-10 & 11
+  - working ableton+modular
+  - got things working with midi, need to add score input
+
+2021-11-09
+  - working on ableton+mod template
+
+2021-11-08
+  - added hot keys for starting, stopping, and resetting, switched transport to plugsync
+  - TODO: add clip and scene firing from the scripts
+
+2021-11-07 -
+  - did a session with Glyn, demoing stuff
+  - worked on the reusable patcher for remote control
+
+2021-11-06 
+  - working on live.remoting
+
+2021-11-02 
+  - got score working in score.scm
+  - next, try making it do an actual arrangement
+  - got a multi-part arrangement going
+
+2021-10-30 - getting back to work after house!
+  - picking up the arrange mode tool again 
+
+2021-09-30
+  - working on arrange mode/score
+  - got basics working but have a bug, left off there
+  - details in s4m-live-code/notes/score_notes.txt
+
+2021-09-28
+  - working on arrange mode/score
+
+2021-09-25
+  - got back to work on the live ensembled, tweaking things
+  - got it performing well, heap 16KB, gc running every 140 ms or so, disabled other than that
+  - would prob be even better running off the beats so they never line up..
+  - I think next important thing is going to be arrange mode of some kind that works with Live
+
+2021-09-24
+  - worked on csound6~ for a while, got basic shell going
+  - working on the Ableton ensemble again 
+
+2021-09-23
+  - get back to running the ensembles!
+  - fixed gc run and gc try to return nil, put up rc4, I think it's done
+
+2021-09-21
+  - trying to wrap up 0.3 release
+
+2021-09-20
+  - TODO: new build of s4m:
+  - bug for single arg functions in messages
+  - rebuild for windows
+  - set heap default to 32?
+
+2021-09-19/18
+  - worked on the cs-additive ensemble for additive synthesis with csound
+  in Max, got it working ok, though hit the message size limit in csound~
+  - would be worth fixing that
+
+2021-09-16
+  - worked on the help file for 0.3
+  - test Max 4 Live with small heap size..
+
+2021-09-15
+  - I think we are ready to release 0.3
+  - got the 0.3 release up
+  - still needs a new help file
+
+2021-09-08
+  - started on gc lockout feature
+
+2021-09-07
+  - worked on s4m expr handling, tried out Jon's thread macro
+  - decided to shelve it though
+
+2021-09-06
+  - worked on s4m expr handling, tried out Jon's thread macro
+
+2021-09-05
+  - worked on getting s4m directly into the object without tosymbol and prepend eval-string
+  - got it working
+
+2021-09-04
+  - working on adding low priority delay events
+ 
+2021-09-04
+  - got live API working, does firing events, setting properties, reading properties
+
+2021-09-03
+  - working the sequencer running in m4l
+
+2021-09-02
+  - worked on ableton syncing
+  - got s4m-live code running in ableton
+  - left off trying to clock it with clock-ticks, but it's fucked up for some reason,
+  - notes in the s4m-ableton-syncing.txt file, 
+  - live set is s4m4l-live-code
+
+2021-09-02
+  - worked on ableton integraton
+
+2021-09-01
+  - got s4m working inside m4l, timing is solid
+  - started looking at live API and learning live better
+
+2021-08-31
+  - got saving and loading to files working, with evalable content
+  - will need to make some kind of python/vim handler to load them in all pretty like
+  - got basic chord output working 
+
+2021-08-30
+  - goal: check out sync with live drum programming, is that reliable?
+  - turns out having the Max DAC on is necessary, and then it is locked in, though we get the jitter
+    - very solid down to 8 vector size at 256
+
+2021-08-29
+  - did session with Craig
+  - got launchpad input working, but not done hooking it up
+
+2021-08-28
+  - got meta controller receiving global choices (mode, track, etc)
+  - got arp-seq receiving chord programming on the fly, though wiping it is incomplete
+  - arp-controller gets track, bar, step from the meta controller now
+  - can play real-time chords over sequence
+  - got launchpad input parsing working
+
+2021-08-27
+  - presented to icfp
+  - brainstormed a bit on midi recorder
+
+2021-08-25
+  - next thing to do: get fire and launchpad talking to the arpeggiator
+
+2021-08-24
+  - s4m-live-code: got the device input parsing working nicely for handlign device input
+    and dispatching normalized messages to controllers
+
+2021-08-23
+  - s4m-live-code: got the component architecture working, with separate midi-input, controllers, and seq
+    all talking to each other properly
+  - next: add the rest of the controller functions to it for the arp seq to it
+ 
+2021-08-22
+  - s4-live-code arper: got the real time chord entry working
+
+2021-08-21
+  - chord/arp seq,
+  - fixed the dispatcher in s4m-live-code::step-player, it was naively evaling args, needed to be (apply (eval 'msg) args)
+  - update is now working properly on the step-seq, add the log-debug function
+
+2021-08-16
+  - starting on the chord/arp seq, working in the s4m-live-code directory
+  - first need to check whether the step-player is working ok, there
+    is a note about the update functions being busted
+  - fixed step player so it wasnt' sending outputs on data of zeros
+
+
