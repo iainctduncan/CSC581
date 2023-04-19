@@ -1,4 +1,4 @@
-<REAPER_PROJECT 0.1 "6.03/OSX64" 1679864838
+<REAPER_PROJECT 0.1 "6.03/OSX64" 1679865060
   RIPPLE 0
   GROUPOVERRIDE 0 0 0
   AUTOXFADE 1
@@ -14,7 +14,7 @@
   TIMEMODE 1 5 -1 30 0 0 -1
   VIDEO_CONFIG 0 0 256
   PANMODE 3
-  CURSOR 0.67943785663382
+  CURSOR 0
   ZOOM 313.49445415843985 0 0
   VZOOMEX 4
   USE_REC_CFG 0
@@ -76,7 +76,7 @@
     DEFSHAPE 0 -1 -1
   >
   <TEMPOENVEX
-    ACT 1 -1
+    ACT 0 -1
     VIS 1 0 1
     LANEHEIGHT 0 0
     ARM 0
@@ -129,7 +129,7 @@
       GUID {FBBA0EB2-6D50-C940-80CC-05C0F93CB4D0}
       RECPASS 1
       <SOURCE WAVE
-        FILE "/Users/iainduncan/Documents/school/CSC581/assignment-3/mug/01-230325_1846.wav"
+        FILE "01-230325_1846.wav"
       >
     >
   >
@@ -146,7 +146,7 @@
     BUSCOMP 0 0 0 0 0
     SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
     FREEMODE 0
-    SEL 0
+    SEL 1
     REC 0 0 0 0 0 0 0
     VU 2
     TRACKHEIGHT 66 0 0
@@ -177,7 +177,7 @@
       GUID {51E4A81C-B1C9-2E4E-9CE2-A28896E75A61}
       RECPASS 2
       <SOURCE WAVE
-        FILE "/Users/iainduncan/Documents/school/CSC581/assignment-3/mug/02-230326_1241.wav"
+        FILE "02-230326_1241.wav"
       >
     >
   >
@@ -194,7 +194,7 @@
     BUSCOMP 0 0 0 0 0
     SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
     FREEMODE 0
-    SEL 1
+    SEL 0
     REC 0 0 0 0 0 0 0
     VU 2
     TRACKHEIGHT 78 0 0
@@ -225,7 +225,7 @@
       GUID {1ADA6EB8-C28C-DA4A-9A81-80CBCF113FC4}
       RECPASS 3
       <SOURCE WAVE
-        FILE "/Users/iainduncan/Documents/school/CSC581/assignment-3/mug/03-mug 1 additive-230326_1347.wav"
+        FILE "03-mug 1 additive-230326_1347.wav"
       >
     >
   >
@@ -273,7 +273,7 @@
       GUID {A2358954-D78F-EA41-8DF2-3BB1C592514A}
       RECPASS 4
       <SOURCE WAVE
-        FILE "/Users/iainduncan/Documents/school/CSC581/assignment-3/mug/04-mug 2 additive-230326_1348.wav"
+        FILE "04-mug 2 additive-230326_1348.wav"
       >
     >
   >
@@ -321,7 +321,7 @@
       GUID {7EFF5F06-0CF3-944F-AB98-D19632BC5FE7}
       RECPASS 5
       <SOURCE WAVE
-        FILE "/Users/iainduncan/Documents/school/CSC581/assignment-3/mug/05-mug 1 modal-230326_1349.wav"
+        FILE "05-mug 1 modal-230326_1349.wav"
       >
     >
   >
@@ -369,7 +369,7 @@
       GUID {04137376-B631-BB4D-B77F-BC1DE7A848EF}
       RECPASS 6
       <SOURCE WAVE
-        FILE "/Users/iainduncan/Documents/school/CSC581/assignment-3/mug/06-mug 2 modal-230326_1349.wav"
+        FILE "06-mug 2 modal-230326_1349.wav"
       >
     >
   >
