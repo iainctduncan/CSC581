@@ -32,7 +32,8 @@ multiplying by a complex number is equivalent to rotating counter-clockwise.
 Specifically, multiply by j is a rotation counter-clockwise of 90 degress.
 
 This is born out by the above expansion, as our new number is at -1 on the x-axis
-and 2j on the y.
+and 2j on the y, which is a 90 degree counterclockwise rotation of the first number.
+
 
 **3)** MIDI to Computer
 -----------------------
@@ -41,14 +42,16 @@ See project here: https://github.com/iainctduncan/CSC581/tree/main/final-project
 MIDI input is handled in the file **midi-input.scm** in which it is converted from
 raw MIDI data to normalized hash-tables prior to use by the rest of the system.
 
+Direct link: https://github.com/iainctduncan/CSC581/blob/main/final-project/midi-input.scm
+
 **4)** Amplitude Estimation in Mixtures 
 ---------------------------------------
 I implemented this in a Max patch and accompanying Scheme file.
 Plots are done in the Max patch and may be seen in the screenshot.
 
 * Max patch: **a2_q4.maxpat**
-* Scm file: **a2-q4.scm**
-* Screenshot: **a2_q4.scm**
+* Scm file: https://github.com/iainctduncan/CSC581/blob/main/assignment-2/a2-q4.scm
+* Screenshot: https://github.com/iainctduncan/CSC581/blob/main/assignment-2/a2_q4.png
 * Recording: **amplitude_mixture.wav**
 
 **5)** Amplitude and Phase Estimation in Mixture 
@@ -57,25 +60,27 @@ I implemented this in a Max patch and accompanying Scheme file.
 Plots are done in the Max patch and may be seen in the screenshot.
 
 * Max patch: **a2_q5.maxpat**
-* Scm file: **a2-q5.scm**
-* Screenshot: **a2_q5.scm**
+* Scm file: https://github.com/iainctduncan/CSC581/blob/main/assignment-2/a2-q5.scm
+* Screenshot: https://github.com/iainctduncan/CSC581/blob/main/assignment-2/a2_q5.png
 * Recording: **amp_phase_mixture.wav**
 
 **6**) Arpeggiator
 --------------------------
 See project here: https://github.com/iainctduncan/CSC581/tree/main/final-project
 
-Files of interest are **chord-sequencer.scm** and **controllers.scm** (arp mode).
+Files of interest are **chord-sequencer.scm** and **controllers.scm**, line 713
 
+https://github.com/iainctduncan/CSC581/blob/main/final-project/chord-sequencer.scm
+https://github.com/iainctduncan/CSC581/blob/main/final-project/controllers.scm
 
 **7)** Equal Temperaments
 --------------------------
 I created a Max patch and a Scheme for Max program to play equal tempered scales of any division.
 
 * Patch file: **a2-q7-scales.maxpat**
-* Scheme file: **a2-q7.scm**
+* Scheme file:  https://github.com/iainctduncan/CSC581/blob/main/assignment-2/a2-q7.scm 
 * Wav file: **scales.wav**
-* Patch screenshot: **a2-q7.png**
+* Patch screenshot: https://github.com/iainctduncan/CSC581/blob/main/assignment-2/a2-q7.png 
 
 **8**) Complex Number Plotting
 ------------------------------
