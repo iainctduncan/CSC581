@@ -59,26 +59,26 @@ All functionality listed is demonstrated in the demo video.
        based on values in pitch track (0-8 mean chord mode)
     * Enable paraphonic chord mode in addition to arpeggiation
 * Performance mode (new, complete)
-  ** Change loop lengths of all tracks and ptracks
-  ** Change loop lengths of individual ptracks
-  ** Mute/Unmute sequencers
+    * Change loop lengths of all tracks and ptracks
+    * Change loop lengths of individual ptracks
+    * Mute/Unmute sequencers
 * Copy mode (new, in progress)
-  ** Select source bars (complete)
-  ** Select destination bars (complete)
-  ** Enable copying only specific ptracks (in progress)
-  ** Enable copying between tracks (in progress)
+    * Select source bars (complete)
+    * Select destination bars (complete)
+    * Enable copying only specific ptracks (in progress)
+    * Enable copying between tracks (in progress)
 * Arp mode (improved, complete)
-  ** Change chord progression either temporarily (non-destructive) or by replacing
-  ** Change pitch ptrack loop length from keyboard 2
+    * Change chord progression either temporarily (non-destructive) or by replacing
+    * Change pitch ptrack loop length from keyboard 2
 * Step mode (improved, complete)
-  ** Selection of duration from keyboard 2, in steps and ticks
-  ** Follow submode, in which steps auto-advance by current duration
-  ** Record mode, in which steps are recorded in realtime, entered quantized
-  ** Improve ability to edit ptrack data from keyboards, including meta
-     key capability for creating parameter masks
+    * Selection of duration from keyboard 2, in steps and ticks
+    * Follow submode, in which steps auto-advance by current duration
+    * Record mode, in which steps are recorded in realtime, entered quantized
+    * Improve ability to edit ptrack data from keyboards, including meta
+       key capability for creating parameter masks
 * Drum mode (new, complete)
-  ** Enable programming drum patterns using keyboard 1 as step entry
-  ** Enable editing of param data from keyboard knobs and modwheels
-  ** Ability to edit ptrack data from keyboards, including meta
-     key capability for creating parameter masks
+    * Enable programming drum patterns using keyboard 1 as step entry
+    * Enable editing of param data from keyboard knobs and modwheels
+    * Ability to edit ptrack data from keyboards, including meta
+       key capability for creating parameter masks
 
