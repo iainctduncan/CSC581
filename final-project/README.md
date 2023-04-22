@@ -7,9 +7,10 @@ the s4m extenstion for Max, and a collection of Scheme files run by s4m.
 
 ## Documentation
 Project Documentation: https://iainctduncan.github.io/CSC581
+(This is intended to replace the ISMIR format paper.)
 
 ## Demonstration Video
-A video covering the new functionality implemented for CSC 484 is
+A video covering the new functionality implemented for CSC 581 is
 here: https://vimeo.com/user29372309/scmseq-demo 
 
 ## Credits
@@ -24,7 +25,7 @@ Scheme for Max uses the s7 Scheme interpreter, by Bill Schottstaedt (CCRMA).
 ScmSeq has the following installation dependencies:
 
 * Max 8 - www.cycling74.com
-* Ableton Live with Max for Live - www.ableton.com)
+* Ableton Live with Max for Live - www.ableton.com
 * Scheme for Max - https://github.com/iainctduncan/scheme-for-max
 
 ## Installation
@@ -33,6 +34,8 @@ ScmSeq has the following installation dependencies:
 * Copy the .amxd Max for Live devices from the devices folder into your Live devices directory
 * Ensure that your Scheme files are included on the Max file path, accessed
   by editing a Max for Live device and opening "Options -> File Preferences"
+* In the **tunes** directory, run the **new_tune.py** script for cloning the Ableton Live project file 
+
 
 ## Resources
 * Project documentation: https://iainctduncan.github.io/CSC581
@@ -48,13 +51,13 @@ ScmSeq has the following installation dependencies:
 
 
 ## Milestones and Features
-These milestones cover only new functionality added as part of CSC 484.
+These milestones cover only new functionality added as part of CSC 581.
 All functionality listed is demonstrated in the demo video.
 
 * Chord-step sequencer (complete)
-  ** Enable the same sequencer to run in chord mode or regular step mode,
-     based on values in pitch track (0-8 mean chord mode)
-  ** Enable paraphonic chord mode in addition to arpeggiation
+    * Enable the same sequencer to run in chord mode or regular step mode,
+       based on values in pitch track (0-8 mean chord mode)
+    * Enable paraphonic chord mode in addition to arpeggiation
 * Performance mode (new, complete)
   ** Change loop lengths of all tracks and ptracks
   ** Change loop lengths of individual ptracks
