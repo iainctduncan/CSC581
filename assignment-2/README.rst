@@ -96,7 +96,8 @@ https://iainctduncan.github.io/s4m-stk/
 See project demo and code here:
 https://github.com/iainctduncan/CSC581/tree/main/final-project
 
-See the drum-controller in the file **controllers.scm**.
+See the drum-controller in the file **controllers.scm**, line 909!!  hahaha. how cool is that?
+https://github.com/iainctduncan/CSC581/blob/main/final-project/controllers.scm
 
 
 
