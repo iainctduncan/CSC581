@@ -64,7 +64,7 @@ All functionality listed is demonstrated in the demo video.
     * Mute/Unmute sequencers
 * Copy mode (new, in progress)
     * Select source bars (complete)
-    * Select destination bars (complete)
+    * Paste into destination bars (complete)
     * Enable copying only specific ptracks (in progress)
     * Enable copying between tracks (in progress)
 * Arp mode (improved, complete)
