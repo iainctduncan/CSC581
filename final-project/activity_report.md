@@ -3,7 +3,7 @@
 ## Reflections and Learnings
 * Going through the log is useful as a way to see work habits - I should make an effort to do smaller, more frequent commits
   with better messages even if it's just me
-* Even though I make an effort in this are, my notes to self could still be a lot better!!
+* Even though I make an effort in this area, my notes to self could still be a lot better!!
 * I have a work log file, but am not good at using it consistently. A stronger effort here would be worthwhile,
   it's very useful to be able to look back over what I was thinking and doing when I get to resume after a week away
 * I think a mental bad habit I have is of thinking I don't need to end the day with a commit or good notes
@@ -11,8 +11,8 @@
   back to this work for four or five days and have to waste a bunch of time figuring out what was loaded in my head
 * Plus I could lose work this way in the event of a disk failure ....
 * Worth thinking about what will go in which repositories better ahead of time
-* Process of writing demo documentation was helpful - it did make me find some rough edges and design flaws
-* Process of making a top to bottom video was also helpful in finding design flaws or things that need to be easier 
+* The process of writing demo documentation was helpful - it did make me find some rough edges and design flaws
+* The process of making a top to bottom video was also helpful in finding design flaws or things that need to be easier 
 
 ## Log 
 This is an incomplete report as unfortunately I was lost some commit history
